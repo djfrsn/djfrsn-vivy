@@ -1,4 +1,4 @@
-@import 'settings.css';
+@import './settings.css';
 
 @define-mixin simpleBoxShadow {
   box-shadow: 0 1px 2px $color-black;
