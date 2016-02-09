@@ -1,9 +1,9 @@
-/* @import '../mixins.css'; */
+@import '../mixins.css'; 
 @import '../settings.css';
 
 .main-section {
   width: 50%;
-  /* @include simpleBoxShadow; */
+  @mixin simpleBoxShadow; 
   
   margin: 16px;
   border-radius: $global-radius;
