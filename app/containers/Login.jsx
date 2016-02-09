@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import { connect } from 'react-redux';
 import { manualLogin } from 'actions/users';
-import styles from 'scss/components/_login';
+import styles from 'css/components/_login';
 
 const cx = classNames.bind(styles);
 
