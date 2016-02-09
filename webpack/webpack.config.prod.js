@@ -18,7 +18,7 @@ var commonLoaders = [
   { test: /\.json$/, loader: "json-loader" },
   { test: /\.png$/, loader: "url-loader" },
   { test: /\.jpg$/, loader: "file-loader" },
-  { test: /\.scss$/,
+  { test: /\.css$/,
     loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module&localIdentName=[local]__[hash:base64:5]!autoprefixer-loader!postcss?includePaths[]=' 
       + encodeURIComponent(path.resolve(__dirname, '..', 'app', 'css')))
   }
