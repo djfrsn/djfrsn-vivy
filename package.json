@@ -1,6 +1,6 @@
 {
   "name": "djfrsn-vivy",
-  "version": "1.4.1",
+  "version": "0.0.1",
   "description": "A simple Node.js app using Express 4 with Webpack, React, alt, ImmutableJS",
   "repository": "https://github.com/choonkending/react-webpack-node",
   "main": "index.js",
