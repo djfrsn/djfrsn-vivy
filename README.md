@@ -1,4 +1,4 @@
-[ ![Codeship Status for djfrsn/djfrsn-vivy](https://codeship.com/projects/cb5e7d70-b1ef-0133-ef64-66cd7c0bebc3/status?branch=master)](https://codeship.com/projects/133187)
+[ ![Codeship Status for djfrsn/djfrsn-vivy](https://travis-ci.org/djfrsn/djfrsn-vivy.svg)](https://travis-ci.org/djfrsn/djfrsn-vivy)
 
 # react-webpack-node
 
