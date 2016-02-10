@@ -1,4 +1,4 @@
-var nr = require('newrelic');
+if (process.env.NODE_ENV === 'production') require('newrelic');
 var express = require('express');
 var fs = require('fs');
 var mongoose = require('mongoose');
