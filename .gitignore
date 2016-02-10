@@ -6,3 +6,4 @@ public
 newrelic_agent.log
 *.sublime-project
 *.sublime-workspace
+server/config/secrets.js
