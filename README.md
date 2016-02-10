@@ -1,3 +1,5 @@
+[ ![Codeship Status for djfrsn/djfrsn-vivy](https://codeship.com/projects/cb5e7d70-b1ef-0133-ef64-66cd7c0bebc3/status?branch=master)](https://codeship.com/projects/133187)
+
 # react-webpack-node
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/choonkending/react-webpack-node?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
