@@ -1,8 +1,8 @@
 {
   "name": "djfrsn-vivy",
   "version": "0.0.1",
-  "description": "A simple Node.js app using Express 4 with Webpack, React, alt, ImmutableJS",
-  "repository": "https://github.com/choonkending/react-webpack-node",
+  "description": "My homepage built using Express 4 with Webpack, React, ImmutableJS",
+  "repository": "https://github.com/djfrsn/djfrsn-vivy",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf public",
@@ -15,7 +15,7 @@
     "test:watch": "npm test -- --watch --no-single-run",
     "postinstall": "npm run build"
   },
-  "author": "Choon Ken Ding",
+  "author": "Dennis Jefferson",
   "license": "MIT",
   "devDependencies": {
     "expect": "^1.13.4",
