@@ -66,7 +66,7 @@ module.exports = {
       ])
     },
     postcss: [
-      require('postcss-cssnext', 'precss')
+      require('precss')
     ],
     resolve: {
       extensions: ['', '.js', '.jsx', '.css'],
