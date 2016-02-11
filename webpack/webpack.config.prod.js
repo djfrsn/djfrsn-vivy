@@ -72,7 +72,7 @@ module.exports = [
       loaders: commonLoaders
     },
     postcss: [
-      require('precss')
+      require('postcss-cssnext', 'precss')
     ],
     resolve: {
       extensions: ['', '.js', '.jsx', '.css'],
