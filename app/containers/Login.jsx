@@ -85,4 +85,3 @@ function mapStateToProps(state) {
 // It does not modify the component class passed to it
 // Instead, it returns a new, connected component class, for you to use.
 export default connect(mapStateToProps)(Login);
-
