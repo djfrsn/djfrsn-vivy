@@ -1,15 +1,55 @@
 @import '../settings.css';
 
-.about {
-  padding: 0 24px;
+/*
+**
+*** Intro Styles
+**
+*/
+
+.intro
+{
+  @include text-shadow();
+  @include rem(font-size, 16px);
 }
 
-  .intro__header {
-    color: $color-black;
-    font-size: $font-large;
-    text-align: center;
-  }
+/* Shared 
+*/
+.intro__header, .intro__sub_header, .intro__header_description
+{
+  text-align: center;
+  cursor: default;
+}
 
-  .intro__description {
-    font-size: $font-medium;
+/* .intro__header
+*/
+.intro__header
+{
+  font-size: em(46);
+}
+
+/* .intro__sub_header
+*/
+.intro__sub_header
+{
+  font-size: em(17);
+  transition: all 0.5s ease;
+  @include media(max-width, 291px)
+  {
+    font-size: em(16);
   }
+}
+
+/* .intro__header_description
+*/
+.intro__header_description
+{
+  font-size: em(17);
+  @include rem(padding, 0 40px);
+}
+
+/* .dynamic_text[x]
+*/
+.dynamic_text4
+{
+  color: themeColor(five);
+}

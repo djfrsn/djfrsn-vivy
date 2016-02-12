@@ -1,0 +1,54 @@
+/*
+**
+*** Intro Styles
+**
+*/
+
+// Global
+.intro
+{
+	@include text-shadow();
+	@include rem(font-size, 16px);
+}
+
+/* Shared 
+*/
+#intro__header, #intro__sub_header, #intro__header_description
+{
+	text-align: center;
+	cursor: default;
+}
+
+/* #intro__header
+*/
+#intro__header
+{
+	font-size: em(46);
+}
+
+/* #intro__sub_header
+*/
+#intro__sub_header
+{
+	font-size: em(17);
+	transition: all 0.5s ease;
+	@include media(max-width, 291px)
+	{
+		font-size: em(16);
+	}
+}
+
+/* #intro__header_description
+*/
+#intro__header_description
+{
+	font-size: em(17);
+	@include rem(padding, 0 40px);
+}
+
+/* .dynamic_text[x]
+*/
+.dynamic_text4
+{
+	color: themeColor(five);
+}

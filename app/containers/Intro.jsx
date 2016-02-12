@@ -14,6 +14,8 @@ export default class Intro extends React.Component {
     return (
       <div className={cx('intro')}>
         <h1 className={cx('intro__header')}>Dennis Jefferson</h1>
+        <h5 className={cx('intro__sub_header')}>[ creates ]</h5>
+        <p className={cx('intro__header_description')}>Web Apps</p>
       </div>
     );
   }

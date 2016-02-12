@@ -1,0 +1,66 @@
+/*
+**
+*** Overrides Styles
+**
+*/
+
+.container
+{
+	width: 100%;
+	padding: 0;
+}
+
+/* Document level font adjustments 
+*/
+.navbar, #nav__main-menu, .about, .intro, .portfolio, .skills, .contact, .footer
+{
+	@include media(max-width, 275px) // Super Small Devices
+	{
+		@include rem(font-size, 10px);
+	}
+	@include respond-to(sxs)
+	{
+		@include rem(font-size, 16px);
+	}
+	@include respond-to(xs)
+	{
+		@include rem(font-size, 18px);
+	}
+}
+
+.about, .intro, .portfolio, .skills, .contact, .footer
+{
+	@include respond-to(sm)
+	{
+		@include rem(font-size, 20px);
+	}
+	@include respond-to(md)
+	{
+		@include rem(font-size, 24px);
+	}
+	@include respond-to(lg)
+	{
+		@include rem(font-size, 28px);
+	}
+}
+
+.navbar, #nav__main-menu
+{
+	@include respond-to(xs)
+	{
+		@include rem(font-size, 17px);
+	}
+}
+
+/*
+** Disable Select
+*/
+#brand, #active__page_container, .main-menu li a, #intro__header, #intro__sub_header, #intro__header_description
+{
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

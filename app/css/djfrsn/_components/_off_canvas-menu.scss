@@ -1,0 +1,124 @@
+/*
+**
+*** Off_Canvas-Menu Styles
+**
+*/
+
+
+/* nav
+*/
+
+nav {
+  background: themeColor(three);
+  color: themeColor(four);
+  display: block;
+  height: 100%;
+  overflow: auto;
+  position: fixed;
+  right: -20em;
+  @include rem(font-size, 16px);
+  top: 0;
+  @include rem(width, 150px);
+  z-index: 2000;
+  
+  transition: right 0.3s ease-in-out 0s;
+  @include paper-shadow();
+  @include respond-to(sm)
+  {    
+    @include rem(width, 175px);
+  }
+}
+
+/* .nav-expanded 
+*/
+.nav-expanded nav {
+  right: 0; 
+}
+
+body.nav-expanded {
+  margin-left: 0em;
+  transition: right 0.4s ease-in-out 0s;
+}
+
+/* #nav-close
+*/
+
+#nav-close {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  font-size: em(19);
+}
+
+/* .main-menu
+*/
+
+.main-menu {
+  padding-top: 12px;
+}
+
+.main-menu li {
+  text-align: center;
+  font-size: em(22);
+  padding: 10px;
+  @include respond-to(sm)
+  {
+    font-size: em(24);
+  }
+}
+
+.main-menu li a {
+  color: themeColor(four);
+  text-decoration: none;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.main-menu li a:hover {
+  color: themeColor(five);
+  text-decoration: none;
+}
+
+.main-menu li .sub-nav {
+  border-bottom: 0px;
+  padding: 4px;
+}
+
+.main-menu a .caret {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  vertical-align: top;
+  border-top: 4px solid #4f5963;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+  content: "";
+    margin-top: 8px;
+}
+
+.main-menu a:hover .caret {
+  border-top-color: #4f5963;
+}
+
+.main-menu li.open > a > .caret {
+  border-top: none;
+  border-bottom: 4px solid #4f5963;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.main-menu li.open > a:hover > .caret {
+  border-bottom-color: #4f5963;
+}
+
+/* .icon
+*/
+
+.icon:before {
+  font-family: 'FontAwesome';
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-transform: none;
+  content: '\f105';
+}

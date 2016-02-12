@@ -1,0 +1,129 @@
+/*
+**
+*** Portfolio Styles
+**
+*/
+
+
+/* .portfolio
+*/
+.portfolio 
+{
+  @include rem(font-size, 16px);
+  font-family: 'montserratbold'; 
+}
+
+/* .portfolio__project
+*/
+.portfolio__project 
+{
+  font-size: em(26);
+  padding-bottom: 0.5em;
+  text-align: center;
+  text-shadow: 0 0.02em #fff;
+  color: #E1D4C0;
+  transition: color 0.5s ease;
+  cursor: pointer;
+  margin: 0 auto; 
+  color: themeColor(one);
+  @include respond-to(sxs)
+  {
+    font-size: em(34);
+  }
+  }
+
+h1.portfolio__project:hover 
+{
+  color: themeColor(five); 
+  }
+
+.portfolio__project.one 
+{
+  width: 6.25em; 
+  }
+
+.portfolio__project.two 
+{
+  width: 12.25em; 
+  }
+
+.portfolio__project.three 
+{
+  width: 10.25em; 
+  }
+
+.portfolio__project.four 
+{
+  width: 11.15em; 
+  }
+
+.portfolio__project.five 
+{
+  width: 5.85em; 
+  }
+
+/* .portfolio__project_Link
+*/
+a.portfolio__project_link
+{
+  text-decoration: none;
+}
+
+/* #divider
+*/
+#divider
+{
+  color: themeColor(one);
+  padding: 0 em(10);
+  font-size: em(24);
+}
+
+/* #resume
+*/
+a#resume
+{
+  color: themeColor(three);
+  font-size: em(24);
+  text-decoration: none;
+  transition: color 0.5s ease;
+  
+}
+a#resume:hover
+{
+  color: themeColor(five);
+  font-size: em(24);
+  
+}
+
+/* #github
+*/
+#github 
+{
+  margin-top: -1.905em;
+  fill: #E1D4C0;
+  position: relative;
+  top: 1.3125em;
+  transition: fill 0.5s ease; 
+  @include respond-to(md)
+  {
+    top: 0.8125em;
+  }
+}
+
+svg#github:hover
+{
+  fill: themeColor(five);
+}
+
+/*
+** Disable Select
+*/
+#github_a,  #github, .portfolio__project, a#resume, #divider
+{
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

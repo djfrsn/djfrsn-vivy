@@ -1,0 +1,50 @@
+/*
+**
+*** General Styles
+**
+*/
+
+// General
+html, body
+{
+	/* Document level font adjustments */
+	/* Mobile First @ 320px-480px */
+	font-size: 12px;
+}
+
+body
+{
+  font-family: 'open_sansregular';
+  background-color: themeColor(bg);
+  color: themeColor(txt);
+}
+
+
+// Project Utilities
+.underline
+{
+  text-decoration: underline;
+}
+
+.hidden
+{
+	display: none;
+}
+#hidden
+{
+	display: none;
+}
+.invisible
+{
+	visibility: hidden;
+}
+
+.pagespeed
+{
+	color: themeColor(five);	
+}
+
+#pagespeed_s
+{
+	color: themeColor(one);	
+}

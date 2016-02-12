@@ -1,0 +1,78 @@
+/*
+**
+*** Footer Styles
+**
+*/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  @include rem(margin-bottom, 70px);
+}
+.footer {
+  position: absolute;
+  bottom: em(7);
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  @include rem(height, 70px);
+  @include rem(font-size, 16px);
+  @include respond-to(xs)
+  {
+    bottom: em(20);
+  }
+  @include respond-to(sm)
+  {
+    bottom: em(35);
+  }
+  @include respond-to(md)
+  {
+    bottom: em(40);
+  }
+}
+
+#controls__msg
+{
+	text-align: center;
+	font-size: em(12);
+	text-transform: capitalize;
+	margin-top: em(-33);
+  @include respond-to(sxs)
+  {
+    font-size: em(14);   
+  }
+}
+
+/* .arrows
+*/
+.arrows
+{
+	width: em(165);
+	margin: 0 auto;
+}
+
+.arrow svg
+{
+	width: em(80);
+	height: em(80);
+	fill: themeColor(three);
+}
+.arrow.down svg 
+{
+	-webkit-transform: rotate(80deg);
+  -moz-transform: rotate(80deg);
+  -o-transform: rotate(80deg);
+  -ms-transform: rotate(80deg);
+  transform: rotate(80deg);
+}
+.arrow.up svg
+{
+	-webkit-transform: rotate(-80deg);
+  -moz-transform: rotate(-80deg);
+  -o-transform: rotate(-80deg);
+  -ms-transform: rotate(-80deg);
+  transform: rotate(-80deg);
+}
+
