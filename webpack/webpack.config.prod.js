@@ -18,9 +18,9 @@ var commonLoaders = [
   { test: /\.json$/, loader: "json-loader" },
   { test: /\.png$/, loader: "url-loader" },
   { test: /\.jpg$/, loader: "file-loader" },
-  { test: /\.css$/,
-    loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module&localIdentName=[local]__[hash:base64:5]!autoprefixer-loader!postcss?includePaths[]=' 
-      + encodeURIComponent(path.resolve(__dirname, '..', 'app', 'css')))
+  { test: /\.scss$/,
+    loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module&localIdentName=[local]__[hash:base64:5]!autoprefixer-loader!sass?includePaths[]=' 
+      + encodeURIComponent(path.resolve(__dirname, '..', 'app', 'scss')))
   }
 ];
 
@@ -71,11 +71,8 @@ module.exports = [
       }],
       loaders: commonLoaders
     },
-    postcss: [
-      require('precss')
-    ],
     resolve: {
-      extensions: ['', '.js', '.jsx', '.css'],
+      extensions: ['', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         "app", "node_modules"
       ]
@@ -118,7 +115,7 @@ module.exports = [
       loaders: commonLoaders
     },
     resolve: {
-      extensions: ['', '.js', '.jsx', '.css'],
+      extensions: ['', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         "app", "node_modules"
       ]

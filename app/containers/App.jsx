@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Navigation from 'containers/Navigation';
-import 'css/main';
+import 'scss/main';
 
 /*
  * React-router's <Router> component renders <Route>'s

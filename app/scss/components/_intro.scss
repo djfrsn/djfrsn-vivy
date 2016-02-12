@@ -1,5 +1,8 @@
-@import '../settings.css';
-
+@import 'settings.scss';
+@import 'mixins.scss';
+@import 'core/rem.scss';
+@import 'core/em.scss';
+@import 'core/mq.scss';
 /*
 **
 *** Intro Styles
@@ -9,7 +12,7 @@
 .intro
 {
   @include text-shadow();
-  @include rem(font-size, 16px);
+  @include rem(font-size, 16px); // parents get rem, children get em for zoom perfect scaling
 }
 
 /* Shared 

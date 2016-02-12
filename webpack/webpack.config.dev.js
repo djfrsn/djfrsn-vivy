@@ -58,18 +58,15 @@ module.exports = {
     },
     module: {
       loaders: commonLoaders.concat([
-        { test: /\.css$/,
+        { test: /\.scss$/,
           loader: 'style!css?module&localIdentName=[local]__[hash:base64:5]' +
-            '&sourceMap!autoprefixer-loader!postcss?sourceMap&outputStyle=expanded' +
-            '&includePaths[]=' + encodeURIComponent(path.resolve(__dirname, '..', 'app', 'css'))
+            '&sourceMap!autoprefixer-loader!sass?sourceMap&outputStyle=expanded' +
+            '&includePaths[]=' + encodeURIComponent(path.resolve(__dirname, '..', 'app', 'scss'))
         }
       ])
     },
-    postcss: [
-      require('precss')
-    ],
     resolve: {
-      extensions: ['', '.js', '.jsx', '.css'],
+      extensions: ['', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         'app', 'node_modules'
       ]

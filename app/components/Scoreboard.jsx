@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
-import styles from 'css/components/_scoreboard';
+import styles from 'scss/components/_scoreboard';
 
 const cx = classNames.bind(styles);
 

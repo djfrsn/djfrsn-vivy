@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import styles from 'css/components/_intro';
+import styles from 'scss/components/_intro';
 
 const cx = classNames.bind(styles);
 

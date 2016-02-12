@@ -1,4 +1,4 @@
-@import '../settings.css';
+@import 'settings.scss';
 
 .navigation {
   padding: 0 28px;
@@ -8,7 +8,7 @@
     display: inline-block;
     text-decoration: none;
     padding: 16px 32px;
-    color: $color-black;
+    color: $black;
   }
 
     .navigation__item--logo {
