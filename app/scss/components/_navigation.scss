@@ -1,7 +1,11 @@
 @import 'settings.scss';
+@import '../core/_paper';
 
 .navigation {
-  padding: 0 28px;
+  margin: 0 28px;
+  height: 50px;
+  border-bottom: 2px solid $black;
+  z-index: 0;
 }
 
   .navigation__item {
@@ -9,10 +13,14 @@
     text-decoration: none;
     padding: 16px 32px;
     color: $black;
+    float: right;
   }
 
     .navigation__item--logo {
+      @include card(1);
+      float: left;
       font-size: $font-x-large;
+      z-index: 22;
     }
     
     .navigation__item--active {
