@@ -8,7 +8,7 @@ class Meta extends React.Component {
   render() {
     return (
       <Helmet
-        title="React Webpack Node"
+        title="Full Stack Developer | Dennis Jefferson"
         meta={config.meta}
         link={config.link}
       />
