@@ -36,9 +36,10 @@ class Portfolio extends React.Component {
 
   render() {
     const apps = [{  
-      device_image: '/images/appolo/appolo-on-devices.png',
+      deviceImage: '/images/appolo/appolo-on-devices.png',
       device: "macbook",
       name: "Appolo",
+      permalink: 'appolo',
       tagline: "App Portfolio for App developers"
     }];
     return (

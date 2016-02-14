@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-//import Zoomer from 'components/Zoomer';
+import Slide from 'components/Slide';
 // import SliderNav from 'components/SliderNav';
 import classNames from 'classnames/bind';
 import styles from 'scss/components/_slider';
@@ -10,11 +10,19 @@ export default class Slider extends Component {
   render() {
     // Passing down the callback functions from props to each <Zoomer>
     const { onViewDetails, onSliderPrev, onSliderNext } = this.props;
-    
+    const slides = this.props.apps ? this.props.apps.map((app,key) => {
+      return (<Slide key={key}
+        permalink={app.permalink}
+        name={app.name}
+        tagline={app.tagline}
+        deviceImage={app.deviceImage}
+        device={app.device}
+        onViewDetails={onViewDetails} />);
+    })
+    : null;
     return (
       <section className={cx('slider')}>
-        <div className={cx('slide')}>
-        </div>       
+        {slides}    
       </section>
     );
   }
@@ -27,21 +35,11 @@ Slider.propTypes = {
   onSliderNext: PropTypes.func.isRequired
 };
   // {apps}
-        // <Zoomer name={app.name}
-        //   device_image={app.device_image}
-        //   device={app.device}
-        //   onZoomerClick={onViewDetails}
-        //    />
+        
 
-      //    <div className={cx('slide__mover')}>
-      //   <h2 className={cx('slide__title')}>{app.name}<span>{app.tagline}</span></h2>
-      // </div>
+        
 
-    //   const apps = this.props.apps ? this.props.apps.map((app) => {
-    //   return (
-    //  );
-    // })
-    // : null;
+
 
 
       // <SliderNav onSliderPrev={onSliderPrev}
