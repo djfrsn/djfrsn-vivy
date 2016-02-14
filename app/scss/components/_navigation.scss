@@ -1,5 +1,4 @@
 @import 'settings.scss';
-@import '../core/_paper';
 
 .navigation {
   margin: 0 28px;
@@ -17,7 +16,6 @@
   }
 
     .navigation__item--logo {
-      @include card(1);
       float: left;
       font-size: $font-x-large;
       z-index: 22;
