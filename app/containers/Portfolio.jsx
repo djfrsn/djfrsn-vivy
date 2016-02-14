@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-//import Slider from 'components/Slider';
+import Slider from 'components/Slider';
 import classNames from 'classnames/bind';
 import styles from 'scss/components/_portfolio';
 
@@ -35,10 +35,18 @@ class Portfolio extends React.Component {
   }
 
   render() {
-    const apps = [{}];
+    const apps = [{  
+      device_image: '/images/appolo/appolo-on-devices.png',
+      device: "macbook",
+      name: "Appolo",
+      tagline: "App Portfolio for App developers"
+    }];
     return (
       <div className={cx('portfolio')}>
-        
+        <Slider apps={apps}
+          onViewDetails={this.onViewDetails}
+          onSliderPrev={this.onSliderPrev}
+          onSliderNext={this.onSliderNext} />
       </div>
     );
   }
@@ -54,11 +62,5 @@ function mapStateToProps(state) {
     apps: state.portfolio.apps
   };
 }
-
-// <Slider apps={apps}
-//           onViewDetails={this.onViewDetails}
-//           onSliderPrev={this.onSliderPrev}
-//           onSliderNext={this.onSliderNext}
-//            />
 
 export default Portfolio;

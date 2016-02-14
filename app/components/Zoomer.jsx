@@ -11,11 +11,12 @@ export default class Zoomer extends Component {
   }
 
   render() {
+    const appPreview = '/images/' + this.props.name + '/preview.png'; 
     return (
       <div className={cx('zoomer')} onClick={this.onZoomerClick}>
         <img className={cx('zoomer__image')} src={this.props.device_image} alt={this.props.device} />
         <div className={cx('preview')}>
-          <img src={this.props.app_preview} alt={this.props.name}/>
+          <img src={appPreview} alt={this.props.name}/>
           <div className={cx('zoomer__area zoomer__area--size-5')}></div>
         </div>
       </div>
@@ -26,7 +27,7 @@ export default class Zoomer extends Component {
 Zoomer.propTypes = {
   device_image: Proptypes.string.isRequired,
   device: Proptypes.string.isRequired,
-  app_preview: PropTypes.string.isRequired,
+  //app_preview: PropTypes.string,
   name: PropTypes.string.isRequired,
   onZoomerClick: PropTypes.func.isRequired
 };
