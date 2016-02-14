@@ -1,0 +1,14 @@
+@import 'settings.scss';
+@import 'mixins.scss';
+@import 'core/rem.scss';
+/*
+**
+*** Intro Styles
+**
+*/
+
+.portfolio
+{
+  @include text-shadow();
+  @include rem(font-size, $font-medium); // parents get rem, children get em for zoom perfect scaling
+}

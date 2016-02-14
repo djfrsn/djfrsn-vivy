@@ -69,6 +69,9 @@ export default function render(req, res) {
     const authenticated = req.isAuthenticated();
     const store = configureStore({
       // reducer: {initialState}
+      // portfolio: {
+      //   apps: [{}]
+      // },
       topic: {
         topics: apiResult
       },
