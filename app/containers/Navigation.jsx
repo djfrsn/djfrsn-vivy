@@ -13,9 +13,9 @@ class Navigation extends Component {
     const { dispatch } = this.props;
     return (
       <header className={cx('bp-header')}>
-        <span>Site Title <span className={cx('bp-icon', 'bp-icon-about', 'site-info-button')} data-content="Site Info"></span></span>
-        <div className={cx('site-info')}>Site Info</div>
-        <h1>Site Message</h1>
+        <span>Dennis Jefferson<span className={cx('bp-icon', 'bp-icon-about', 'site-info-button')} data-content="Rwarr"></span></span>
+        <div className={cx('site-info')}>Dev since 12</div>
+        <h1>Full Stack Developer</h1>
         <nav role="navigation">
           <a className={cx('bp-icon', 'bp-icon-child', 'hire_me_button')} data-info="Hire Me"><span>Hire Me</span></a>
           <a href="Twitter user url" className={cx('bp-icon', 'bp-icon-twitter')} data-info="Site twitterusername" target="_blank"><span>@twitter.name</span></a>
