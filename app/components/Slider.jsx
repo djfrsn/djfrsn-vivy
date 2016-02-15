@@ -34,14 +34,7 @@ Slider.propTypes = {
   onSliderPrev: PropTypes.func.isRequired,
   onSliderNext: PropTypes.func.isRequired
 };
-  // {apps}
-        
 
-        
-
-
-
-
-      // <SliderNav onSliderPrev={onSliderPrev}
-      //   onSliderNext={onSliderNext}
-      //   onViewDetails={onViewDetails} />
+// <SliderNav onSliderPrev={onSliderPrev}
+//   onSliderNext={onSliderNext}
+//   onViewDetails={onViewDetails} />
