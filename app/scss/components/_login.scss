@@ -1,5 +1,4 @@
 @import 'settings.scss';
-@import 'mixins.scss';
 
 .login {}
 
@@ -13,7 +12,6 @@
     margin: auto;
     border: none;
     border-radius: $global-radius;
-    @include simpleBoxShadow;
   }
 
   .login__input {

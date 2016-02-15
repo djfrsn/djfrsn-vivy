@@ -13,7 +13,10 @@ var commonLoaders = [
     loaders: ['babel?optional=runtime'],
     include: path.join(__dirname, '..', 'app')
   },
-  { test: /\.png$/, loader: 'url-loader' },
+  { test: /\.eot$/, loader: 'url-loader?limit=100000' },
+  { test: /\.woff$/, loader: 'url-loader?limit=100000' },
+  { test: /\.ttf$/, loader: 'url-loader?limit=100000' },
+  { test: /\.svg$/, loader: 'url-loader?limit=100000' },
   { test: /\.jpg$/, loader: 'file-loader' },
   { test: /\.html$/, loader: 'html-loader' }
 ];
@@ -66,7 +69,7 @@ module.exports = {
       ])
     },
     resolve: {
-      extensions: ['', '.js', '.jsx', '.scss'],
+      extensions: ['', '.js', '.jsx', '.scss', '.eot', '.woff', '.ttf', '.svg'],
       modulesDirectories: [
         'app', 'node_modules'
       ]

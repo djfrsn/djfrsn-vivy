@@ -8,7 +8,7 @@ export default class Zoomer extends Component {
   constructor(props) {
     super(props);
     this.onZoomerClick = this.props.onZoomerClick.bind(this);
-    //this.onZoomerClick = this.onZoomerClick.bind(this);
+    //this.onZoomerClick = this.onZoomerClick.bind(this); Should be doing this...
   }
 
   render() {

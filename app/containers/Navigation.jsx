@@ -9,14 +9,14 @@ class Navigation extends Component {
   render() {
     const { dispatch } = this.props;
     return (
-      <div>
+      <header className={styles.navigation}>
         <nav className={styles.navigation} role="navigation">
           <Link to="/" className={styles.navigation__item + ' ' + styles['navigation__item--logo']} activeClassName={styles['navigation__item--active']}>DJ</Link>
           <Link className={styles.navigation__item} to="/journal">Journal</Link>
           <Link to="/about" className={styles.navigation__item} activeClassName={styles['navigation__item--active']}>About</Link>
           <Link className={styles.navigation__item} to="/projects">Projects</Link>
         </nav>
-      </div>
+      </header>
     );
   }
 
