@@ -52,7 +52,7 @@
   cursor: help;
 }
 
-#site-info-button:hover:before{
+.site-info-button:hover:before{
   content: attr(data-content);
   font-size: 110%;
   font-weight: 700;
@@ -70,7 +70,7 @@
   background: #5C5EDC;
 }
 
-#site-info {
+.site-info {
   display: none;
 }
 
