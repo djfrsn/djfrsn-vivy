@@ -10,7 +10,7 @@
     "dev": "NODE_ENV=development shell-exec 'node server/index.js' 'npm run test:watch'",
     "debug": "node-debug server/index.js",
     "build:webpack": "NODE_ENV=production webpack --progress --colors --config ./webpack/webpack.config.prod.js",
-    "build": "npm run clean && npm run build:webpack",
+    "build": "npm run clean && npm run build:webpack && cp -r ./app/images/copyToPublic ./public/images",
     "test": "karma start",
     "test:watch": "npm test -- --watch --no-single-run",
     "postinstall": "npm run build"
@@ -64,7 +64,7 @@
     "isomorphic-fetch": "^2.2.0",
     "json-loader": "^0.5.4",
     "kerberos": "0.0.17",
-    "lodash": "^3.9.3",
+    "lodash": "^3.10.1",
     "method-override": "^2.3.5",
     "mongoose": "^4.3.4",
     "newrelic": "^1.25.1",
