@@ -13,7 +13,7 @@ var commonLoaders = [
     loaders: ['babel?optional=runtime'],
     include: path.join(__dirname, '..', 'app')
   },
-  { test: /\.json$/, loader: "json-loader" },
+  { test: /\.json$/, loader: 'json-loader' },
   { test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/, loader: 'url-loader?limit=10000' },
   { test: /\.((ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot)$/, loader: 'file-loader' },
   { test: /\.html$/, loader: 'html-loader' }
