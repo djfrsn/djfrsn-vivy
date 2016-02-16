@@ -10,7 +10,7 @@ export default class Slide extends Component {
     // Passing down the callback functions from props to each <Zoomer>
     const { onViewDetails } = this.props;
     return (
-        <div className={cx('slide')} data-content={this.props.permalink}>
+        <div className={cx('slide', 'slide--current')} data-content={this.props.permalink}>
           <div className={cx('slide__mover')}>
               <Zoomer name={this.props.name}
             deviceImage={this.props.deviceImage}
