@@ -16,8 +16,8 @@ var commonLoaders = [
     include: path.join(__dirname, "..",  "app")
   },
   { test: /\.json$/, loader: "json-loader" },
-  { test: /\.png$/, loader: "url-loader" },
-  { test: /\.jpg$/, loader: "file-loader" },
+  { test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/, loader: 'url-loader?limit=10000' },
+  { test: /\.((ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot)$/, loader: 'file-loader' },
   { test: /\.scss$/,
     loader: ExtractTextPlugin.extract('style-loader', 'css-loader?module&localIdentName=[local]__[hash:base64:5]!autoprefixer-loader!sass?includePaths[]=' 
       + encodeURIComponent(path.resolve(__dirname, '..', 'app', 'scss')))

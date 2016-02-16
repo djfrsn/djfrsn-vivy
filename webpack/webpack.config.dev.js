@@ -13,11 +13,9 @@ var commonLoaders = [
     loaders: ['babel?optional=runtime'],
     include: path.join(__dirname, '..', 'app')
   },
-  { test: /\.eot$/, loader: 'url-loader?limit=100000' },
-  { test: /\.woff$/, loader: 'url-loader?limit=100000' },
-  { test: /\.ttf$/, loader: 'url-loader?limit=100000' },
-  { test: /\.svg$/, loader: 'url-loader?limit=100000' },
-  { test: /\.jpg$/, loader: 'file-loader' },
+  { test: /\.json$/, loader: "json-loader" },
+  { test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/, loader: 'url-loader?limit=10000' },
+  { test: /\.((ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot)$/, loader: 'file-loader' },
   { test: /\.html$/, loader: 'html-loader' }
 ];
 
@@ -69,7 +67,7 @@ module.exports = {
       ])
     },
     resolve: {
-      extensions: ['', '.js', '.jsx', '.scss', '.eot', '.woff', '.ttf', '.svg'],
+      extensions: ['', '.js', '.jsx', '.scss'],
       modulesDirectories: [
         'app', 'node_modules'
       ]
