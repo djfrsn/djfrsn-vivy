@@ -98,18 +98,6 @@
   top: 200%;
 }
 
-.button--nav-prev {
-  @extend .button;
-}
-
-.button--zoom {
-  @extend .button;
-}
-
-.button--nav-next {
-  @extend .button;
-}
-
 .button--close {
   font-size: 1.55em;
   position: absolute;
@@ -122,9 +110,28 @@
   transition: opacity 0.3s;
 }
 
-.icon--arrow-left {
-  @extend .icon;
+.icon {
+  font-family: 'feather';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.icon--arrow-right {
-  @extend .icon;
+.icon--zoom:before {
+  content: "\e036";
+}
+.icon--circle-cross:before {
+  content: "\e602";
+}
+.icon--arrow-right:before {
+  content: "\e600";
+}
+.icon--arrow-left:before {
+  content: "\e601";
 }

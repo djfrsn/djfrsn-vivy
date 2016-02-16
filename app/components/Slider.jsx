@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Slide from 'components/Slide';
-// import SliderNav from 'components/SliderNav';
+import SliderNav from 'components/SliderNav';
 import classNames from 'classnames/bind';
 import styles from 'scss/components/_slider';
 
@@ -22,7 +22,10 @@ export default class Slider extends Component {
     : null;
     return (
       <section className={cx('slider')}>
-        {slides}    
+        {slides}
+        <SliderNav onSliderPrev={onSliderPrev}
+          onSliderNext={onSliderNext}
+          onViewDetails={onViewDetails} />    
       </section>
     );
   }
@@ -34,7 +37,3 @@ Slider.propTypes = {
   onSliderPrev: PropTypes.func.isRequired,
   onSliderNext: PropTypes.func.isRequired
 };
-
-// <SliderNav onSliderPrev={onSliderPrev}
-//   onSliderNext={onSliderNext}
-//   onViewDetails={onViewDetails} />
