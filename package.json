@@ -10,7 +10,7 @@
     "dev": "NODE_ENV=development shell-exec 'node server/index.js' 'npm run test:watch'",
     "debug": "node-debug server/index.js",
     "build:webpack": "NODE_ENV=production webpack --progress --colors --config ./webpack/webpack.config.prod.js",
-    "build": "npm run clean && npm run build:webpack && cp -r ./app/images/copyToPublic ./public/images",
+    "build": "npm run clean && npm run build:webpack && cp -r ./app/images/copyToPublic ./public/images; cp -r ./app/scss/fonts ./public/fonts",
     "test": "karma start",
     "test:watch": "npm test -- --watch --no-single-run",
     "postinstall": "npm run build"
