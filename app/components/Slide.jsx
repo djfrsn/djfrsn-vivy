@@ -17,7 +17,7 @@ export default class Slide extends Component {
             device={this.props.device}
             onZoomerClick={onViewDetails} />
           </div>
-          <h2 className={cx('slide__title')}>{this.props.name}<span>{this.props.tagline}</span></h2>
+          <h2 className={cx('slide__title')}><pre>{this.props.name}</pre><span>{this.props.tagline}</span></h2>
         </div>    
     );
   }

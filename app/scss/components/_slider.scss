@@ -48,6 +48,14 @@
   padding: 1em 0 0 0;
 }
 
+// <pre> element is used since react wraps loose text in spans...causing the original styles to break
+.slide__title pre {
+  font-family: inherit;
+  white-space: inherit;
+  margin: inherit;
+  display: inherit;
+}
+
 .slide__title span {
   font-size: 55%;
   font-weight: bold;
