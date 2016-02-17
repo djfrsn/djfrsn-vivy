@@ -14,6 +14,7 @@ export default class Zoomer extends Component {
   onZoomerClick() {
     this.applyTransforms();
     // dispatch to next state
+
   }
 
   applyTransforms() {
@@ -52,7 +53,7 @@ export default class Zoomer extends Component {
         <img className={cx('zoomer__image')} src={this.props.deviceImage} alt={this.props.device} />
         <div className={cx('preview')}>
           <img src={appPreview} alt={this.props.name}/>
-          <div className={cx(zoomerAreaClass)} ref={(ref) => this.zoomerArea = ref}></div>
+          <div className={cx(zoomerAreaClass)}></div>
         </div>
       </div>
     );
