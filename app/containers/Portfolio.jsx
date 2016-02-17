@@ -20,7 +20,7 @@ class Portfolio extends React.Component {
     this.onSliderNext = this.onSliderNext.bind(this);
   }
 
-  onViewDetails(params) {
+  onViewDetails() {
     // update state & components reaction to state to make things happen...
     // add 'zoomer--active' class to .zoomer, triggers slide out anim for appi on device
     // disallow scroll on .container through noscroll function....
@@ -29,7 +29,7 @@ class Portfolio extends React.Component {
     // execute onEndTransition() 
     const { dispatch } = this.props;
 
-    dispatch(viewDetails(params))
+    dispatch(viewDetails());
   }
 
   onSliderPrev(params) {
@@ -45,10 +45,10 @@ class Portfolio extends React.Component {
   render() {
     const apps = [{  
       deviceImage: '/images/macbook.png',
-      device: "macbook",
-      name: "Appolo",
+      device: 'macbook',
+      name: 'Appolo',
       permalink: 'appolo',
-      tagline: "App Portfolio for App developers"
+      tagline: 'App Portfolio for App developers'
     }];
     return (
       <div className={cx('portfolio')}>
@@ -63,7 +63,9 @@ class Portfolio extends React.Component {
 }
 
 Portfolio.propTypes = {
-  zoomer: PropTypes.object.isRequired,
+  zoomer: PropTypes.shape({
+    animate: PropTypes.bool.isRequried
+  }),
   dispatch: PropTypes.func.isRequired
 };
 

@@ -30,5 +30,8 @@ Slide.propTypes = {
   permalink: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   tagline: PropTypes.string.isRequired,
-  onViewDetails: PropTypes.func.isRequired
+  onViewDetails: PropTypes.func.isRequired,
+  zoomer: PropTypes.shape({
+    animate: PropTypes.bool.isRequried
+  })
 };

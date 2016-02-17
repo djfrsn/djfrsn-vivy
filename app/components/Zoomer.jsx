@@ -22,7 +22,7 @@ export default class Zoomer extends Component {
 
   applyTransforms() {
     // zoomer area and scale value
-    var zoomerArea = this.zoomer,
+    const zoomerArea = this.zoomer,
       zoomerAreaSize = {width: zoomerArea.offsetWidth, height: zoomerArea.offsetHeight},
       zoomerOffset = zoomerArea.getBoundingClientRect(),
       scaleVal = zoomerAreaSize.width/zoomerAreaSize.height < window.innerWidth/window.innerHeight ? window.innerWidth/zoomerAreaSize.width : window.innerHeight/zoomerAreaSize.height;
@@ -32,7 +32,7 @@ export default class Zoomer extends Component {
     // }
      
     // apply transform
-    var trans = 'scale3d(' + scaleVal + ',' + scaleVal + ',1)';
+    const trans = 'scale3d(' + scaleVal + ',' + scaleVal + ',1)';
     this.zoomer.style.WebkitTransform = trans;
     this.zoomer.style.transform = trans;
   }

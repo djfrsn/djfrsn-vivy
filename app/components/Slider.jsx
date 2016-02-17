@@ -36,5 +36,8 @@ Slider.propTypes = {
   apps: PropTypes.array.isRequired,
   onViewDetails: PropTypes.func.isRequired,
   onSliderPrev: PropTypes.func.isRequired,
-  onSliderNext: PropTypes.func.isRequired
+  onSliderNext: PropTypes.func.isRequired,
+  zoomer: PropTypes.shape({
+    animate: PropTypes.bool.isRequried
+  })
 };
