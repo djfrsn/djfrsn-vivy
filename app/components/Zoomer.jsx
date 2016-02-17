@@ -16,7 +16,9 @@ export default class Zoomer extends Component {
   onZoomerClick() {
     this.props.onViewDetails();
     this.applyTransforms();
-    this.onEndTransition();
+    this.dynamics.animate(this.zoomer, { opacity: 0 }, { type: this.dynamics.easeInOut, duration: 800 });
+
+    //this.onEndTransition();
   }
 
   applyTransforms() {
@@ -38,8 +40,8 @@ export default class Zoomer extends Component {
 
   onEndTransition() {
     setTimeout(() => {
-      this.dynamics.animate(this.zoomer, { scale: true, opacity: 0 }, { type: dynamics.easeInOut, duration: 500 });
-    }, 601);
+      // end of transition stuff
+    }, 1000);
   }
 
   render() {
