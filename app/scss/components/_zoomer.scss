@@ -124,3 +124,8 @@
   -webkit-transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
 }
+
+.zoomer__image, .preview {
+  cursor: pointer;
+  cursor: hand;
+}
