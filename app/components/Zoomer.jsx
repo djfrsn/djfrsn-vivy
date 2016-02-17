@@ -17,7 +17,6 @@ export default class Zoomer extends Component {
     this.props.onViewDetails();
     this.applyTransforms();
     this.dynamics.animate(this.zoomer, { opacity: 0 }, { type: this.dynamics.easeInOut, duration: 800 });
-
     //this.onEndTransition();
   }
 
@@ -63,7 +62,7 @@ export default class Zoomer extends Component {
         <img className={cx('zoomer__image')} src={this.props.deviceImage} alt={this.props.device} />
         <div className={cx('preview')}>
           <img src={appPreview} alt={this.props.name}/>
-          <div className={cx(zoomerAreaClass)}></div>
+          <div className={zoomerAreaClass}></div>
         </div>
       </div>
     );
