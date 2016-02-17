@@ -9,9 +9,10 @@ const cx = classNames.bind(styles);
 export default class Slider extends Component {
   render() {
     // Passing down the callback functions from props to each <Zoomer>
-    const { onViewDetails, onSliderPrev, onSliderNext } = this.props;
+    const { onViewDetails, onSliderPrev, onSliderNext, zoomer } = this.props;
     const slides = this.props.apps ? this.props.apps.map((app,key) => {
       return (<Slide key={key}
+        zoomer={zoomer}
         permalink={app.permalink}
         name={app.name}
         tagline={app.tagline}

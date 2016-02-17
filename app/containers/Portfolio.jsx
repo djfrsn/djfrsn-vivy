@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Slider from 'components/Slider';
 import classNames from 'classnames/bind';
 import styles from 'scss/components/_portfolio';
+import { viewDetails } from 'actions/apps';
 
 const cx = classNames.bind(styles);
 /*
@@ -26,8 +27,9 @@ class Portfolio extends React.Component {
     // execute applyTransforms(zoomer)
     //if (bodyScale) ...
     // execute onEndTransition() 
-    // const { dispatch } = this.props;
-    // dispatch(onViewDetails(params))
+    const { dispatch } = this.props;
+
+    dispatch(viewDetails(params))
   }
 
   onSliderPrev(params) {
@@ -51,6 +53,7 @@ class Portfolio extends React.Component {
     return (
       <div className={cx('portfolio')}>
         <Slider apps={apps}
+          zoomer={this.props.zoomer}
           onViewDetails={this.onViewDetails}
           onSliderPrev={this.onSliderPrev}
           onSliderNext={this.onSliderNext} />
@@ -59,15 +62,15 @@ class Portfolio extends React.Component {
   }
 }
 
-// Portfolio.propTypes = {
-//   apps: PropTypes.array.isRequired,
-//   dispatch: PropTypes.func.isRequired
-// };
+Portfolio.propTypes = {
+  zoomer: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired
+};
 
 function mapStateToProps(state) {
   return {
-    apps: state.portfolio.apps
+    zoomer: state.zoomer
   };
 }
 
-export default Portfolio;
+export default connect(mapStateToProps)(Portfolio);
