@@ -20,6 +20,12 @@ class Portfolio extends React.Component {
   }
 
   onViewDetails(params) {
+    // update state & components reaction to state to make things happen...
+    // add 'zoomer--active' class to .zoomer, triggers slide out anim for appi on device
+    // disallow scroll on .container through noscroll function....
+    // execute applyTransforms(zoomer)
+    //if (bodyScale) ...
+    // execute onEndTransition() 
     // const { dispatch } = this.props;
     // dispatch(onViewDetails(params))
   }
