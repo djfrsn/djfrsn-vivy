@@ -13,7 +13,7 @@ export default class Zoomer extends Component {
 
   render() {
     const appPreview = this.props.appPreview || '/images/' + this.props.name.toLowerCase() + '/preview.png';
-    let zoomerClass = cx({
+    const zoomerClass = cx({ 
       'zoomer': true,
       'zoomer--active': this.props.animate
     });
