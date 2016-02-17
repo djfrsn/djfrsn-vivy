@@ -7,8 +7,30 @@ const cx = classNames.bind(styles);
 export default class Zoomer extends Component {
   constructor(props) {
     super(props);
-    this.onZoomerClick = this.props.onZoomerClick.bind(this);
-    //this.onZoomerClick = this.onZoomerClick.bind(this); Should be doing this...
+    this.onZoomerClick = this.onZoomerClick.bind(this);
+    this.applyTransforms = this.applyTransforms.bind(this);
+  }
+
+  onZoomerClick() {
+    this.applyTransforms();
+    // dispatch to next state
+  }
+
+  applyTransforms() {
+    // zoomer area and scale value
+    var zoomerArea = this.zoomer,
+      zoomerAreaSize = {width: zoomerArea.offsetWidth, height: zoomerArea.offsetHeight},
+      zoomerOffset = zoomerArea.getBoundingClientRect(),
+      scaleVal = zoomerAreaSize.width/zoomerAreaSize.height < window.innerWidth/window.innerHeight ? window.innerWidth/zoomerAreaSize.width : window.innerHeight/zoomerAreaSize.height;
+
+    // if( bodyScale && !nobodyscale ) {
+    //   scaleVal /= bodyScale;
+    // }
+     
+    // apply transform
+    var trans = 'scale3d(' + scaleVal + ',' + scaleVal + ',1)';
+    this.zoomer.style.WebkitTransform = trans;
+    this.zoomer.style.transform = trans;
   }
 
   render() {
@@ -17,12 +39,20 @@ export default class Zoomer extends Component {
       'zoomer': true,
       'zoomer--active': this.props.animate
     });
+    const zoomerAreaClass = cx({ 
+      'zoomer__area': true,
+      'zoomer__area--size-1': this.props.device === 'applewatch' ? true : false,
+      'zoomer__area--size-2': this.props.device === 'iphone' ? true : false,
+      'zoomer__area--size-3': this.props.device === 'macbook' ? true : false,
+      'zoomer__area--size-4': this.props.device === 'ipad' ? true : false,
+      'zoomer__area--size-5': this.props.device === 'imac' ? true : false
+    });
     return (
-      <div className={zoomerClass} onClick={this.onZoomerClick}>
+      <div className={zoomerClass} onClick={this.onZoomerClick} ref={(ref) => this.zoomer = ref}>
         <img className={cx('zoomer__image')} src={this.props.deviceImage} alt={this.props.device} />
         <div className={cx('preview')}>
           <img src={appPreview} alt={this.props.name}/>
-          <div className={cx('zoomer__area zoomer__area--size-5')}></div>
+          <div className={cx(zoomerAreaClass)} ref={(ref) => this.zoomerArea = ref}></div>
         </div>
       </div>
     );
@@ -35,5 +65,5 @@ Zoomer.propTypes = {
   appPreview: PropTypes.string,
   animate: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
-  onZoomerClick: PropTypes.func.isRequired
+  onViewDetails: PropTypes.func.isRequired
 };
