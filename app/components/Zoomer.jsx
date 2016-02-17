@@ -9,12 +9,14 @@ export default class Zoomer extends Component {
     super(props);
     this.onZoomerClick = this.onZoomerClick.bind(this);
     this.applyTransforms = this.applyTransforms.bind(this);
+    this.onEndTransition = this.onEndTransition.bind(this);
   }
 
   onZoomerClick() {
     this.applyTransforms();
+    this.props.onViewDetails();
     // dispatch to next state
-
+    //this.onEndTransition();
   }
 
   applyTransforms() {
@@ -32,6 +34,10 @@ export default class Zoomer extends Component {
     var trans = 'scale3d(' + scaleVal + ',' + scaleVal + ',1)';
     this.zoomer.style.WebkitTransform = trans;
     this.zoomer.style.transform = trans;
+  }
+
+  onEndTransition() {
+    
   }
 
   render() {
