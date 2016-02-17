@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
 import styles from 'scss/components/_zoomer';
-
+import dynamics from 'vendor/dynamics';
 const cx = classNames.bind(styles);
 
 export default class Zoomer extends Component {
@@ -10,13 +10,13 @@ export default class Zoomer extends Component {
     this.onZoomerClick = this.onZoomerClick.bind(this);
     this.applyTransforms = this.applyTransforms.bind(this);
     this.onEndTransition = this.onEndTransition.bind(this);
+    this.dynamics = dynamics;
   }
 
   onZoomerClick() {
-    this.applyTransforms();
     this.props.onViewDetails();
-    // dispatch to next state
-    //this.onEndTransition();
+    this.applyTransforms();
+    this.onEndTransition();
   }
 
   applyTransforms() {
@@ -37,7 +37,9 @@ export default class Zoomer extends Component {
   }
 
   onEndTransition() {
-    
+    setTimeout(() => {
+      this.dynamics.animate(this.zoomer, { scale: true, opacity: 0 }, { type: dynamics.easeInOut, duration: 500 });
+    }, 601);
   }
 
   render() {
