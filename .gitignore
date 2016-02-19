@@ -1,8 +1,8 @@
-node_modules
+.DS_Store
+node_modules/
 npm-debug.log
-.tmp
-.idea
-public
-newrelic_agent.log
-*.sublime-project
-*.sublime-workspace
+.idea/
+dump.rdb
+.vscode/
+public/*
+static/dist
