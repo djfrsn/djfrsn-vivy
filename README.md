@@ -1,106 +1,39 @@
-![](http://res.cloudinary.com/hashnode/image/upload/w_200/v1455647564/static_imgs/mern/imgs/favicon-mern.png)
+# node-js-getting-started
 
-# mern-starter
-![title](https://travis-ci.org/Hashnode/mern-starter.svg?branch=master)
+A barebones Node.js app using [Express 4](http://expressjs.com/).
 
-MERN is a scaffolding tool which makes it easy to build isomorphic apps using Mongo, Express, React and NodeJS. It minimizes the setup time and gets you up to speed using proven technologies.
+This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
 
-- [Website](http://mern.io)
-- [Documentation](http://mern.io/documentation.html)
+## Running Locally
 
-##Quickstart
+Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
 
-```
-  npm install -g mern-cli
-  mern your_new_app
-  cd your_new_app
-  npm install
-  npm install -g cross-env
-  npm start
+```sh
+$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
+$ cd node-js-getting-started
+$ npm install
+$ npm start
 ```
 
-**Note : Please make sure your MongoDB is running and install cross-env globally before running `npm start`.**
+Your app should now be running on [localhost:5000](http://localhost:5000/).
 
-##File Structure
-
-###Webpack Configs
-
-MERN uses Webpack for bundling modules. There are two types of webpack configs provided `webpack.config.dev.js` (for development) and `webpack.config.prod.js` (for production).
-
-The webpack configuration is minimal and beginner-friendly. You can customize and add more features to it for production build.
-
-###Server
-
-MERN uses express web framework. Our app sits in server.js where we check for NODE_ENV.
-
-If NODE_ENV is development we apply webpack middlewares for bundling and Hot Module Replacement.
-
-####Server Side Rendering
-
-We use react-router's match function for handling all page requests so that browser history works.
-
-All the routes are defined in shared/routes.js. React router renders components according to route requested.
+## Deploying to Heroku
 
 ```
-// Server Side Rendering based on routes matched by React-router.
-app.use((req, res) => {
-    match({
-        routes,
-        location: req.url
-    }, (err, redirectLocation, renderProps) => {
-        if (err) {
-            return res.status(500).end('Internal server error');
-        }
-
-        if (!renderProps) {
-            return res.status(404).end('Not found!');
-        }
-
-        const initialState = {
-            posts: [],
-            post: {}
-        };
-
-        const store = configureStore(initialState);
-
-        fetchComponentData(store.dispatch, renderProps.components, renderProps.params).then(() => {
-            const initialView = renderToString( 
-                <Provider store = {store} >
-                  <RouterContext {...renderProps}/> 
-                </Provider>
-            );
-
-            const finalState = store.getState();
-            
-            res.status(200).end(renderFullPage(initialView, finalState));
-        }).catch(() => {
-            res.end(renderFullPage('Error', {}));
-        });
-    });
-});
+$ heroku create
+$ git push heroku master
+$ heroku open
 ```
+or
 
-`match` takes two parameters, first is an object that contains routes, location and history and second is a callback function which is called when routes have been matched to a location.
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-If there's an error in matching we return 500 status code, if no matches are found we return 404 status code. If a match is found then we need to create a new redux store instance.
+## Documentation
 
-**Note:** A new Redux Store is populated afresh on every request.
+For more information about using Node.js on Heroku, see these Dev Center articles:
 
-`fetchComponentData` is the key function. It takes three params : first is a dispatch function of redux store, second is an array of components that should be rendered in current route and third is the route params. `fetchComponentData` collects all the needs (need is an array of actions that are required to be dispatched before rendering the component) of components in the current route. It returns a promise when all the required actions are dispatched. We render the page and send data to client for client-side rendering in `window.__INITIAL_STATE__`.
-
-
-###Shared
-
-Shared directory contains all the components, routes, actions and reducers.
-
-###Client
-
-Index.js simply does client side rendering using the data provided from window.__INITIAL_STATE__.
-
-## Roadmap
-- [ ] Add Security measures like CSRF etc.
-- [ ] Add Auth flow and handle sessions.
-- [ ] Add option to generate controllers and models through [CLI](https://github.com/Hashnode/mern-cli). (Basically anything that reduces writing boilerplate code)
-
-## License
-MERN is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
+- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
+- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
+- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
+- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
