@@ -1,0 +1,9 @@
+{
+  "firebase": "dazzling-fire-2390",
+  "public": "build",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
