@@ -73,22 +73,13 @@ const config = {
         test: /\.txt$/,
         loader: 'raw-loader',
       }, {
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpeg|jpg|png|gif|ico)$/,
         loader: 'url-loader?limit=10000',
       }, {
-        test: /\.(eot|ttf|wav|mp3)$/,
+        test: /\.((ttf|eot|wav|mp3)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot|wav|mp3)$/,
         loader: 'file-loader',
       },
     ],
-  },
-  postcss: function plugins(bundler) {
-    return [
-      require('postcss-import')({ addDependencyTo: bundler }),
-      require('precss')(),
-      require('autoprefixer')({
-        browsers: AUTOPREFIXER_BROWSERS,
-      }),
-    ];
   },
 };
 
@@ -145,7 +136,7 @@ const appConfig = merge({}, config, {
       ...config.module.loaders,
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader'],
+        loaders: ['style', 'css?module&localIdentName=[local]__[hash:base64:5]&sourceMap', 'autoprefixer-loader', 'sass?sourceMap&outputStyle=expanded'],
       },
     ],
   },
@@ -177,7 +168,7 @@ const pagesConfig = merge({}, config, {
       ...config.module.loaders,
       {
         test: /\.scss$/,
-        loaders: ['css-loader', 'postcss-loader'],
+        loaders: ['css-loader?module&localIdentName=[local]__[hash:base64:5]', 'autoprefixer-loader', 'sass'],
       },
     ],
   },

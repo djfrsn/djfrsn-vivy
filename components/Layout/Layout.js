@@ -5,12 +5,15 @@
  */
 
 import React, { PropTypes } from 'react';
-import './Layout.scss';
+import classNames from 'classnames/bind';
+import Styles from './Layout.scss';
 import Navigation from '../Navigation';
+
+const cx = classNames.bind(Styles);
 
 function Layout({ children }) {
   return (
-    <div className="Layout">
+    <div className={cx('Layout')}>
       <Navigation />
       {children}
     </div>
