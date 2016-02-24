@@ -5,17 +5,20 @@
  */
 
 import React from 'react';
-import './Navigation.scss';
+import classNames from 'classnames/bind';
+import Styles from './Navigation.scss';
 import Link from '../Link';
+
+const cx = classNames.bind(Styles);
 
 function Navigation() {
   return (
-    <ul className="Navigation" role="menu">
-      <li className="Navigation-item">
-        <a className="Navigation-link" href="/" onClick={Link.handleClick}>Home</a>
+    <ul className={cx('Navigation')} role="menu">
+      <li className={cx('Navigation-item')}>
+        <a className={cx('Navigation-link')} href="/" onClick={Link.handleClick}>Home</a>
       </li>
-      <li className="Navigation-item">
-        <a className="Navigation-link" href="/about" onClick={Link.handleClick}>About</a>
+      <li className={cx('Navigation-item')}>
+        <a className={cx('Navigation-link')} href="/about" onClick={Link.handleClick}>About</a>
       </li>
     </ul>
   );

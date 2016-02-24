@@ -11,7 +11,7 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <h1>Home Page</h1>
+        <h1>Testing...</h1>
         <p>Coming soon.</p>
       </div>
     );
