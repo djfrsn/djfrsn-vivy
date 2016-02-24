@@ -7,20 +7,21 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import Styles from './Navigation.scss';
-import Link from '../Link';
 
 const cx = classNames.bind(Styles);
 
 function Navigation() {
   return (
-    <ul className={cx('Navigation')} role="menu">
-      <li className={cx('Navigation-item')}>
-        <a className={cx('Navigation-link')} href="/" onClick={Link.handleClick}>Home</a>
-      </li>
-      <li className={cx('Navigation-item')}>
-        <a className={cx('Navigation-link')} href="/about" onClick={Link.handleClick}>About</a>
-      </li>
-    </ul>
+    <header className={cx('bp-header')}>
+      <span>Dennis Jefferson<span className={cx('bp-icon', 'bp-icon-about', 'site-info-button')} data-content="Rwarr"></span></span>
+      <div className={cx('site-info')}>Dev since 12</div>
+      <h1>Front End Developer</h1>
+      <nav role="navigation">
+        <a className={cx('bp-icon', 'bp-icon-child', 'hire_me_button')} data-info='Hire Me'><span>Hire Me</span></a>
+        <a href="Twitter user url" className={cx('bp-icon', 'bp-icon-twitter')} data-info='kaw kaw' target='_blank'><span>@twitter.name</span></a>
+        <a href="mailto:Site Email" className={cx('bp-icon', 'bp-icon-email')} data-info='email!'><span>send me e-mail</span></a>
+      </nav>
+    </header>
   );
 }
 

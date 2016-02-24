@@ -1,0 +1,139 @@
+@import 'settings.scss';
+@import 'core/flexbox.scss';
+/*
+**
+*** Slider Styles
+**
+*/
+.slider {
+  position: relative;
+  z-index: 200;
+  width: 100%;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  opacity: 0;
+}
+
+.slide--current {
+  position: relative;
+  z-index: 100;
+  visibility: visible;
+  opacity: 1;
+}
+
+.slide__mover {
+  position: relative;
+  z-index: 100;
+}
+
+.slide__title {
+  cursor: pointer;
+  cursor: hand;
+  font-size: 1.75em;
+  font-weight: normal;
+  margin: 0 auto;
+  padding: 1em 0 0 0;
+}
+
+// <pre> element is used since react wraps loose text in spans...causing the original styles to break
+.slide__title pre {
+  font-family: inherit;
+  white-space: inherit;
+  margin: inherit;
+  display: inherit;
+}
+
+.slide__title span {
+  font-size: 55%;
+  font-weight: bold;
+  display: block;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #35303d;
+}
+
+.slider__nav {
+  position: fixed;
+  bottom: 2em;
+  width: 100%;
+  text-align: center;
+}
+
+.button {
+  font-size: 1.31em;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0 25px;
+  padding: 0;
+  cursor: pointer;
+  color: #5c5edc;
+  border: none;
+  background: none;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover {
+  color: #fff;
+}
+
+.text-hidden {
+  position: absolute;
+  top: 200%;
+}
+
+.button--close {
+  font-size: 1.55em;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  margin: 0;
+  opacity: 0;
+  color: #50505a;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.icon {
+  font-family: 'feather';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon--zoom:before {
+  content: "\e036";
+}
+.icon--circle-cross:before {
+  content: "\e602";
+}
+.icon--arrow-right:before {
+  content: "\e600";
+}
+.icon--arrow-left:before {
+  content: "\e601";
+}
