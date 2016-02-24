@@ -5,11 +5,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import classNames from 'classnames/bind';
-import Styles from './Link.scss';
 import Location from '../../core/Location';
-
-const cx = classNames.bind(Styles);
 
 function isLeftClickEvent(event) {
   return event.button === 0;
@@ -56,7 +52,7 @@ class Link extends Component {
 
   render() {
     const { to, children, ...props } = this.props;
-    return <a {...props} className={cx('Link')} onClick={Link.handleClick.bind(this)}>{children}</a>;
+    return <a {...props} onClick={Link.handleClick.bind(this)}>{children}</a>;
   }
 
 }
