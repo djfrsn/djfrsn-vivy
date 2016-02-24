@@ -7,6 +7,8 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames/bind';
 import Styles from './Layout.scss';
+
+import '../common_styles/main.scss';
 import Navigation from '../Navigation';
 
 const cx = classNames.bind(Styles);
