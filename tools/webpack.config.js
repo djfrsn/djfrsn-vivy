@@ -7,6 +7,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import merge from 'lodash.merge';
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const DEBUG = !process.argv.includes('release');
 const VERBOSE = process.argv.includes('verbose');
@@ -108,7 +109,7 @@ const appConfig = merge({}, config, {
     ...(WATCH ? [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
-    ] : []),
+    ] : [new ExtractTextPlugin('styles/main.css')]),
   ],
   module: {
     loaders: [
