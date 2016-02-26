@@ -6,14 +6,13 @@ import 'App.scss';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {test: 'foo'};
+    this.state = { animate: false };
   }
   render() {
-    const initialState = { animate: false };
     return (
       <div>
         <Navigation />
-        <Portfolio zoomer={initialState}/>
+        <Portfolio zoomer={this.state}/>
       </div>
     );
   }
