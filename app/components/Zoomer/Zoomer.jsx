@@ -17,20 +17,20 @@ export default class Zoomer extends Component {
     this.props.onViewDetails();
     this.applyTransforms();
     this.dynamics.animate(this.zoomer, { opacity: 0 }, { type: this.dynamics.easeInOut, duration: 800 });
-    //this.onEndTransition();
+    this.onEndTransition();
   }
 
   applyTransforms() {
     // zoomer area and scale value
-    const zoomerArea = this.zoomer,
-      zoomerAreaSize = {width: zoomerArea.offsetWidth, height: zoomerArea.offsetHeight},
-      zoomerOffset = zoomerArea.getBoundingClientRect(),
-      scaleVal = zoomerAreaSize.width/zoomerAreaSize.height < window.innerWidth/window.innerHeight ? window.innerWidth/zoomerAreaSize.width : window.innerHeight/zoomerAreaSize.height;
+    const zoomerArea = this.zoomer;
+    const zoomerAreaSize = {width: zoomerArea.offsetWidth, height: zoomerArea.offsetHeight};
+    // const zoomerOffset = zoomerArea.getBoundingClientRect();
+    const scaleVal = zoomerAreaSize.width / zoomerAreaSize.height < window.innerWidth / window.innerHeight ? window.innerWidth / zoomerAreaSize.width : window.innerHeight / zoomerAreaSize.height;
 
     // if( bodyScale && !nobodyscale ) {
     //   scaleVal /= bodyScale;
     // }
-     
+
     // apply transform
     const trans = 'scale3d(' + scaleVal + ',' + scaleVal + ',1)';
     this.zoomer.style.WebkitTransform = trans;
@@ -45,11 +45,11 @@ export default class Zoomer extends Component {
 
   render() {
     const appPreview = this.props.appPreview || '/images/' + this.props.name.toLowerCase() + '/preview.png';
-    const zoomerClass = cx({ 
+    const zoomerClass = cx({
       'zoomer': true,
       'zoomer--active': this.props.animate
     });
-    const zoomerAreaClass = cx({ 
+    const zoomerAreaClass = cx({
       'zoomer__area': true,
       'zoomer__area--size-1': this.props.device === 'applewatch' ? true : false,
       'zoomer__area--size-2': this.props.device === 'iphone' ? true : false,
