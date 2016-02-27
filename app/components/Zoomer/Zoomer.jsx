@@ -11,10 +11,12 @@ export default class Zoomer extends Component {
     this.applyTransforms = this.applyTransforms.bind(this);
     this.onEndTransition = this.onEndTransition.bind(this);
     this.dynamics = dynamics;
+    this.state = { animate: false };
   }
 
   onZoomerClick() {
     this.props.onViewDetails();
+    this.setState({animate: true});
     this.dynamics.animate(this.zoomer, { opacity: 0 }, { type: this.dynamics.easeInOut, duration: 800, friction: 300 });
     this.applyTransforms();
     this.onEndTransition();
@@ -43,7 +45,7 @@ export default class Zoomer extends Component {
     const appPreview = this.props.appPreview || '/images/' + this.props.name.toLowerCase() + '/preview.png';
     const zoomerClass = cx({
       'zoomer': true,
-      'zoomer--active': this.props.animate
+      'zoomer--active': this.state.animate
     });
     const zoomerAreaClass = cx({
       'zoomer__area': true,
@@ -69,7 +71,7 @@ Zoomer.propTypes = {
   deviceImage: PropTypes.string.isRequired,
   device: PropTypes.string.isRequired,
   appPreview: PropTypes.string,
-  animate: PropTypes.bool.isRequired,
+  animate: PropTypes.bool.isRequired, // required for future redux support
   name: PropTypes.string.isRequired,
   onViewDetails: PropTypes.func.isRequired
 };
