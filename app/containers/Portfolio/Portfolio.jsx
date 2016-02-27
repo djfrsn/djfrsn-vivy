@@ -72,7 +72,7 @@ class Portfolio extends Component {
       bodyEl.style.WebkitTransform = '';
       bodyEl.style.transform = '';
       // this.portfolio.removeEventListener('scroll', noscroll); //
-    }, 1000);
+    }, 801);
   }
 
   onSliderPrev() {
