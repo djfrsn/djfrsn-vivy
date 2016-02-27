@@ -9,7 +9,7 @@ ReactDOM.render(
 	<Router history={hashHistory}>
 		<Route path="/" component={App} >
 			<IndexRoute component={Portfolio} />
-			<Route path="portfolio" component={FullScreen} />
+			<Route path="portfolio/:slug" component={FullScreen} />
 		</Route>
 	</Router>,
 document.getElementById('root'));
