@@ -3,6 +3,7 @@ import Slider from 'Slider/Slider';
 import Header from 'Header/Header';
 import classNames from 'classnames/bind';
 import styles from './Portfolio.scss';
+import { browserHistory } from 'react-router';
 
 const cx = classNames.bind(styles);
 /*
@@ -20,13 +21,18 @@ class Portfolio extends Component {
     this.state = { zoomer: { animate: true } };
   }
 
-  onViewDetails() {
+  onViewDetails( data ) {
     // update state & components reaction to state to make things happen...
     // add 'zoomer--active' class to .zoomer, triggers slide out anim for appi on device
     // disallow scroll on .container through noscroll function....
     // execute applyTransforms(zoomer)
     //if (bodyScale) ...
     // execute onEndTransition()
+
+    setTimeout(() => {
+      // end of transition stuff
+      browserHistory.push('portfolio/' + data.slug);
+    }, 1000);
   }
 
   onSliderPrev() {
@@ -61,5 +67,9 @@ Portfolio.propTypes = {
     animate: PropTypes.bool.isRequried
   })
 };
+
+// let Portfolio = React.createClass({
+//   mixins: [ History ]
+// })
 
 export default Portfolio;

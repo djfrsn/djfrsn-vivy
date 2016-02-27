@@ -16,6 +16,7 @@ export default class Slide extends Component {
             animate={this.props.zoomer.animate}
             deviceImage={this.props.deviceImage}
             device={this.props.device}
+            permalink={this.props.permalink}
             onViewDetails={onViewDetails} />
           </div>
           <h2 className={cx('slide__title')}><pre>{this.props.name}</pre><span>{this.props.tagline}</span></h2>

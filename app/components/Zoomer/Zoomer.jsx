@@ -9,19 +9,19 @@ export default class Zoomer extends Component {
     super(props);
     this.onZoomerClick = this.onZoomerClick.bind(this);
     this.applyTransforms = this.applyTransforms.bind(this);
-    this.onEndTransition = this.onEndTransition.bind(this);
     this.dynamics = dynamics;
     this.state = { animate: false };
   }
 
   onZoomerClick() {
-    this.props.onViewDetails();
+    this.props.onViewDetails({
+      slug: this.props.permalink
+    });
     // We want to have everything controlled by state...the below code needs to run based of animate: true
     // state should instead be changed by the parent.
     this.setState({animate: true});
     this.dynamics.animate(this.zoomer, { opacity: 0 }, { type: this.dynamics.easeInOut, duration: 800, friction: 300 });
     this.applyTransforms();
-    this.onEndTransition();
   }
 
   applyTransforms() {
@@ -37,14 +37,8 @@ export default class Zoomer extends Component {
     this.zoomer.style.transform = trans;
   }
 
-  onEndTransition() {
-    setTimeout(() => {
-      // end of transition stuff
-    }, 1000);
-  }
-
   render() {
-    const appPreview = this.props.appPreview || '/images/' + this.props.name.toLowerCase() + '/preview.png';
+    const appPreview = this.props.appPreview || '/images/' + this.props.permalink + '/preview.png';
     const zoomerClass = cx({
       'zoomer': true,
       'zoomer--active': this.state.animate
@@ -75,5 +69,6 @@ Zoomer.propTypes = {
   appPreview: PropTypes.string,
   animate: PropTypes.bool.isRequired, // required for future redux support
   name: PropTypes.string.isRequired,
+  permalink: PropTypes.string.isRequired,
   onViewDetails: PropTypes.func.isRequired
 };

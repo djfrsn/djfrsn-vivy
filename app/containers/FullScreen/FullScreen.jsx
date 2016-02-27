@@ -2,6 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
 import styles from './FullScreen.scss';
 
+/*
+Handling Route Params
+https://www.youtube.com/watch?v=ZBxMljq9GSE
+*/
+
 const cx = classNames.bind(styles);
 /*
  * Note: This is kept as a container-level component,
