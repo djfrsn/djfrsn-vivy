@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Zoomer.scss';
-import dynamics from '../../vendor/dynamics';
+import dynamics from 'vendor/dynamics';
 const cx = classNames.bind(styles);
 
 export default class Zoomer extends Component {
@@ -16,6 +16,7 @@ export default class Zoomer extends Component {
 
   onZoomerClick() {
     this.props.onViewDetails();
+    // state should instead be changed by the parent.
     this.setState({animate: true});
     this.dynamics.animate(this.zoomer, { opacity: 0 }, { type: this.dynamics.easeInOut, duration: 800, friction: 300 });
     this.applyTransforms();

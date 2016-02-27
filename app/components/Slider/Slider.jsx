@@ -7,7 +7,7 @@ import styles from './Slider.scss';
 const cx = classNames.bind(styles);
 
 export default class Slider extends Component {
-  render() { 
+  render() {
     // Passing down the callback functions from props to each <Zoomer>
     const { onViewDetails, onSliderPrev, onSliderNext, zoomer } = this.props;
     const slides = this.props.apps ? this.props.apps.map((app, key) => {
