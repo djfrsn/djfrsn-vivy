@@ -4,12 +4,8 @@ import styles from './Zoomer.scss';
 const cx = classNames.bind(styles);
 
 export default class Zoomer extends Component {
-  constructor(props) {
-    super(props);
-    this.onZoomerClick = this.onZoomerClick.bind(this);
-  }
 
-  onZoomerClick() {
+  onZoomerClick = () => {
     this.props.onViewDetails({
       slug: this.props.permalink,
       component: this.zoomer

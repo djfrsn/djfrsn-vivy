@@ -14,10 +14,6 @@ const cx = classNames.bind(styles);
  *  and dispatching of actions if you decide to have any sub-components.
  */
 class FullScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className={cx('fullScreen')}>

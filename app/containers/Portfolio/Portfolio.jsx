@@ -15,11 +15,8 @@ const bodyEl = window.document.body;
  */
 class Portfolio extends Component {
   constructor(props) {
-    super(props);
+    super(props); // call super in your constructor to access this, you can also pass props to super to access props within the constructor
     // event handlers for Portfolio component
-    this.onViewDetails = this.onViewDetails.bind(this);
-    this.onSliderPrev = this.onSliderPrev.bind(this);
-    this.onSliderNext = this.onSliderNext.bind(this);
     this.state = { zoomer: { animate: false } }; // set initial state
   }
   /*
@@ -31,8 +28,8 @@ class Portfolio extends Component {
    * Containers are Stateful /\ Components are Stateless
    * Thinking in React: http://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live
    */
-  onViewDetails(event) {
-    // treat state as if its immutable. When changing state. State = Previous state + New state;
+  onViewDetails = (event) => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
+    // State is immutable. When changing state. State = Previous state + New state;
     this.setState({
       zoomer: {
         animate: true
@@ -94,9 +91,7 @@ class Portfolio extends Component {
         <Header />
         <Slider apps={apps}
           zoomer={this.state.zoomer}
-          onViewDetails={this.onViewDetails}
-          onSliderPrev={this.onSliderPrev}
-          onSliderNext={this.onSliderNext} />
+          onViewDetails={this.onViewDetails} />
       </div>
     );
   }
