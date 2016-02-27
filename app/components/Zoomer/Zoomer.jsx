@@ -75,5 +75,3 @@ Zoomer.propTypes = {
   name: PropTypes.string.isRequired,
   onViewDetails: PropTypes.func.isRequired
 };
-
-
