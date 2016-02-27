@@ -6,10 +6,12 @@
 **
 */
 .slider {
-  position: relative;
-  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  height: 78%;
   width: 100%;
-  text-align: center;
+  position: absolute;
+  justify-content: center;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -44,6 +46,7 @@
 .slide__title {
   cursor: pointer;
   cursor: hand;
+  text-align: center;
   font-size: 1.75em;
   font-weight: normal;
   margin: 0 auto;

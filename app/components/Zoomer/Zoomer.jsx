@@ -15,8 +15,8 @@ export default class Zoomer extends Component {
 
   onZoomerClick() {
     this.props.onViewDetails();
+    this.dynamics.animate(this.zoomer, { opacity: 0 }, { type: this.dynamics.easeInOut, duration: 800, friction: 300 });
     this.applyTransforms();
-    this.dynamics.animate(this.zoomer, { opacity: 0 }, { type: this.dynamics.easeInOut, duration: 800 });
     this.onEndTransition();
   }
 
@@ -26,10 +26,6 @@ export default class Zoomer extends Component {
     const zoomerAreaSize = {width: zoomerArea.offsetWidth, height: zoomerArea.offsetHeight};
     // const zoomerOffset = zoomerArea.getBoundingClientRect();
     const scaleVal = zoomerAreaSize.width / zoomerAreaSize.height < window.innerWidth / window.innerHeight ? window.innerWidth / zoomerAreaSize.width : window.innerHeight / zoomerAreaSize.height;
-
-    // if( bodyScale && !nobodyscale ) {
-    //   scaleVal /= bodyScale;
-    // }
 
     // apply transform
     const trans = 'scale3d(' + scaleVal + ',' + scaleVal + ',1)';
@@ -77,3 +73,5 @@ Zoomer.propTypes = {
   name: PropTypes.string.isRequired,
   onViewDetails: PropTypes.func.isRequired
 };
+
+

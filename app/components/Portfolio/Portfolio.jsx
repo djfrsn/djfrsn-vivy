@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Slider from 'Slider/Slider';
+import Header from 'Header/Header';
 import classNames from 'classnames/bind';
 import styles from './Portfolio.scss';
 
@@ -43,6 +44,7 @@ class Portfolio extends Component {
     }];
     return (
       <div className={cx('portfolio')}>
+        <Header />
         <Slider apps={apps}
           zoomer={this.props.zoomer}
           onViewDetails={this.onViewDetails}
