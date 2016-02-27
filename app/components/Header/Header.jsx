@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import { Link } from 'react-router';
 import styles from './Header.scss';
 
 const cx = classNames.bind(styles);
@@ -9,6 +10,7 @@ class Navigation extends React.Component {
   render() {
     return (
       <header className={cx('bp-header')}>
+        <Link to="portfolio">Example Route</Link>
         <span>Dennis Jefferson<span className={cx('bp-icon', 'bp-icon-about', 'site-info-button')} data-content="Rwarr"></span></span>
         <div className={cx('site-info')}>Dev since 12</div>
         <h1>Full Stack Developer</h1>
