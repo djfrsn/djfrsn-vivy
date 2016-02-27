@@ -39,6 +39,7 @@ class Portfolio extends Component {
       }
     });
 
+    // not sure if this is needed since scroll is disabled on the body...
     // this.portfolio.addEventListener('scroll', NoScroll);
 
     this.applyTransforms(event.component);
@@ -70,6 +71,7 @@ class Portfolio extends Component {
       // fix for safari (allowing fixed children to keep position)
       bodyEl.style.WebkitTransform = '';
       bodyEl.style.transform = '';
+      // this.portfolio.removeEventListener('scroll', noscroll); //
     }, 1000);
   }
 
