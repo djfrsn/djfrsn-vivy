@@ -28,6 +28,7 @@ class Portfolio extends Component {
    * propogate state changes down to components. Your components should be dumb and avoid manipulating state.
    * Props vs State: https://github.com/uberVU/react-guide/blob/master/props-vs-state.md
    * Containers are Stateful /\ Components are Stateless
+   * Thinking in React: http://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live
    */
   onViewDetails(event) {
     // treat state as if its immutable. When changing state. State = Previous state + New state;
