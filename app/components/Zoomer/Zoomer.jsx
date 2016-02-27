@@ -16,6 +16,7 @@ export default class Zoomer extends Component {
 
   onZoomerClick() {
     this.props.onViewDetails();
+    // We want to have everything controlled by state...the below code needs to run based of animate: true 
     this.setState({animate: true});
     this.dynamics.animate(this.zoomer, { opacity: 0 }, { type: this.dynamics.easeInOut, duration: 800, friction: 300 });
     this.applyTransforms();
@@ -75,5 +76,3 @@ Zoomer.propTypes = {
   name: PropTypes.string.isRequired,
   onViewDetails: PropTypes.func.isRequired
 };
-
-
