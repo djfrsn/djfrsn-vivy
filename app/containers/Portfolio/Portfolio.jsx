@@ -7,6 +7,7 @@ import styles from './Portfolio.scss';
 import { browserHistory } from 'react-router';
 
 const cx = classNames.bind(styles);
+const bodyEl = window.document.body;
 /*
  * Note: This is kept as a container-level component,
  *  i.e. We should keep this as the container that does the data-fetching
@@ -42,7 +43,7 @@ class Portfolio extends Component {
 
     this.applyTransforms(event.component);
 
-    dynamics.animate(this.portfolio, { opacity: 0 }, { type: dynamics.easeInOut, duration: 800, friction: 300 });
+    dynamics.animate(bodyEl, { scale: 3, opacity: 0 }, { type: dynamics.easeInOut, duration: 800, friction: 300 });
 
     this.onEndTransition(event);
   }
@@ -63,6 +64,12 @@ class Portfolio extends Component {
   onEndTransition(event) {
     setTimeout(() => { // end of transition stuff
       browserHistory.push('portfolio/' + event.slug);
+      dynamics.stop(bodyEl);
+      dynamics.css(bodyEl, { scale: 1, opacity: 1 });
+
+      // fix for safari (allowing fixed children to keep position)
+      bodyEl.style.WebkitTransform = '';
+      bodyEl.style.transform = '';
     }, 1000);
   }
 
@@ -81,7 +88,7 @@ class Portfolio extends Component {
       tagline: 'App Portfolio for App developers'
     }];
     return (
-      <div className={cx('portfolio')} ref={(ref) => this.portfolio = ref}>
+      <div className={cx('portfolio')}>
         <Header />
         <Slider apps={apps}
           zoomer={this.state.zoomer}
