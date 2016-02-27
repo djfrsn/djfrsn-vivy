@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Zoomer.scss';
-import dynamics from '../../vendor/dynamics';
+import dynamics from 'vendor/dynamics';
 const cx = classNames.bind(styles);
 
 export default class Zoomer extends Component {
