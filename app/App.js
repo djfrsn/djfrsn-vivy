@@ -1,17 +1,18 @@
-import React from 'react';
-import Portfolio from 'Portfolio/Portfolio';
+import React, { Component, PropTypes } from 'react';
 import 'App.scss';
 
-export default class App extends React.Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { animate: false };
   }
   render() {
-    return (
-      <div>
-        <Portfolio zoomer={this.state}/>
-      </div>
-    );
+    return (<div>{this.props.children}</div>);
   }
 }
+
+App.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
+};

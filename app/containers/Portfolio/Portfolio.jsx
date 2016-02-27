@@ -17,6 +17,7 @@ class Portfolio extends Component {
     this.onViewDetails = this.onViewDetails.bind(this);
     this.onSliderPrev = this.onSliderPrev.bind(this);
     this.onSliderNext = this.onSliderNext.bind(this);
+    this.state = { zoomer: { animate: true } };
   }
 
   onViewDetails() {
@@ -46,7 +47,7 @@ class Portfolio extends Component {
       <div className={cx('portfolio')}>
         <Header />
         <Slider apps={apps}
-          zoomer={this.props.zoomer}
+          zoomer={this.state.zoomer}
           onViewDetails={this.onViewDetails}
           onSliderPrev={this.onSliderPrev}
           onSliderNext={this.onSliderNext} />
