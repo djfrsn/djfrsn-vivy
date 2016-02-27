@@ -1,0 +1,69 @@
+/*
+**
+*** Slide Styles
+**
+*/
+.slider {
+  display: flex;
+  flex-direction: column;
+  height: 68%;
+  width: 100%;
+  position: absolute;
+  justify-content: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  opacity: 0;
+}
+
+.slide--current {
+  position: relative;
+  z-index: 100;
+  visibility: visible;
+  opacity: 1;
+}
+
+.slide__mover {
+  position: relative;
+  z-index: 100;
+}
+
+.slide__title {
+  cursor: pointer;
+  cursor: hand;
+  text-align: center;
+  font-size: 1.75em;
+  font-weight: normal;
+  margin: 0 auto;
+  padding: 1em 0 0 0;
+}
+
+// <pre> element is used since react wraps loose text in spans...causing the original styles to break
+.slide__title pre {
+  font-family: inherit;
+  white-space: inherit;
+  margin: inherit;
+  display: inherit;
+}
+
+.slide__title span {
+  font-size: 55%;
+  font-weight: bold;
+  display: block;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #35303d;
+}
