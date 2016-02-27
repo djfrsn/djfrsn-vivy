@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Slider from 'Slider/Slider';
 import Header from 'Header/Header';
 import classNames from 'classnames/bind';
+import dynamics from 'vendor/dynamics';
 import styles from './Portfolio.scss';
 import { browserHistory } from 'react-router';
 
@@ -18,20 +19,49 @@ class Portfolio extends Component {
     this.onViewDetails = this.onViewDetails.bind(this);
     this.onSliderPrev = this.onSliderPrev.bind(this);
     this.onSliderNext = this.onSliderNext.bind(this);
-    this.state = { zoomer: { animate: true } };
+    this.state = { zoomer: { animate: false } }; // set initial state
+  }
+  /*
+   * Note: 'event' here refers to our own custom events. These 'events' are
+   * plain objects passed through callbacks. components bubble events up to parents,
+   * to just like native dom elements. Containers use these events to take action(change state) &
+   * propogate state changes down to components. Your components should be dumb and avoid manipulating state.
+   * Props vs State: https://github.com/uberVU/react-guide/blob/master/props-vs-state.md
+   * Containers are Stateful /\ Components are Stateless
+   */
+  onViewDetails(event) {
+    // treat state as if its immutable. When changing state. State = Previous state + New state;
+    this.setState({
+      zoomer: {
+        animate: true
+      }
+    });
+
+    // this.portfolio.addEventListener('scroll', NoScroll);
+
+    this.applyTransforms(event.component);
+
+    dynamics.animate(this.portfolio, { opacity: 0 }, { type: dynamics.easeInOut, duration: 800, friction: 300 });
+
+    this.onEndTransition(event);
   }
 
-  onViewDetails( data ) {
-    // update state & components reaction to state to make things happen...
-    // add 'zoomer--active' class to .zoomer, triggers slide out anim for appi on device
-    // disallow scroll on .container through noscroll function....
-    // execute applyTransforms(zoomer)
-    //if (bodyScale) ...
-    // execute onEndTransition()
+  applyTransforms(component) {
+    // zoomer area and scale value
+    const componentArea = component;
+    const componentAreaSize = {width: componentArea.offsetWidth, height: componentArea.offsetHeight};
+    // const componentOffset = componentArea.getBoundingClientRect();
+    const scaleVal = componentAreaSize.width / componentAreaSize.height < window.innerWidth / window.innerHeight ? window.innerWidth / componentAreaSize.width : window.innerHeight / componentAreaSize.height;
 
-    setTimeout(() => {
-      // end of transition stuff
-      browserHistory.push('portfolio/' + data.slug);
+    // apply transform
+    const trans = 'scale3d(' + scaleVal + ',' + scaleVal + ',1)';
+    component.style.WebkitTransform = trans;
+    component.style.transform = trans;
+  }
+
+  onEndTransition(event) {
+    setTimeout(() => { // end of transition stuff
+      browserHistory.push('portfolio/' + event.slug);
     }, 1000);
   }
 
@@ -50,7 +80,7 @@ class Portfolio extends Component {
       tagline: 'App Portfolio for App developers'
     }];
     return (
-      <div className={cx('portfolio')}>
+      <div className={cx('portfolio')} ref={(ref) => this.portfolio = ref}>
         <Header />
         <Slider apps={apps}
           zoomer={this.state.zoomer}
@@ -67,9 +97,5 @@ Portfolio.propTypes = {
     animate: PropTypes.bool.isRequried
   })
 };
-
-// let Portfolio = React.createClass({
-//   mixins: [ History ]
-// })
 
 export default Portfolio;
