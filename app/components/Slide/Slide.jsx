@@ -19,7 +19,7 @@ export default class Slide extends Component {
             permalink={this.props.permalink}
             onViewDetails={onViewDetails} />
           </div>
-          <h2 className={cx('slide__title')}><pre>{this.props.name}</pre><span>{this.props.tagline}</span></h2>
+          <h2 className={cx('slide__title')} ref={(ref) => this.slideTitle = ref}><pre>{this.props.name}</pre><span>{this.props.tagline}</span></h2>
         </div>
     );
   }

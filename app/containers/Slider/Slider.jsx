@@ -32,28 +32,24 @@ export default class Slider extends Component {
   }
 
   navigate = (dir) => {
-    let currentEl;
-    let currentTitleEl;
+    let items; // array of slide elements
     let nextEl;
     let nextTitleEl;
     let itemCurrent;
-    let itemNext;
     let current; // index of current item
     let itemsTotal;
 
-    this.state.slides.every((slide) => {
+    this.state.slides.every((slide, key) => {
       if ( slide.active ) {
-        itemCurrent = this.refs[slide.permalink];
+        itemCurrent = this.refs[slide.permalink]; // return the active slide & break out of loop
+        current = key;
         return false;
       }
       return true;
     });
 
-    currentEl = itemCurrent.slideMover;
-
-    //   var itemCurrent = items[current],
-    // currentEl = itemCurrent.querySelector('.slide__mover'),
-    // currentTitleEl = itemCurrent.querySelector('.slide__title');
+    const currentEl = itemCurrent.slideMover;
+    const currentTitleEl = itemCurrent.slideTitle;
 
     if ( dir === 'right' ) {
       current = current < itemsTotal - 1 ? current + 1 : 0;
@@ -61,7 +57,7 @@ export default class Slider extends Component {
       current = current > 0 ? current - 1 : itemsTotal - 1;
     }
 
-    // var itemNext = items[current],
+    const itemNext = items[current];
     //   nextEl = itemNext.querySelector('.slide__mover'),
     //   nextTitleEl = itemNext.querySelector('.slide__title');
 
