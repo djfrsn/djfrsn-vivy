@@ -14,7 +14,7 @@ export default class Slide extends Component {
       'slide--current': this.props.active
     });
     return (
-        <div className={slideClass} data-content={this.props.permalink}>
+        <div className={slideClass} data-content={this.props.permalink} ref={(ref) => this.slide = ref}>
           <div className={cx('slide__mover')} ref={(ref) => this.slideMover = ref}>
               <Zoomer name={this.props.name}
             animate={this.props.zoomer.animate}

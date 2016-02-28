@@ -41,7 +41,7 @@ class Portfolio extends Component {
 
     this.applyTransforms(event.currentTarget);
 
-    dynamics.animate(bodyEl, { scale: 3, opacity: 0 }, { type: dynamics.easeInOut, duration: 800, friction: 300 });
+    dynamics.animate(bodyEl, { scale: 3, opacity: 0 }, { type: dynamics.easeInOut, duration: 800 });
 
     this.onEndTransition(msg);
   }

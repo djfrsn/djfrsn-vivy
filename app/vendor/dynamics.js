@@ -1547,7 +1547,7 @@
     if (options == null) {
       options = {};
     }
-    applyDefaults(options, arguments.callee.defaults);
+    applyDefaults(options, dynamics.spring.defaults);
     frequency = Math.max(1, options.frequency / 20);
     friction = Math.pow(20, options.friction / 100);
     s = options.anticipationSize / 1000;
@@ -1797,7 +1797,7 @@
     if (options == null) {
       options = {};
     }
-    friction = (_ref = options.friction) != null ? _ref : arguments.callee.defaults.friction;
+    friction = (_ref = options.friction) != null ? _ref : dynamics.easeInOut.defaults.friction;
     return dynamics.bezier({
       points: [
         {
