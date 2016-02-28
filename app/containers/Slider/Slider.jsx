@@ -115,19 +115,8 @@ export default class Slider extends Component {
     const newState = [];
 
     this.state.slides.map((slide, key) => {
-      if ( slide.active ) {
-        slide.active = false;
-      } else if ( key === itemNext.props.index ) {
-        slide.active = true;
-      }
-      newState.push({
-        active: slide.active,
-        index: key,
-        device: slide.device,
-        name: slide.name,
-        permalink: slide.permalink,
-        tagline: slide.tagline
-      });
+      slide.active = key === itemNext.props.index ? true : false;
+      newState.push(...slide);
     });
 
     this.setState(newState);
