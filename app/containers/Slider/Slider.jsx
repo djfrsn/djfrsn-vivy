@@ -26,10 +26,10 @@ export default class Slider extends Component {
         tagline: 'Watch multiple videos simultaneously'
       }, {
         active: false,
-        device: 'macbook',
-        name: 'Appolo',
-        permalink: 'appolo',
-        tagline: 'App Portfolio for App developers'
+        device: 'iphone',
+        name: 'Deep',
+        permalink: 'deep',
+        tagline: 'Embed quotes on captivating images'
       }]
     };
   }
