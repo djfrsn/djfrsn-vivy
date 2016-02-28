@@ -98,7 +98,18 @@ export default class Slider extends Component {
     dynamics.animate(nextEl, { opacity: 1, translateX: 0 }, {
       type: dynamics.spring,
       duration: 3000,
-      friction: 600
+      friction: 600,
+      complete: () => {
+        const newState = [];
+
+        this.state.slides.map((slide, key) => {
+          newState.push(Object.assign({}, slide, {
+            active: key === itemNext.props.index ? true : false
+          }));
+        });
+
+        this.setState({ slides: newState });
+      }
     });
 
     // set the right properties for the next title to come in
@@ -110,15 +121,11 @@ export default class Slider extends Component {
       duration: 650
     });
 
-    const newState = [];
-
-    this.state.slides.map((slide, key) => {
-      newState.push(Object.assign({}, slide, {
-        active: key === itemNext.props.index ? true : false
-      }));
-    });
-
-    this.setState({ slides: newState });
+    // if (current % 2 == 0) {
+    //   hireMeButton.className = hireMeButton.className + " animated rubberBand";
+    // } else {
+    //   hireMeButton.className = initialHireMeButtonClass;
+    // }
   }
 
   render() {
