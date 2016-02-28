@@ -49,20 +49,19 @@ export default class Slider extends Component {
     const itemsTotal = items.length;
 
     let current; // index of current item
-    let itemCurrentRef;
+    let itemCurrent;
 
     this.state.slides.every((slide, key) => {
       if ( slide.active ) {
-        itemCurrentRef = this.refs[slide.permalink]; // the active slide
+        itemCurrent = this.refs[slide.permalink]; // the active slide
         current = key;
         return false; // break out of loop
       }
       return true;
     });
 
-    const itemCurrent = itemCurrentRef.slide;
-    const currentEl = itemCurrentRef.slideMover;
-    const currentTitleEl = itemCurrentRef.slideTitle;
+    const currentEl = itemCurrent.slideMover;
+    const currentTitleEl = itemCurrent.slideTitle;
 
     if ( dir === 'right' ) {
       current = current < itemsTotal - 1 ? current + 1 : 0;
@@ -82,7 +81,7 @@ export default class Slider extends Component {
       duration: 3000,
       friction: 600,
       complete: () => {
-        dynamics.css(itemCurrent, { opacity: 0, visibility: 'hidden' });
+        dynamics.css(itemCurrent.slide, { opacity: 0, visibility: 'hidden' });
       }
     });
 
@@ -93,31 +92,30 @@ export default class Slider extends Component {
       duration: 450
     });
 
-    // // set the right properties for the next element to come in
-    // dynamics.css(itemNext, { opacity: 1, visibility: 'visible' });
-    // dynamics.css(nextEl, { opacity: 0, translateX: dir === 'right' ? nextEl.offsetWidth / 2 : -1 * nextEl.offsetWidth / 2, rotateZ: dir === 'right' ? 10 : -10 });
+    // set the right properties for the next element to come in
+    dynamics.css(itemNext.slide, { opacity: 1, visibility: 'visible' });
+    dynamics.css(nextEl, { opacity: 0, translateX: dir === 'right' ? nextEl.offsetWidth / 2 : -1 * nextEl.offsetWidth / 2, rotateZ: dir === 'right' ? 10 : -10 });
 
-    // // animate the next element in
-    // dynamics.animate(nextEl, { opacity: 1, translateX: 0 }, {
-    //   type: dynamics.spring,
-    //   duration: 3000,
-    //   friction: 600,
-    //   complete: () => {
-    //     console.log(this);
-    //     debugger
-    //     // items.forEach(function(item) { classie.remove(item, 'slide--current'); });
-    //     // classie.add(itemNext, 'slide--current');
-    //   }
-    // });
+    // animate the next element in
+    dynamics.animate(nextEl, { opacity: 1, translateX: 0 }, {
+      type: dynamics.spring,
+      duration: 3000,
+      friction: 600,
+      complete: () => {
+        console.log(this);
+        // items.forEach(function(item) { classie.remove(item, 'slide--current'); });
+        // classie.add(itemNext, 'slide--current');
+      }
+    });
 
-    // // set the right properties for the next title to come in
-    // dynamics.css(nextTitleEl, { translateX: dir === 'right' ? 250 : -250, opacity: 0 });
-    // // animate the next title in
-    // dynamics.animate(nextTitleEl, { translateX: 0, opacity: 1 }, {
-    //   type: dynamics.bezier,
-    //   points: [{'x': 0, 'y': 0, 'cp': [{'x': 0.2, 'y': 1}]}, {'x': 1, 'y': 1, 'cp': [{'x': 0.3, 'y': 1}]}],
-    //   duration: 650
-    // });
+    // set the right properties for the next title to come in
+    dynamics.css(nextTitleEl, { translateX: dir === 'right' ? 250 : -250, opacity: 0 });
+    // animate the next title in
+    dynamics.animate(nextTitleEl, { translateX: 0, opacity: 1 }, {
+      type: dynamics.bezier,
+      points: [{'x': 0, 'y': 0, 'cp': [{'x': 0.2, 'y': 1}]}, {'x': 1, 'y': 1, 'cp': [{'x': 0.3, 'y': 1}]}],
+      duration: 650
+    });
   }
 
   render() {
