@@ -38,8 +38,18 @@ export default class Slider extends Component {
     let nextTitleEl;
     let itemCurrent;
     let itemNext;
-    let current;
+    let current; // index of current item
     let itemsTotal;
+
+    this.state.slides.every((slide) => {
+      if ( slide.active ) {
+        itemCurrent = this.refs[slide.permalink];
+        return false;
+      }
+      return true;
+    });
+
+    currentEl = itemCurrent.slideMover;
 
     //   var itemCurrent = items[current],
     // currentEl = itemCurrent.querySelector('.slide__mover'),
@@ -47,7 +57,7 @@ export default class Slider extends Component {
 
     if ( dir === 'right' ) {
       current = current < itemsTotal - 1 ? current + 1 : 0;
-    } else {
+    } else { // keeps track of current index & handles looping of slides
       current = current > 0 ? current - 1 : itemsTotal - 1;
     }
 
@@ -102,6 +112,7 @@ export default class Slider extends Component {
     const { onViewDetails, zoomer } = this.props;
     const slides = this.state.slides ? this.state.slides.map((app, key) => {
       return (<Slide key={key}
+        ref={app.permalink}
         zoomer={zoomer}
         permalink={app.permalink}
         name={app.name}

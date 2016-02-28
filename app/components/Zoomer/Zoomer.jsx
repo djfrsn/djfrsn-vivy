@@ -5,10 +5,9 @@ const cx = classNames.bind(styles);
 
 export default class Zoomer extends Component {
 
-  onZoomerClick = () => {
-    this.props.onViewDetails({
-      slug: this.props.permalink,
-      component: this.zoomer
+  onZoomerClick = (e) => {
+    this.props.onViewDetails(e, {
+      slug: this.props.permalink
     });
   }
 
@@ -27,7 +26,7 @@ export default class Zoomer extends Component {
       'zoomer__area--size-5': this.props.device === 'imac' ? true : false
     });
     return (
-      <div className={zoomerClass} onClick={this.onZoomerClick} ref={(ref) => this.zoomer = ref}>
+      <div className={zoomerClass} onClick={this.onZoomerClick}>
         <img className={cx('zoomer__image')} src={this.props.deviceImage} alt={this.props.device}/>
         <div className={cx('preview')}>
           <img src={appPreview} alt={this.props.name}/>

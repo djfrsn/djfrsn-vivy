@@ -28,7 +28,7 @@ class Portfolio extends Component {
    * Containers are Stateful /\ Components are Stateless
    * Thinking in React: http://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live
    */
-  onViewDetails = (event) => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
+  onViewDetails = (event, msg) => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
     // State is immutable. When changing state. State = Previous state + New state;
     this.setState({
       zoomer: {
@@ -39,11 +39,11 @@ class Portfolio extends Component {
     // not sure if this is needed since scroll is disabled on the body...
     // this.portfolio.addEventListener('scroll', NoScroll);
 
-    this.applyTransforms(event.component);
+    this.applyTransforms(event.currentTarget);
 
     dynamics.animate(bodyEl, { scale: 3, opacity: 0 }, { type: dynamics.easeInOut, duration: 800, friction: 300 });
 
-    this.onEndTransition(event);
+    this.onEndTransition(msg);
   }
 
   applyTransforms(component) {

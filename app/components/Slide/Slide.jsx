@@ -11,7 +11,7 @@ export default class Slide extends Component {
     const { onViewDetails } = this.props;
     return (
         <div className={cx('slide', 'slide--current')} data-content={this.props.permalink}>
-          <div className={cx('slide__mover')}>
+          <div className={cx('slide__mover')} ref={(ref) => this.slideMover = ref}>
               <Zoomer name={this.props.name}
             animate={this.props.zoomer.animate}
             deviceImage={this.props.deviceImage}
