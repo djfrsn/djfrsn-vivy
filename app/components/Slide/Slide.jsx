@@ -9,8 +9,12 @@ export default class Slide extends Component {
   render() {
     // Passing through the onViewDetails callback function from props to <Zoomer>
     const { onViewDetails } = this.props;
+    const slideClass = cx({
+      'slide': true,
+      'slide--current': this.props.active
+    });
     return (
-        <div className={cx('slide', 'slide--current')} data-content={this.props.permalink}>
+        <div className={slideClass} data-content={this.props.permalink}>
           <div className={cx('slide__mover')} ref={(ref) => this.slideMover = ref}>
               <Zoomer name={this.props.name}
             animate={this.props.zoomer.animate}
@@ -25,6 +29,7 @@ export default class Slide extends Component {
 }
 
 Slide.propTypes = {
+  active: PropTypes.string.isRequired,
   device: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
