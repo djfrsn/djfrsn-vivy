@@ -32,18 +32,19 @@ export default class Slider extends Component {
   }
 
   navigate = (dir) => {
-    let items; // array of slide elements
-    let nextEl;
-    let nextTitleEl;
-    let itemCurrent;
+    const items = this.state.slides.map((slide) => {
+      return this.refs[slide.permalink];
+    }); // array of slide elements
+    const itemsTotal = items.length;
+
     let current; // index of current item
-    let itemsTotal;
+    let itemCurrent;
 
     this.state.slides.every((slide, key) => {
       if ( slide.active ) {
-        itemCurrent = this.refs[slide.permalink]; // return the active slide & break out of loop
+        itemCurrent = this.refs[slide.permalink]; // the active slide
         current = key;
-        return false;
+        return false; // break out of loop
       }
       return true;
     });
@@ -58,8 +59,8 @@ export default class Slider extends Component {
     }
 
     const itemNext = items[current];
-    //   nextEl = itemNext.querySelector('.slide__mover'),
-    //   nextTitleEl = itemNext.querySelector('.slide__title');
+    const nextEl = itemNext.slideMover;
+    const nextTitleEl = itemNext.slideTitle;
 
     // animate the current element out
     dynamics.animate(currentEl, { opacity: 0, translateX: dir === 'right' ? -1 * currentEl.offsetWidth / 2 : currentEl.offsetWidth / 2, rotateZ: dir === 'right' ? -10 : 10 }, {
