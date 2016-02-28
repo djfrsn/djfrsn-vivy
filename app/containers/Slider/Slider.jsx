@@ -9,10 +9,14 @@ const cx = classNames.bind(styles);
 export default class Slider extends Component {
 
   onSliderPrev = () => {
-
+    this.navigate('left');
   }
 
-  onSliderNext= () => {
+  onSliderNext = () => {
+    this.navigate('right');
+  }
+
+  navigate = (dir) => {
 
   }
 
