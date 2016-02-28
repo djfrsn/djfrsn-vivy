@@ -73,8 +73,6 @@ export default class Slider extends Component {
     const nextEl = itemNext.slideMover;
     const nextTitleEl = itemNext.slideTitle;
 
-    // TODO: set new state...need to update 'active' on slide
-
     // animate the current element out
     dynamics.animate(currentEl, { opacity: 0, translateX: dir === 'right' ? -1 * currentEl.offsetWidth / 2 : currentEl.offsetWidth / 2, rotateZ: dir === 'right' ? -10 : 10 }, {
       type: dynamics.spring,
@@ -115,11 +113,12 @@ export default class Slider extends Component {
     const newState = [];
 
     this.state.slides.map((slide, key) => {
-      slide.active = key === itemNext.props.index ? true : false;
-      newState.push(...slide);
+      newState.push(Object.assign({}, slide, {
+        active: key === itemNext.props.index ? true : false
+      }));
     });
 
-    this.setState(newState);
+    this.setState({ slides: newState });
   }
 
   render() {
