@@ -8,6 +8,20 @@ import styles from './Slider.scss';
 const cx = classNames.bind(styles);
 
 export default class Slider extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      slides: [{
+        active: true,
+        deviceImage: '/images/macbook.png',
+        device: 'macbook',
+        name: 'Appolo',
+        permalink: 'appolo',
+        tagline: 'App Portfolio for App developers'
+      }]
+    };
+  }
 
   onSliderPrev = () => {
     this.navigate('left');
@@ -19,12 +33,29 @@ export default class Slider extends Component {
 
   navigate = (dir) => {
     let currentEl;
-    let itemCurrent;
     let currentTitleEl;
-    let nextTitleEl;
     let nextEl;
+    let nextTitleEl;
+    let itemCurrent;
     let itemNext;
-        // animate the current element out
+    let current;
+    let itemsTotal;
+
+    //   var itemCurrent = items[current],
+    // currentEl = itemCurrent.querySelector('.slide__mover'),
+    // currentTitleEl = itemCurrent.querySelector('.slide__title');
+
+    if ( dir === 'right' ) {
+      current = current < itemsTotal - 1 ? current + 1 : 0;
+    } else {
+      current = current > 0 ? current - 1 : itemsTotal - 1;
+    }
+
+    // var itemNext = items[current],
+    //   nextEl = itemNext.querySelector('.slide__mover'),
+    //   nextTitleEl = itemNext.querySelector('.slide__title');
+
+    // animate the current element out
     dynamics.animate(currentEl, { opacity: 0, translateX: dir === 'right' ? -1 * currentEl.offsetWidth / 2 : currentEl.offsetWidth / 2, rotateZ: dir === 'right' ? -10 : 10 }, {
       type: dynamics.spring,
       duration: 3000,
@@ -69,7 +100,7 @@ export default class Slider extends Component {
   render() {
     // Passing down the callback functions from props to each <Zoomer>
     const { onViewDetails, zoomer } = this.props;
-    const slides = this.props.apps ? this.props.apps.map((app, key) => {
+    const slides = this.state.slides ? this.state.slides.map((app, key) => {
       return (<Slide key={key}
         zoomer={zoomer}
         permalink={app.permalink}
@@ -92,7 +123,6 @@ export default class Slider extends Component {
 }
 
 Slider.propTypes = {
-  apps: PropTypes.array.isRequired,
   onViewDetails: PropTypes.func.isRequired,
   zoomer: PropTypes.shape({
     animate: PropTypes.bool.isRequried

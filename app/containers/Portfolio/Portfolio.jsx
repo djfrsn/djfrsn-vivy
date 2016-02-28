@@ -79,18 +79,10 @@ class Portfolio extends Component {
   }
 
   render() {
-    const apps = [{
-      deviceImage: '/images/macbook.png',
-      device: 'macbook',
-      name: 'Appolo',
-      permalink: 'appolo',
-      tagline: 'App Portfolio for App developers'
-    }];
     return (
       <div className={cx('portfolio')}>
         <Header />
-        <Slider apps={apps}
-          zoomer={this.state.zoomer}
+        <Slider zoomer={this.state.zoomer}
           onViewDetails={this.onViewDetails} />
       </div>
     );
