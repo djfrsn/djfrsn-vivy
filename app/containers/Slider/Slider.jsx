@@ -14,7 +14,18 @@ export default class Slider extends Component {
     this.state = {
       slides: [{
         active: true,
-        deviceImage: '/images/macbook.png',
+        device: 'macbook',
+        name: 'Appolo',
+        permalink: 'appolo',
+        tagline: 'App Portfolio for App developers'
+      }, {
+        active: false,
+        device: 'imac',
+        name: 'Meeru',
+        permalink: 'meeru',
+        tagline: 'Watch multiple videos simultaneously'
+      }, {
+        active: false,
         device: 'macbook',
         name: 'Appolo',
         permalink: 'appolo',
@@ -114,7 +125,6 @@ export default class Slider extends Component {
         permalink={app.permalink}
         name={app.name}
         tagline={app.tagline}
-        deviceImage={app.deviceImage}
         device={app.device}
         onViewDetails={onViewDetails} />);
     })

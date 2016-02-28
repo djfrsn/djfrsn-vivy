@@ -14,7 +14,6 @@ export default class Slide extends Component {
           <div className={cx('slide__mover')} ref={(ref) => this.slideMover = ref}>
               <Zoomer name={this.props.name}
             animate={this.props.zoomer.animate}
-            deviceImage={this.props.deviceImage}
             device={this.props.device}
             permalink={this.props.permalink}
             onViewDetails={onViewDetails} />
@@ -26,7 +25,6 @@ export default class Slide extends Component {
 }
 
 Slide.propTypes = {
-  deviceImage: PropTypes.string.isRequired,
   device: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
