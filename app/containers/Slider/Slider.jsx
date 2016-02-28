@@ -100,12 +100,7 @@ export default class Slider extends Component {
     dynamics.animate(nextEl, { opacity: 1, translateX: 0 }, {
       type: dynamics.spring,
       duration: 3000,
-      friction: 600,
-      complete: () => {
-        console.log(this);
-        // items.forEach(function(item) { classie.remove(item, 'slide--current'); });
-        // classie.add(itemNext, 'slide--current');
-      }
+      friction: 600
     });
 
     // set the right properties for the next title to come in
@@ -116,15 +111,36 @@ export default class Slider extends Component {
       points: [{'x': 0, 'y': 0, 'cp': [{'x': 0.2, 'y': 1}]}, {'x': 1, 'y': 1, 'cp': [{'x': 0.3, 'y': 1}]}],
       duration: 650
     });
+
+    const newState = [];
+
+    this.state.slides.map((slide, key) => {
+      if ( slide.active ) {
+        slide.active = false;
+      } else if ( key === itemNext.props.index ) {
+        slide.active = true;
+      }
+      newState.push({
+        active: slide.active,
+        index: key,
+        device: slide.device,
+        name: slide.name,
+        permalink: slide.permalink,
+        tagline: slide.tagline
+      });
+    });
+
+    this.setState(newState);
   }
 
   render() {
-    // Passing down onViewDetails callback from props to each <Zoomer>
+    // Ensure a key is set on each <Slide>, this is how react keeps track of dynamic child components
     const { onViewDetails, zoomer } = this.props;
     const slides = this.state.slides ? this.state.slides.map((app, key) => {
       return (<Slide key={key}
         ref={app.permalink}
         zoomer={zoomer}
+        index={key}
         active={app.active}
         permalink={app.permalink}
         name={app.name}
