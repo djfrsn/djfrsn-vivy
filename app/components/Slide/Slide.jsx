@@ -29,7 +29,7 @@ export default class Slide extends Component {
 }
 
 Slide.propTypes = {
-  active: PropTypes.string.isRequired,
+  active: PropTypes.bool.isRequired,
   device: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
