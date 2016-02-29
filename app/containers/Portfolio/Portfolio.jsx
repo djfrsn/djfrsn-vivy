@@ -28,7 +28,7 @@ class Portfolio extends Component {
    * Containers are Stateful /\ Components are Stateless
    * Thinking in React: http://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live
    */
-  onViewDetails = (event, msg) => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
+  onViewDetails = (event, options) => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
     // State is immutable. When changing state. State = Previous state + New state;
     this.setState({
       zoomer: {
@@ -36,14 +36,13 @@ class Portfolio extends Component {
       }
     });
 
-    // not sure if this is needed since scroll is disabled on the body...
     // this.portfolio.addEventListener('scroll', NoScroll);
 
     this.applyTransforms(event.currentTarget);
 
     dynamics.animate(bodyEl, { scale: 3, opacity: 0 }, { type: dynamics.easeInOut, duration: 800 });
 
-    this.onEndTransition(msg);
+    this.onEndTransition(options);
   }
 
   applyTransforms(component) {
@@ -59,9 +58,9 @@ class Portfolio extends Component {
     component.style.transform = trans;
   }
 
-  onEndTransition(event) {
+  onEndTransition(options) {
     setTimeout(() => { // end of transition stuff
-      browserHistory.push('portfolio/' + event.slug);
+      browserHistory.push('portfolio/' + options.slug);
       dynamics.stop(bodyEl);
       dynamics.css(bodyEl, { scale: 1, opacity: 1 });
 
@@ -70,12 +69,6 @@ class Portfolio extends Component {
       bodyEl.style.transform = '';
       // this.portfolio.removeEventListener('scroll', noscroll); //
     }, 801);
-  }
-
-  onSliderPrev() {
-  }
-
-  onSliderNext() {
   }
 
   render() {
