@@ -7,6 +7,7 @@ import dynamics from 'vendor/dynamics';
 import { browserHistory } from 'react-router';
 
 const cx = classNames.bind(styles);
+const bodyEl = window.document.body;
 
 export default class Slider extends Component {
   constructor(props) {
@@ -52,9 +53,13 @@ export default class Slider extends Component {
     }
   }
 
-  onViewDetails = () => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
+  onViewDetails = (options = {}) => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
+    if (!options.delay) { options.delay = 0; }
     // this.portfolio.addEventListener('scroll', NoScroll);
     let slug;
+    console.log(this.props.children);
+    // this.applyTransforms();
+    this.onEndTransition();
 
     this.state.slides.every((slide) => {
       if (slide.active) {
@@ -66,7 +71,35 @@ export default class Slider extends Component {
 
     setTimeout(setTimeout(() => {
       browserHistory.push(slug);
-    }, 801));
+    }, options.delay));
+  }
+
+  applyTransforms = (component) => {
+    this.setState({ animate: true });
+
+    dynamics.animate(bodyEl, { scale: 3, opacity: 0 }, { type: dynamics.easeInOut, duration: 800 });
+    // zoomer area and scale value
+    const componentArea = component;
+    const componentAreaSize = {width: componentArea.offsetWidth, height: componentArea.offsetHeight};
+    // const componentOffset = componentArea.getBoundingClientRect();
+    const scaleVal = componentAreaSize.width / componentAreaSize.height < window.innerWidth / window.innerHeight ? window.innerWidth / componentAreaSize.width : window.innerHeight / componentAreaSize.height;
+
+    // apply transform
+    const trans = `scale3d(${scaleVal},${scaleVal},1)`;
+    component.style.WebkitTransform = trans;
+    component.style.transform = trans;
+  }
+
+  onEndTransition = () => {
+    setTimeout(() => { // end of transition stuff
+      dynamics.stop(bodyEl);
+      dynamics.css(bodyEl, { scale: 1, opacity: 1 });
+
+      // fix for safari (allowing fixed children to keep position)
+      bodyEl.style.WebkitTransform = '';
+      bodyEl.style.transform = '';
+      // this.portfolio.removeEventListener('scroll', noscroll); //
+    }, 801);
   }
 
   onSliderPrev = () => {
@@ -169,16 +202,29 @@ export default class Slider extends Component {
   render() {
     // Ensure a key is set on each <Slide>, this is how react keeps track of dynamic child components, keep our own key on index
     // Passing state as props to ensure children are stateless
-    const slides = this.state.slides ? this.state.slides.map((slide, key) => {
+    // const slides = this.state.slides ? this.state.slides.map((slide, key) => {
+    //   return (<Slide {...slide}
+    //     key={key}
+    //     index={key}
+    //     ref={slide.permalink}
+    //     children={this.props.children[key]}
+    //     shouldSlideUpdate={this.state.shouldSlideUpdate}
+    //     onViewDetails={this.onViewDetails} />);
+    // })
+    // : null;
+    let index = 0;
+    const slides = React.Children.map(this.props.children, (newChild, key) => {
+      const child = React.cloneElement(newChild, {
+        ref: 'child-' + (index++)
+      });
       return (<Slide {...slide}
         key={key}
         index={key}
         ref={slide.permalink}
-        children={this.props.children[key]}
+        children={child}
         shouldSlideUpdate={this.state.shouldSlideUpdate}
         onViewDetails={this.onViewDetails} />);
-    })
-    : null;
+    });
     return (
       <section className={cx('slider')}>
         {slides}

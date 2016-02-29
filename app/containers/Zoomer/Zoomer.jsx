@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
-import dynamics from 'vendor/dynamics';
 import styles from './Zoomer.scss';
 
 const cx = classNames.bind(styles);
-const bodyEl = window.document.body;
 
 export default class Zoomer extends Component {
   constructor() {
@@ -15,37 +13,8 @@ export default class Zoomer extends Component {
 
   onZoomerClick = () => {
     if ( !this.state.animate ) { // check for state.animate to prevent duplicate animations
-      this.applyTransforms();
-      this.onEndTransition();
+      this.setState({ animate: true });
     }
-  }
-
-  applyTransforms = () => {
-    this.setState({ animate: true });
-
-    dynamics.animate(bodyEl, { scale: 3, opacity: 0 }, { type: dynamics.easeInOut, duration: 800 });
-    // zoomer area and scale value
-    const componentArea = this.zoomer;
-    const componentAreaSize = {width: componentArea.offsetWidth, height: componentArea.offsetHeight};
-    // const componentOffset = componentArea.getBoundingClientRect();
-    const scaleVal = componentAreaSize.width / componentAreaSize.height < window.innerWidth / window.innerHeight ? window.innerWidth / componentAreaSize.width : window.innerHeight / componentAreaSize.height;
-
-    // apply transform
-    const trans = `scale3d(${scaleVal},${scaleVal},1)`;
-    this.zoomer.style.WebkitTransform = trans;
-    this.zoomer.style.transform = trans;
-  }
-
-  onEndTransition = () => {
-    setTimeout(() => { // end of transition stuff
-      dynamics.stop(bodyEl);
-      dynamics.css(bodyEl, { scale: 1, opacity: 1 });
-
-      // fix for safari (allowing fixed children to keep position)
-      bodyEl.style.WebkitTransform = '';
-      bodyEl.style.transform = '';
-      // this.portfolio.removeEventListener('scroll', noscroll); //
-    }, 801);
   }
 
   render() {
