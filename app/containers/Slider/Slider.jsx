@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import Slide from 'Slide/Slide';
 import SliderNav from 'SliderNav/SliderNav';
+import styles from './Slider.scss';
 import classNames from 'classnames/bind';
 import dynamics from 'vendor/dynamics';
-import styles from './Slider.scss';
+import { browserHistory } from 'react-router';
 
 const cx = classNames.bind(styles);
 
@@ -135,6 +136,7 @@ export default class Slider extends Component {
       complete: () => {
         if ( !this.willUnmount ) {
           this.setState({ ...this.state, shouldSlideUpdate: true });
+          browserHistory.push(`preview-${itemNext.props.permalink}`);
         }
       }
     });
