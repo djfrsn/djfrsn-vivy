@@ -53,7 +53,7 @@ class Portfolio extends Component {
     const scaleVal = componentAreaSize.width / componentAreaSize.height < window.innerWidth / window.innerHeight ? window.innerWidth / componentAreaSize.width : window.innerHeight / componentAreaSize.height;
 
     // apply transform
-    const trans = 'scale3d(' + scaleVal + ',' + scaleVal + ',1)';
+    const trans = `scale3d(${scaleVal},${scaleVal},1)`;
     component.style.WebkitTransform = trans;
     component.style.transform = trans;
   }
