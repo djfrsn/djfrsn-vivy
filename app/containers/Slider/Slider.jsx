@@ -12,6 +12,7 @@ export default class Slider extends Component {
     super();
 
     this.state = {
+      shouldSlideUpdate: false,
       slides: [{
         active: true,
         device: 'macbook',
@@ -72,6 +73,15 @@ export default class Slider extends Component {
     const itemNext = items[current];
     const nextEl = itemNext.slideMover;
     const nextTitleEl = itemNext.slideTitle;
+    const slides = [];
+
+    this.state.slides.map((slide, key) => {
+      slides.push({ ...slide,
+        active: key === itemNext.props.index ? true : false
+      });
+    });
+
+    this.setState({ slides: slides, shouldSlideUpdate: false });
 
     // animate the current element out
     dynamics.animate(currentEl, { opacity: 0, translateX: dir === 'right' ? -1 * currentEl.offsetWidth / 2 : currentEl.offsetWidth / 2, rotateZ: dir === 'right' ? -10 : 10 }, {
@@ -100,15 +110,7 @@ export default class Slider extends Component {
       duration: 3000,
       friction: 600,
       complete: () => {
-        const newState = [];
-
-        this.state.slides.map((slide, key) => {
-          newState.push(Object.assign({}, slide, {
-            active: key === itemNext.props.index ? true : false
-          }));
-        });
-
-        this.setState({ slides: newState });
+        this.setState({ ...this.state, shouldSlideUpdate: true });
       }
     });
 
@@ -130,11 +132,13 @@ export default class Slider extends Component {
 
   render() {
     // Ensure a key is set on each <Slide>, this is how react keeps track of dynamic child components
+    // Passing state as props to ensure children are stateless
     const { onViewDetails, zoomer } = this.props;
     const slides = this.state.slides ? this.state.slides.map((app, key) => {
       return (<Slide key={key}
         ref={app.permalink}
         zoomer={zoomer}
+        shouldSlideUpdate={this.state.shouldSlideUpdate}
         index={key}
         active={app.active}
         permalink={app.permalink}

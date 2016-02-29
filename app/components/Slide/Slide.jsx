@@ -6,6 +6,9 @@ import styles from './Slide.scss';
 const cx = classNames.bind(styles);
 
 export default class Slide extends Component {
+  shouldComponentUpdate(nextProps) {
+    return nextProps.shouldSlideUpdate; // return false to prevent render updates
+  }
   render() {
     // Passing through the onViewDetails callback function from props to <Zoomer>
     const { onViewDetails } = this.props;
@@ -30,6 +33,7 @@ export default class Slide extends Component {
 
 Slide.propTypes = {
   active: PropTypes.bool.isRequired,
+  shouldSlideUpdate: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
   device: PropTypes.string.isRequired,
   permalink: PropTypes.string.isRequired,
