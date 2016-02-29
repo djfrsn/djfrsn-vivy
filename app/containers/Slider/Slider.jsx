@@ -36,29 +36,12 @@ export default class Slider extends Component {
   }
 
   componentDidMount() {
-        // window resize
-    // window.addEventListener('resize', throttle(function(ev) {
-    //   // reset window sizes
-    //   const win = {width: window.innerWidth, height: window.innerHeight};
-
-    //   // reset transforms for the items (slider items)
-    //   if (items) {
-    //     items.forEach(function(item, pos) {
-    //       if( pos === current ) return;
-    //       var el = item.querySelector('.slide__mover');
-    //       dynamics.css(el, { translateX: el.offsetWidth });
-    //     });
-    //   }
-
-    // }, 10));
-
-    // keyboard navigation events
     document.addEventListener( 'keydown', this.listenToKeyPress );
   }
 
   componentWillUnmount() {
-    document.removeEventListener( 'keydown', this.listenToKeyPress );
     this.willUnmount = true; // set to prevent dynamics.js callback execution when component will unmount, calling dynamics.stop doesn't work
+    document.removeEventListener( 'keydown', this.listenToKeyPress );
   }
 
   listenToKeyPress = ( ev ) => {
