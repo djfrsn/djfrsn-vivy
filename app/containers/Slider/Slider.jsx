@@ -202,29 +202,19 @@ export default class Slider extends Component {
   render() {
     // Ensure a key is set on each <Slide>, this is how react keeps track of dynamic child components, keep our own key on index
     // Passing state as props to ensure children are stateless
-    // const slides = this.state.slides ? this.state.slides.map((slide, key) => {
-    //   return (<Slide {...slide}
-    //     key={key}
-    //     index={key}
-    //     ref={slide.permalink}
-    //     children={this.props.children[key]}
-    //     shouldSlideUpdate={this.state.shouldSlideUpdate}
-    //     onViewDetails={this.onViewDetails} />);
-    // })
-    // : null;
     let index = 0;
-    const slides = React.Children.map(this.props.children, (newChild, key) => {
+    const slides = this.props.children ? React.Children.map(this.props.children, (newChild, key) => {
       const child = React.cloneElement(newChild, {
         ref: 'child-' + (index++)
       });
-      return (<Slide {...slide}
+      return (<Slide {...this.state.slides[key]}
         key={key}
         index={key}
-        ref={slide.permalink}
+        ref={this.state.slides[key].permalink}
         children={child}
         shouldSlideUpdate={this.state.shouldSlideUpdate}
         onViewDetails={this.onViewDetails} />);
-    });
+    }) : null;
     return (
       <section className={cx('slider')}>
         {slides}
