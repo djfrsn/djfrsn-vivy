@@ -36,7 +36,7 @@ export default class Slider extends Component {
   }
 
   componentWillUnmount() {
-    this.willUnmount = true; // set to prevent dynamics.js callback execution when component will unmount
+    this.willUnmount = true; // set to prevent dynamics.js callback execution when component will unmount, calling dynamics.stop doesn't work
   }
 
   onSliderPrev = () => {
