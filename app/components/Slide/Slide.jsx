@@ -10,7 +10,7 @@ export default class Slide extends Component {
   }
 
   onSlideClick = () => {
-    this.props.onViewDetails({ delay: 801 });
+    this.props.onViewDetails();
   }
 
   render() {

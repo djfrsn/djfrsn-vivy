@@ -53,8 +53,7 @@ export default class Slider extends Component {
     }
   }
 
-  onViewDetails = (options = {}) => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
-    if (!options.delay) { options.delay = 0; }
+  onViewDetails = () => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
     // this.portfolio.addEventListener('scroll', NoScroll);
     let slug;
     let index;
@@ -69,11 +68,7 @@ export default class Slider extends Component {
     });
 
     this.applyTransforms(this.refs[`child-${index}`].zoomer);
-    this.onEndTransition();
-
-    setTimeout(setTimeout(() => {
-      browserHistory.push(slug);
-    }, options.delay));
+    this.onEndTransition({ slug: slug });
   }
 
   applyTransforms = (component) => {
@@ -92,7 +87,7 @@ export default class Slider extends Component {
     component.style.transform = trans;
   }
 
-  onEndTransition = () => {
+  onEndTransition = (options) => {
     setTimeout(() => { // end of transition stuff
       dynamics.stop(bodyEl);
       dynamics.css(bodyEl, { scale: 1, opacity: 1 });
@@ -100,6 +95,7 @@ export default class Slider extends Component {
       // fix for safari (allowing fixed children to keep position)
       bodyEl.style.WebkitTransform = '';
       bodyEl.style.transform = '';
+      browserHistory.push(options.slug);
       // this.portfolio.removeEventListener('scroll', noscroll); //
     }, 801);
   }
