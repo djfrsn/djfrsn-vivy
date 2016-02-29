@@ -35,6 +35,10 @@ export default class Slider extends Component {
     };
   }
 
+  componentWillUnmount() {
+    this.willUnmount = true; // set to prevent dynamics.js callback execution when component will unmount
+  }
+
   onSliderPrev = () => {
     this.navigate('left');
   }
@@ -89,7 +93,9 @@ export default class Slider extends Component {
       duration: 3000,
       friction: 600,
       complete: () => {
-        dynamics.css(itemCurrent.slide, { opacity: 0, visibility: 'hidden' });
+        if ( !this.willUnmount ) {
+          dynamics.css(itemCurrent.slide, { opacity: 0, visibility: 'hidden' });
+        }
       }
     });
 
@@ -110,7 +116,9 @@ export default class Slider extends Component {
       duration: 3000,
       friction: 600,
       complete: () => {
-        this.setState({ ...this.state, shouldSlideUpdate: true });
+        if ( !this.willUnmount ) {
+          this.setState({ ...this.state, shouldSlideUpdate: true });
+        }
       }
     });
 
