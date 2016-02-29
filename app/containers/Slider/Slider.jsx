@@ -53,15 +53,7 @@ export default class Slider extends Component {
   }
 
   onViewDetails = () => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
-    // State is immutable. When changing state. State = Previous state + New state;
-    this.setState({ ...this.state,
-      zoomer: {
-        animate: true
-      }
-    });
-
     // this.portfolio.addEventListener('scroll', NoScroll);
-
     let slug;
 
     this.state.slides.every((slide) => {
@@ -156,7 +148,7 @@ export default class Slider extends Component {
       duration: 3000,
       friction: 600,
       complete: () => {
-        if ( !this.willUnmount ) {
+        if ( !this.willUnmount ) { // State is immutable. When changing state. State = Previous state + New state;
           this.setState({ ...this.state, shouldSlideUpdate: true });
         }
       }
