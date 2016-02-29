@@ -143,16 +143,12 @@ export default class Slider extends Component {
     // Passing state as props to ensure children are stateless
     const { onViewDetails, zoomer } = this.props;
     const slides = this.state.slides ? this.state.slides.map((app, key) => {
-      return (<Slide key={key}
+      return (<Slide  {...app}
+        key={key}
         ref={app.permalink}
         zoomer={zoomer}
         shouldSlideUpdate={this.state.shouldSlideUpdate}
         index={key}
-        active={app.active}
-        permalink={app.permalink}
-        name={app.name}
-        tagline={app.tagline}
-        device={app.device}
         onViewDetails={onViewDetails} />);
     })
     : null;
