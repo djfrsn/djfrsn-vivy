@@ -70,6 +70,31 @@ export default class Slider extends Component {
     }
   }
 
+  onViewDetails = () => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
+    // State is immutable. When changing state. State = Previous state + New state;
+    this.setState({ ...this.state,
+      zoomer: {
+        animate: true
+      }
+    });
+
+    // this.portfolio.addEventListener('scroll', NoScroll);
+
+    let slug;
+
+    this.state.slides.every((slide) => {
+      if (slide.active) {
+        slug = slide.permalink;
+        return false;
+      }
+      return true;
+    });
+
+    setTimeout(setTimeout(() => {
+      browserHistory.push(slug);
+    }, 801));
+  }
+
   onSliderPrev = () => {
     this.navigate('left');
   }
@@ -168,17 +193,15 @@ export default class Slider extends Component {
   }
 
   render() {
-    // Ensure a key is set on each <Slide>, this is how react keeps track of dynamic child components
+    // Ensure a key is set on each <Slide>, this is how react keeps track of dynamic child components, keep our own key on index
     // Passing state as props to ensure children are stateless
-    const { onViewDetails, zoomer } = this.props;
     const slides = this.state.slides ? this.state.slides.map((app, key) => {
       return (<Slide  {...app}
         key={key}
         ref={app.permalink}
-        zoomer={zoomer}
         shouldSlideUpdate={this.state.shouldSlideUpdate}
         index={key}
-        onViewDetails={onViewDetails} />);
+        onViewDetails={this.onViewDetails} />);
     })
     : null;
     return (
@@ -186,7 +209,7 @@ export default class Slider extends Component {
         {slides}
         <SliderNav onSliderPrev={this.onSliderPrev}
           onSliderNext={this.onSliderNext}
-          onViewDetails={onViewDetails} />
+          onViewDetails={this.onViewDetails} />
       </section>
     );
   }
@@ -196,9 +219,5 @@ Slider.propTypes = {
   routeParams: PropTypes.shape({
     permalink: PropTypes.string.isRequried
   }),
-  onViewDetails: PropTypes.func.isRequired,
-  onAnimateHireMeButton: PropTypes.func.isRequired,
-  zoomer: PropTypes.shape({
-    animate: PropTypes.bool.isRequried
-  })
+  onAnimateHireMeButton: PropTypes.func.isRequired
 };

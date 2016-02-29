@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 export default class Slide extends Component {
   shouldComponentUpdate(nextProps) {
-    return nextProps.shouldSlideUpdate || nextProps.zoomer.animate; // return false to prevent render down the tree
+    return nextProps.shouldSlideUpdate; // return false to prevent render down the tree
   }
   render() {
     // Passing through the onViewDetails callback function from props to <Zoomer>
@@ -20,7 +20,6 @@ export default class Slide extends Component {
         <div className={slideClass} data-content={this.props.permalink} ref={(ref) => this.slide = ref}>
           <div className={cx('slide__mover')} ref={(ref) => this.slideMover = ref}>
               <Zoomer name={this.props.name}
-            animate={this.props.zoomer.animate}
             device={this.props.device}
             permalink={this.props.permalink}
             onViewDetails={onViewDetails} />
@@ -39,8 +38,5 @@ Slide.propTypes = {
   permalink: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   tagline: PropTypes.string.isRequired,
-  onViewDetails: PropTypes.func.isRequired,
-  zoomer: PropTypes.shape({
-    animate: PropTypes.bool.isRequried
-  })
+  onViewDetails: PropTypes.func.isRequired
 };
