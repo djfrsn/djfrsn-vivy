@@ -57,17 +57,19 @@ export default class Slider extends Component {
     if (!options.delay) { options.delay = 0; }
     // this.portfolio.addEventListener('scroll', NoScroll);
     let slug;
-    console.log(this.props.children);
-    // this.applyTransforms();
-    this.onEndTransition();
+    let index;
 
-    this.state.slides.every((slide) => {
+    this.state.slides.every((slide, key) => {
       if (slide.active) {
         slug = slide.permalink;
+        index = key;
         return false;
       }
       return true;
     });
+
+    this.applyTransforms(this.refs[`child-${index}`].zoomer);
+    this.onEndTransition();
 
     setTimeout(setTimeout(() => {
       browserHistory.push(slug);
@@ -200,7 +202,7 @@ export default class Slider extends Component {
   }
 
   render() {
-    // Ensure a key is set on each <Slide>, this is how react keeps track of dynamic child components, keep our own key on index
+    // Ensure a key is set on each <Slide>, this is how react keeps track of dynamic child components, keep our own key on index also
     // Passing state as props to ensure children are stateless
     let index = 0;
     const slides = this.props.children ? React.Children.map(this.props.children, (newChild, key) => {
@@ -210,7 +212,6 @@ export default class Slider extends Component {
       return (<Slide {...this.state.slides[key]}
         key={key}
         index={key}
-        ref={this.state.slides[key].permalink}
         children={child}
         shouldSlideUpdate={this.state.shouldSlideUpdate}
         onViewDetails={this.onViewDetails} />);
