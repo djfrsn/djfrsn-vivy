@@ -36,10 +36,10 @@ module.exports = {
       query: {
         "presets": ["react", "es2015", "stage-0", "react-hmre"]
       }
-    }, { 
-      test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/, loader: 'url-loader?limit=10000' 
-    }, { 
-      test: /\.((ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot)$/, loader: 'file-loader' 
+    }, {
+      test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/, loader: 'url-loader?limit=10000'
+    }, {
+      test: /\.((ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot)$/, loader: 'file-loader'
     }, {
       test: /\.json?$/,
       loader: 'json'

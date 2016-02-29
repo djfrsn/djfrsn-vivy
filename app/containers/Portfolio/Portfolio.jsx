@@ -92,6 +92,7 @@ class Portfolio extends Component {
 }
 
 Portfolio.propTypes = {
+  routeParams: PropTypes.object,
   zoomer: PropTypes.shape({
     animate: PropTypes.bool.isRequried
   })

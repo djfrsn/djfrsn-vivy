@@ -17,14 +17,14 @@ class FullScreen extends Component {
   render() {
     return (
       <div className={cx('fullScreen')}>
-      {this.props.params.permalink}
+      {this.props.routeParams.permalink}
       </div>
     );
   }
 }
 
 FullScreen.propTypes = {
-  params: PropTypes.object
+  routeParams: PropTypes.object
 };
 
 export default FullScreen;
