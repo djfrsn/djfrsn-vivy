@@ -60,7 +60,7 @@ class Portfolio extends Component {
 
   onEndTransition = (options) => {
     setTimeout(() => { // end of transition stuff
-      browserHistory.push('portfolio/' + options.slug);
+      browserHistory.push(options.slug);
       dynamics.stop(bodyEl);
       dynamics.css(bodyEl, { scale: 1, opacity: 1 });
 

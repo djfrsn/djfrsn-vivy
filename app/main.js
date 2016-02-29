@@ -9,7 +9,7 @@ ReactDOM.render(
 	<Router history={browserHistory}>
 		<Route path="/" component={App} >
 			<IndexRoute component={Portfolio} />
-			<Route path="portfolio/:permalink" component={FullScreen} />
+			<Route path="/:permalink" component={FullScreen} />
 		</Route>
 	</Router>,
 document.getElementById('root'));
