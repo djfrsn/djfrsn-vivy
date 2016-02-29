@@ -113,8 +113,8 @@ export default class Slider extends Component {
   }
 
   navigate = (dir) => {
-    const items = this.state.slides.map((slide) => {
-      return this.refs[slide.permalink];
+    const items = this.state.slides.map((slide, key) => {
+      return this.refs[`slide-${key}`];
     }); // array of slide elements
     const itemsTotal = items.length;
 
@@ -123,7 +123,7 @@ export default class Slider extends Component {
 
     this.state.slides.every((slide, key) => {
       if ( slide.active ) {
-        itemCurrent = this.refs[slide.permalink]; // the active slide
+        itemCurrent = this.refs[`slide-${key}`]; // the active slide
         current = key;
         return false; // break out of loop
       }
@@ -209,9 +209,14 @@ export default class Slider extends Component {
       const child = React.cloneElement(newChild, {
         ref: 'child-' + (index++)
       });
-      return (<Slide {...this.state.slides[key]}
+      const { permalink, name, tagline, active } = this.state.slides[key];
+      return (<Slide active={active}
+        permalink={permalink}
+        name={name}
+        tagline={tagline}
         key={key}
         index={key}
+        ref={`slide-${key}`}
         children={child}
         shouldSlideUpdate={this.state.shouldSlideUpdate}
         onViewDetails={this.onViewDetails} />);
