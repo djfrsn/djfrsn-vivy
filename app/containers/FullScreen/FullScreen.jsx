@@ -24,7 +24,9 @@ class FullScreen extends Component {
 }
 
 FullScreen.propTypes = {
-  routeParams: PropTypes.object
+  routeParams: PropTypes.shape({
+    permalink: PropTypes.string.isRequried
+  })
 };
 
 export default FullScreen;

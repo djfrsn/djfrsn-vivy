@@ -82,6 +82,7 @@ class Portfolio extends Component {
           <div>
             <Header animateHireMeButton={this.state.animateHireMeButton} />
             <Slider zoomer={this.state.zoomer}
+              routeParams={this.props.routeParams}
               onViewDetails={this.onViewDetails}
               onAnimateHireMeButton={this.onAnimateHireMeButton} />
           </div>
@@ -92,7 +93,9 @@ class Portfolio extends Component {
 }
 
 Portfolio.propTypes = {
-  routeParams: PropTypes.object,
+  routeParams: PropTypes.shape({
+    permalink: PropTypes.string.isRequried
+  }),
   zoomer: PropTypes.shape({
     animate: PropTypes.bool.isRequried
   })

@@ -36,6 +36,19 @@ export default class Slider extends Component {
     };
   }
 
+  componentWillMount() { // invoked once before initial render
+    const permalink = this.props.routeParams.permalink;
+    if ( permalink ) {
+      const slides = [];
+      this.state.slides.map((slide) => {
+        slides.push({ ...slide,
+          active: slide.permalink === permalink.split('-')[1] ? true : false
+        });
+      });
+      this.setState({ ...this.state, slides: slides });
+    }
+  }
+
   componentDidMount() {
     document.addEventListener( 'keydown', this.listenToKeyPress );
   }
@@ -105,6 +118,8 @@ export default class Slider extends Component {
 
     this.setState({ slides: slides, shouldSlideUpdate: false });
 
+    browserHistory.push(`preview-${itemNext.props.permalink}`);
+
     // animate the current element out
     dynamics.animate(currentEl, { opacity: 0, translateX: dir === 'right' ? -1 * currentEl.offsetWidth / 2 : currentEl.offsetWidth / 2, rotateZ: dir === 'right' ? -10 : 10 }, {
       type: dynamics.spring,
@@ -136,7 +151,6 @@ export default class Slider extends Component {
       complete: () => {
         if ( !this.willUnmount ) {
           this.setState({ ...this.state, shouldSlideUpdate: true });
-          browserHistory.push(`preview-${itemNext.props.permalink}`);
         }
       }
     });
@@ -179,6 +193,9 @@ export default class Slider extends Component {
 }
 
 Slider.propTypes = {
+  routeParams: PropTypes.shape({
+    permalink: PropTypes.string.isRequried
+  }),
   onViewDetails: PropTypes.func.isRequired,
   onAnimateHireMeButton: PropTypes.func.isRequired,
   zoomer: PropTypes.shape({
