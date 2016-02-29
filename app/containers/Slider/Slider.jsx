@@ -131,11 +131,7 @@ export default class Slider extends Component {
       duration: 650
     });
 
-    // if (current % 2 == 0) {
-    //   hireMeButton.className = hireMeButton.className + " animated rubberBand";
-    // } else {
-    //   hireMeButton.className = initialHireMeButtonClass;
-    // }
+    this.props.onAnimateHireMeButton(current % 2 === 0);
   }
 
   render() {
@@ -165,6 +161,7 @@ export default class Slider extends Component {
 
 Slider.propTypes = {
   onViewDetails: PropTypes.func.isRequired,
+  onAnimateHireMeButton: PropTypes.func.isRequired,
   zoomer: PropTypes.shape({
     animate: PropTypes.bool.isRequried
   })

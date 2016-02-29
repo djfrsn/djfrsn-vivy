@@ -17,7 +17,7 @@ class Portfolio extends Component {
   constructor(props) {
     super(props); // call super in your constructor to access this, you can also pass props to super to access props within the constructor
     // event handlers for Portfolio component
-    this.state = { zoomer: { animate: false } }; // set initial state
+    this.state = { animateHireMeButton: false, zoomer: { animate: false } }; // set initial state
   }
   /*
    * Note: 'event' here refers to our own custom events. These 'events' are
@@ -30,7 +30,7 @@ class Portfolio extends Component {
    */
   onViewDetails = (event, options) => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
     // State is immutable. When changing state. State = Previous state + New state;
-    this.setState({
+    this.setState({ ...this.state,
       zoomer: {
         animate: true
       }
@@ -45,7 +45,7 @@ class Portfolio extends Component {
     this.onEndTransition(options);
   }
 
-  applyTransforms(component) {
+  applyTransforms = (component) => {
     // zoomer area and scale value
     const componentArea = component;
     const componentAreaSize = {width: componentArea.offsetWidth, height: componentArea.offsetHeight};
@@ -58,7 +58,7 @@ class Portfolio extends Component {
     component.style.transform = trans;
   }
 
-  onEndTransition(options) {
+  onEndTransition = (options) => {
     setTimeout(() => { // end of transition stuff
       browserHistory.push('portfolio/' + options.slug);
       dynamics.stop(bodyEl);
@@ -71,14 +71,19 @@ class Portfolio extends Component {
     }, 801);
   }
 
+  onAnimateHireMeButton = ( animate ) => {
+    this.setState({ ...this.state, animateHireMeButton: animate });
+  }
+
   render() {
     return (
       <div className={cx('portfolio')}>
         <div className={cx('inner__container')}>
           <div>
-            <Header />
+            <Header animateHireMeButton={this.state.animateHireMeButton} />
             <Slider zoomer={this.state.zoomer}
-              onViewDetails={this.onViewDetails} />
+              onViewDetails={this.onViewDetails}
+              onAnimateHireMeButton={this.onAnimateHireMeButton} />
           </div>
         </div>
       </div>
