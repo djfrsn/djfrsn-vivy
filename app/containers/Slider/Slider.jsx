@@ -9,30 +9,12 @@ import { browserHistory } from 'react-router';
 const cx = classNames.bind(styles);
 
 export default class Slider extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       shouldSlideUpdate: false,
-      slides: [{
-        active: true,
-        device: 'macbook',
-        name: 'Appolo',
-        permalink: 'appolo',
-        tagline: 'App Portfolio for App developers'
-      }, {
-        active: false,
-        device: 'imac',
-        name: 'Meeru',
-        permalink: 'meeru',
-        tagline: 'Watch multiple videos simultaneously'
-      }, {
-        active: false,
-        device: 'iphone',
-        name: 'Deep',
-        permalink: 'deep',
-        tagline: 'Embed quotes on captivating images'
-      }]
+      slides: props.slides
     };
   }
 
@@ -195,12 +177,13 @@ export default class Slider extends Component {
   render() {
     // Ensure a key is set on each <Slide>, this is how react keeps track of dynamic child components, keep our own key on index
     // Passing state as props to ensure children are stateless
-    const slides = this.state.slides ? this.state.slides.map((app, key) => {
-      return (<Slide  {...app}
+    const slides = this.state.slides ? this.state.slides.map((slide, key) => {
+      return (<Slide {...slide}
         key={key}
-        ref={app.permalink}
-        shouldSlideUpdate={this.state.shouldSlideUpdate}
         index={key}
+        ref={slide.permalink}
+        children={this.props.children[key]}
+        shouldSlideUpdate={this.state.shouldSlideUpdate}
         onViewDetails={this.onViewDetails} />);
     })
     : null;
@@ -216,8 +199,14 @@ export default class Slider extends Component {
 }
 
 Slider.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.node),
+  onAnimateHireMeButton: PropTypes.func.isRequired,
   routeParams: PropTypes.shape({
     permalink: PropTypes.string.isRequried
   }),
-  onAnimateHireMeButton: PropTypes.func.isRequired
+  slides: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired,
+    permalink: PropTypes.string.isRequried
+  }))
 };

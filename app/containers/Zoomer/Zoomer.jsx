@@ -15,7 +15,6 @@ export default class Zoomer extends Component {
 
   onZoomerClick = () => {
     if ( !this.state.animate ) { // check for state.animate to prevent duplicate animations
-      this.props.onViewDetails();
       this.applyTransforms();
       this.onEndTransition();
     }
@@ -77,6 +76,5 @@ export default class Zoomer extends Component {
 Zoomer.propTypes = {
   device: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  permalink: PropTypes.string.isRequired,
-  onViewDetails: PropTypes.func.isRequired
+  permalink: PropTypes.string.isRequired
 };

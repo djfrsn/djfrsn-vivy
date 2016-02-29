@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Slider from 'Slider/Slider';
 import Header from 'Header/Header';
+import Zoomer from 'Zoomer/Zoomer';
 import classNames from 'classnames/bind';
 import styles from './Portfolio.scss';
 
@@ -28,12 +29,38 @@ class Portfolio extends Component {
   }
 
   render() {
+    const apps = [{
+      active: true,
+      device: 'macbook',
+      name: 'Appolo',
+      permalink: 'appolo',
+      tagline: 'App Portfolio for App developers'
+    }, {
+      active: false,
+      device: 'imac',
+      name: 'Meeru',
+      permalink: 'meeru',
+      tagline: 'Watch multiple videos simultaneously'
+    }, {
+      active: false,
+      device: 'iphone',
+      name: 'Deep',
+      permalink: 'deep',
+      tagline: 'Embed quotes on captivating images'
+    }];
+    const children = apps.map((app) => {
+      return (<Zoomer name={app.name}
+                device={app.device}
+                permalink={app.permalink} />);
+    });
     return (
       <div className={cx('portfolio')}>
         <div className={cx('inner__container')}>
           <div>
             <Header animateHireMeButton={this.state.animateHireMeButton} />
             <Slider
+              children={children}
+              slides={apps}
               routeParams={this.props.routeParams}
               onAnimateHireMeButton={this.onAnimateHireMeButton} />
           </div>
