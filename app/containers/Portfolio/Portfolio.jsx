@@ -81,9 +81,13 @@ class Portfolio extends Component {
   render() {
     return (
       <div className={cx('portfolio')}>
-        <Header />
-        <Slider zoomer={this.state.zoomer}
-          onViewDetails={this.onViewDetails} />
+        <div className={cx('inner__container')}>
+          <div>
+            <Header />
+            <Slider zoomer={this.state.zoomer}
+              onViewDetails={this.onViewDetails} />
+          </div>
+        </div>
       </div>
     );
   }

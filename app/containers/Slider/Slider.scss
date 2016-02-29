@@ -1,16 +1,13 @@
-@import '../../styles/core/flexbox.scss';
 /*
 **
 *** Slider Styles
 **
 */
 .slider {
-  display: flex;
-  flex-direction: column;
-  height: 68%;
+  position: relative;
+  z-index: 200;
   width: 100%;
-  position: absolute;
-  justify-content: center;
+  text-align: center;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -18,14 +15,6 @@
   -webkit-touch-callout: none;
   -khtml-user-select: none;
   transition: opacity .25s ease-in-out;
-    -moz-transition: opacity .25s ease-in-out;
-    -webkit-transition: opacity .25s ease-in-out;
-}
-
-.slide {
-  position: absolute;
-  top: 0;
-  visibility: hidden;
-  width: 100%;
-  opacity: 0;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
 }

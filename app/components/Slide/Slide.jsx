@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 export default class Slide extends Component {
   shouldComponentUpdate(nextProps) {
-    return nextProps.shouldSlideUpdate; // return false to prevent render updates
+    return nextProps.shouldSlideUpdate || nextProps.zoomer.animate; // return false to prevent render down the tree
   }
   render() {
     // Passing through the onViewDetails callback function from props to <Zoomer>

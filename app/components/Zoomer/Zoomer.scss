@@ -18,6 +18,11 @@
   flex: none;
 }
 
+.zoomer__image, .preview {
+  cursor: pointer;
+  cursor: hand;
+}
+
 .zoomer__area,
 .preview {
   position: absolute;
@@ -78,14 +83,6 @@
   transform: translate3d(100%,0,0);
 }
 
-.rounded {
-  border-radius: 15px;
-}
-
-.rounded-right {
-  border-radius: 0 15px 15px 0;
-}
-
 .preview__content {
   position: absolute;
   top: 0;
@@ -94,6 +91,10 @@
   height: 100%;
   border-radius: inherit;
 }
+
+/**************************/
+/* All synced transitions */
+/**************************/
 
 .zoomer {
   -webkit-transition: -webkit-transform 0.75s;
@@ -122,9 +123,4 @@
 .zoomer--active .preview img {
   -webkit-transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
-}
-
-.zoomer__image, .preview {
-  cursor: pointer;
-  cursor: hand;
 }
