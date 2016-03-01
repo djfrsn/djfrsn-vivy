@@ -31,7 +31,7 @@ export default class Zoomer extends Component {
       'zoomer__area--size-5': this.props.device === 'imac' ? true : false
     });
     return (
-      <div className={zoomerClass} onClick={this.onZoomerClick} ref={(ref) => this.zoomer = ref}>
+      <div className={zoomerClass} onClick={this.onZoomerClick} ref={(ref) => this.Zoomer = ref}>
         <img className={cx('zoomer__image')} src={`/images/${this.props.device}.png`} alt={this.props.device}/>
         <div className={cx('preview')}>
           <img src={`/images/${this.props.permalink}/preview.png`} alt={this.props.name}/>

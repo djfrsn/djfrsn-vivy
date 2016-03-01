@@ -25,7 +25,7 @@ export default class Slider extends Component {
       const slides = [];
       this.state.slides.map((slide) => {
         slides.push({ ...slide,
-          active: slide.permalink === permalink.split('-')[1] ? true : false
+          active: slide.permalink === permalink.split('-')[1] ? true : false // follows preview-appname convention
         });
       });
       this.setState({ ...this.state, slides: slides });
@@ -67,14 +67,22 @@ export default class Slider extends Component {
       return true;
     });
 
-    this.applyTransforms(this.refs[`child-${index}`].zoomer);
+    dynamics.animate(bodyEl, { scale: 3, opacity: 0 }, { type: dynamics.easeInOut, duration: 800 });
+
+    const child = this.refs[`child-${index}`];
+    const displayName = this.props.children[index].type.displayName;
+    const childRef = child[displayName];
+
+    // avoid applyTransforms without ref to animate
+    childRef ? this.applyTransforms(childRef) : null;
     this.onEndTransition({ slug: slug });
+
+    child.callback ? child.callback() : null;
   }
 
   applyTransforms = (component) => {
     this.setState({ animate: true });
 
-    dynamics.animate(bodyEl, { scale: 3, opacity: 0 }, { type: dynamics.easeInOut, duration: 800 });
     // zoomer area and scale value
     const componentArea = component;
     const componentAreaSize = {width: componentArea.offsetWidth, height: componentArea.offsetHeight};
@@ -148,7 +156,7 @@ export default class Slider extends Component {
 
     this.setState({ slides: slides, shouldSlideUpdate: false });
 
-    // browserHistory.push(`preview-${itemNext.props.permalink}`);
+    // browserHistory.push(`child-${itemNext.props.permalink}`);
 
     // animate the current element out
     dynamics.animate(currentEl, { opacity: 0, translateX: dir === 'right' ? -1 * currentEl.offsetWidth / 2 : currentEl.offsetWidth / 2, rotateZ: dir === 'right' ? -10 : 10 }, {
