@@ -12,6 +12,10 @@ export default class Zoomer extends Component {
   }
 
   onZoomerClick = () => {
+    this.animate();
+  }
+
+  animate = () => {
     if ( !this.state.animate ) { // check for state.animate to prevent duplicate animations
       this.setState({ animate: true });
     }
