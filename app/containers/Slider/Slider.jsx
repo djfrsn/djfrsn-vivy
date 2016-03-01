@@ -148,7 +148,7 @@ export default class Slider extends Component {
 
     this.setState({ slides: slides, shouldSlideUpdate: false });
 
-    browserHistory.push(`preview-${itemNext.props.permalink}`);
+    // browserHistory.push(`preview-${itemNext.props.permalink}`);
 
     // animate the current element out
     dynamics.animate(currentEl, { opacity: 0, translateX: dir === 'right' ? -1 * currentEl.offsetWidth / 2 : currentEl.offsetWidth / 2, rotateZ: dir === 'right' ? -10 : 10 }, {
