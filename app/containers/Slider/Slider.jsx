@@ -53,6 +53,11 @@ export default class Slider extends Component {
     }
   }
 
+  /*
+   * Note: Two contracts available to props.child components found here.
+   * 1. Set ref as component display name & applyTransform will execute on your ref
+   * 2. If child has slideCallback method, it will execute onViewDetails
+   */
   onViewDetails = () => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
     // this.portfolio.addEventListener('scroll', NoScroll);
     let slug;
@@ -77,13 +82,13 @@ export default class Slider extends Component {
     childRef ? this.applyTransforms(childRef) : null;
     this.onEndTransition({ slug: slug });
 
-    child.callback ? child.callback() : null;
+    child.slideCallBack ? child.slideCallBack() : null;
   }
 
   applyTransforms = (component) => {
     this.setState({ animate: true });
 
-    // zoomer area and scale value
+    // component area and scale value
     const componentArea = component;
     const componentAreaSize = {width: componentArea.offsetWidth, height: componentArea.offsetHeight};
     // const componentOffset = componentArea.getBoundingClientRect();
