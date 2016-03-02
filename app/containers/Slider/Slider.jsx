@@ -33,6 +33,7 @@ export default class Slider extends Component {
   }
 
   componentDidMount() {
+    window.onpopstate = this.onBackButtonEvent;
     document.addEventListener( 'keydown', this.listenToKeyPress );
   }
 
@@ -40,6 +41,7 @@ export default class Slider extends Component {
     this.willUnmount = true; // set to prevent dynamics.js callback execution when component will unmount, calling dynamics.stop doesn't work
     document.removeEventListener( 'keydown', this.listenToKeyPress );
   }
+
 
   listenToKeyPress = ( ev ) => {
     const keyCode = ev.keyCode || ev.which;
@@ -51,6 +53,36 @@ export default class Slider extends Component {
       this.navigate('right');
       break;
     }
+  }
+
+  onBackButtonEvent = (e) => {
+    e.preventDefault();
+    // how to get dir
+    // could take current browser url,get index & index of current state
+
+    let nextIndex;
+    const nextIndexPermalink = window.location.pathname.split('-');
+    let prevIndex;
+
+    this.state.slides.forEach((slide, key) => {
+      if (slide.active) {
+        console.log('prevIndex.slide.active', slide.permalink );
+        prevIndex = key;
+      }
+      if ( slide.permalink === nextIndexPermalink[1] ) {
+        console.log('nextIndex.slide.active', nextIndexPermalink[1], slide.permalink );
+        nextIndex = key;
+      }
+    });
+
+    // nextIndex: 1 prevIndex: 2
+    // nextIndex: 0 prevIndex: 1
+    // right or left?
+    // could use onEnter .... or this.props.location being passed down
+    const dir = nextIndex > prevIndex ? 'right' : 'left';
+
+    console.log(dir);
+    this.navigate(dir, false);
   }
 
   /*
@@ -121,7 +153,7 @@ export default class Slider extends Component {
     this.navigate('right');
   }
 
-  navigate = (dir) => {
+  navigate = (dir, pushstate = true) => {
     const items = this.state.slides.map((slide, key) => {
       return this.refs[`slide-${key}`];
     }); // array of slide elements
@@ -161,7 +193,7 @@ export default class Slider extends Component {
 
     this.setState({ slides: slides, shouldSlideUpdate: false });
 
-    browserHistory.push(`preview-${itemNext.props.permalink}`);
+    pushstate ? browserHistory.push(`preview-${itemNext.props.permalink}`) : undefined;
 
     // animate the current element out
     dynamics.animate(currentEl, { opacity: 0, translateX: dir === 'right' ? -1 * currentEl.offsetWidth / 2 : currentEl.offsetWidth / 2, rotateZ: dir === 'right' ? -10 : 10 }, {
