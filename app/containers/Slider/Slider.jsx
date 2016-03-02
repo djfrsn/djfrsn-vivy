@@ -93,7 +93,52 @@ export default class Slider extends Component {
     // could use onEnter .... or this.props.location being passed down
     const dir = nextIndex > prevIndex ? 'right' : 'left';
 
-    this.navigate('left', false);
+    const elem = this.getSlideElements();
+
+    this.animate({
+      dir: dir,
+      itemCurrent: elem.itemCurrent,
+      currentEl: elem.currentEl,
+      currentTitleEl: elem.currentTitleEl,
+      itemNext: elem.itemNext,
+      nextEl: elem.nextEl,
+      nextTitleEl: elem.nextTitleEl
+    });
+
+    this.props.onAnimateHireMeButton(elem.current % 2 === 0);
+  }
+
+  getSlideElements = () => {
+    const elements = {};
+    const items = this.state.slides.map((slide, key) => {
+      return this.refs[`slide-${key}`];
+    }); // array of slide elements
+    elements.itemsTotal = items.length;
+
+    this.state.slides.every((slide, key) => {
+      if ( slide.active ) {
+        console.log('active.permalink', slide.permalink)
+        elements.itemCurrent = this.refs[`slide-${key}`]; // the active slide
+        elements.current = key;
+        return false; // break out of loop
+      }
+      return true;
+    });
+
+    elements.currentEl = elements.itemCurrent.slideMover;
+    elements.currentTitleEl = elements.itemCurrent.slideTitle;
+
+    if ( elements.dir === 'right' ) {
+      elements.current = elements.current < elements.itemsTotal - 1 ? elements.current + 1 : 0;
+    } else { // keeps track of urrent index & handles looping of slides
+      elements.current = elements.current > 0 ? elements.current - 1 : elements.itemsTotal - 1;
+    }
+
+    elements.itemNext = items[elements.current];
+    elements.nextEl = elements.itemNext.slideMover;
+    elements.nextTitleEl = elements.itemNext.slideTitle;
+
+    return elements;
   }
 
   /*
@@ -165,58 +210,30 @@ export default class Slider extends Component {
   }
 
   navigate = (dir, pushstate = true) => {
-    const items = this.state.slides.map((slide, key) => {
-      return this.refs[`slide-${key}`];
-    }); // array of slide elements
-    const itemsTotal = items.length;
-
-    let current; // index of current item
-    let itemCurrent;
-
-    this.state.slides.every((slide, key) => {
-      if ( slide.active ) {
-        itemCurrent = this.refs[`slide-${key}`]; // the active slide
-        current = key;
-        return false; // break out of loop
-      }
-      return true;
-    });
-
-    const currentEl = itemCurrent.slideMover;
-    const currentTitleEl = itemCurrent.slideTitle;
-
-    if ( dir === 'right' ) {
-      current = current < itemsTotal - 1 ? current + 1 : 0;
-    } else { // keeps track of current index & handles looping of slides
-      current = current > 0 ? current - 1 : itemsTotal - 1;
-    }
-
-    const itemNext = items[current];
-    const nextEl = itemNext.slideMover;
-    const nextTitleEl = itemNext.slideTitle;
+    const elems = this.getSlideElements();
     const slides = [];
 
     this.state.slides.map((slide, key) => {
       slides.push({ ...slide,
-        active: key === itemNext.props.index ? true : false
+        active: key === elems.itemNext.props.index ? true : false
       });
     });
 
     this.setState({ slides: slides, shouldSlideUpdate: false });
 
-    pushstate ? browserHistory.push(`preview-${itemNext.props.permalink}`) : undefined;
+    pushstate ? browserHistory.push(`preview-${elems.itemNext.props.permalink}`) : undefined;
 
     this.animate({
       dir: dir,
-      itemCurrent: itemCurrent,
-      currentEl: currentEl,
-      currentTitleEl: currentTitleEl,
-      itemNext: itemNext,
-      nextEl: nextEl,
-      nextTitleEl: nextTitleEl
+      itemCurrent: elems.itemCurrent,
+      currentEl: elems.currentEl,
+      currentTitleEl: elems.currentTitleEl,
+      itemNext: elems.itemNext,
+      nextEl: elems.nextEl,
+      nextTitleEl: elems.nextTitleEl
     });
 
-    this.props.onAnimateHireMeButton(current % 2 === 0);
+    this.props.onAnimateHireMeButton(elems.current % 2 === 0);
   }
 
   animate( options ) {
