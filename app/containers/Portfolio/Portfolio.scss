@@ -18,16 +18,10 @@
 	overflow-y: hidden;
 }
 
-.inner___container {
-	width: 100%;
-	flex: 1;
-	position: relative;
-	> div {
-		display: flex;
-		flex-direction: column;
-		height: 88%;
-		width: 100%;
-		position: absolute;
-		justify-content: center;
-	}
+.inner__container {
+  display: flex;
+  height: 65%;
+  min-height: 24em;
+  justify-content: center;
+  align-items: center;
 }

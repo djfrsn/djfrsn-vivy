@@ -55,15 +55,13 @@ class Portfolio extends Component {
     });
     return (
       <div className={cx('portfolio')}>
+        <Header animateHireMeButton={this.state.animateHireMeButton} />
         <div className={cx('inner__container')}>
-          <div>
-            <Header animateHireMeButton={this.state.animateHireMeButton} />
-            <Slider
-              children={children}
-              slides={apps}
-              routeParams={this.props.routeParams}
-              onAnimateHireMeButton={this.onAnimateHireMeButton} />
-          </div>
+          <Slider
+            children={children}
+            slides={apps}
+            routeParams={this.props.routeParams}
+            onAnimateHireMeButton={this.onAnimateHireMeButton} />
         </div>
       </div>
     );

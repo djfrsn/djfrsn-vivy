@@ -37,6 +37,13 @@ html {
   overflow: hidden;
 }
 
+body > div {
+  height: 100%;
+  > div {
+    height: 100%;
+  }
+}
+
 body,
 html {
   font-size: 100%;
