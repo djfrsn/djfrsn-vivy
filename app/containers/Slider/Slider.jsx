@@ -82,7 +82,7 @@ export default class Slider extends Component {
     const dir = nextIndex > prevIndex ? 'right' : 'left';
 
     console.log(dir);
-    this.navigate(dir, false);
+    this.navigate('left', false);
   }
 
   /*
