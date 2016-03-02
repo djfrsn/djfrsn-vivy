@@ -64,16 +64,26 @@ export default class Slider extends Component {
     const nextIndexPermalink = window.location.pathname.split('-');
     let prevIndex;
 
-    this.state.slides.forEach((slide, key) => {
-      if (slide.active) {
-        console.log('prevIndex.slide.active', slide.permalink );
-        prevIndex = key;
-      }
-      if ( slide.permalink === nextIndexPermalink[1] ) {
-        console.log('nextIndex.slide.active', nextIndexPermalink[1], slide.permalink );
-        nextIndex = key;
-      }
+    // this.state.slides.forEach((slide, key) => {
+    //   if (slide.active) {
+    //     console.log('prevIndex.slide.active', slide.permalink );
+    //     prevIndex = key;
+    //   }
+    //   if ( slide.permalink === nextIndexPermalink[1] ) {
+    //     console.log('nextIndex.slide.active', nextIndexPermalink[1], slide.permalink );
+    //     nextIndex = key;
+    //   }
+    // });
+    let slides = [];
+
+    this.state.slides.map((slide) => {
+    console.log(slide.permalink === nextIndexPermalink[1], slide.permalink);
+      slides.push({ ...slide,
+        active: slide.permalink === nextIndexPermalink[1] ? true : false
+      });
     });
+
+    this.setState({ slides: slides, shouldSlideUpdate: false });
 
     // TODO: screw figuring out which direction...the it needs to transition to the correct slide first!
 
@@ -83,7 +93,6 @@ export default class Slider extends Component {
     // could use onEnter .... or this.props.location being passed down
     const dir = nextIndex > prevIndex ? 'right' : 'left';
 
-    console.log(dir);
     this.navigate('left', false);
   }
 
@@ -155,7 +164,7 @@ export default class Slider extends Component {
     this.navigate('right');
   }
 
-  navigate = (dir) => {
+  navigate = (dir, pushstate = true) => {
     const items = this.state.slides.map((slide, key) => {
       return this.refs[`slide-${key}`];
     }); // array of slide elements
@@ -195,7 +204,7 @@ export default class Slider extends Component {
 
     this.setState({ slides: slides, shouldSlideUpdate: false });
 
-    browserHistory.push(`preview-${itemNext.props.permalink}`);
+    pushstate ? browserHistory.push(`preview-${itemNext.props.permalink}`) : undefined;
 
     this.animate({
       dir: dir,
