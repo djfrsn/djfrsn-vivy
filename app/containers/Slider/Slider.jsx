@@ -75,6 +75,8 @@ export default class Slider extends Component {
       }
     });
 
+    // TODO: screw figuring out which direction...the it needs to transition to the correct slide first!
+
     // nextIndex: 1 prevIndex: 2
     // nextIndex: 0 prevIndex: 1
     // right or left?
@@ -153,7 +155,7 @@ export default class Slider extends Component {
     this.navigate('right');
   }
 
-  navigate = (dir, pushstate = true) => {
+  navigate = (dir) => {
     const items = this.state.slides.map((slide, key) => {
       return this.refs[`slide-${key}`];
     }); // array of slide elements
@@ -193,33 +195,47 @@ export default class Slider extends Component {
 
     this.setState({ slides: slides, shouldSlideUpdate: false });
 
-    pushstate ? browserHistory.push(`preview-${itemNext.props.permalink}`) : undefined;
+    browserHistory.push(`preview-${itemNext.props.permalink}`);
 
+    this.animate({
+      dir: dir,
+      itemCurrent: itemCurrent,
+      currentEl: currentEl,
+      currentTitleEl: currentTitleEl,
+      itemNext: itemNext,
+      nextEl: nextEl,
+      nextTitleEl: nextTitleEl
+    });
+
+    this.props.onAnimateHireMeButton(current % 2 === 0);
+  }
+
+  animate( options ) {
     // animate the current element out
-    dynamics.animate(currentEl, { opacity: 0, translateX: dir === 'right' ? -1 * currentEl.offsetWidth / 2 : currentEl.offsetWidth / 2, rotateZ: dir === 'right' ? -10 : 10 }, {
+    dynamics.animate(options.currentEl, { opacity: 0, translateX: options.dir === 'right' ? -1 * options.currentEl.offsetWidth / 2 : options.currentEl.offsetWidth / 2, rotateZ: options.dir === 'right' ? -10 : 10 }, {
       type: dynamics.spring,
       duration: 3000,
       friction: 600,
       complete: () => {
         if ( !this.willUnmount ) {
-          dynamics.css(itemCurrent.slide, { opacity: 0, visibility: 'hidden' });
+          dynamics.css(options.itemCurrent.slide, { opacity: 0, visibility: 'hidden' });
         }
       }
     });
 
     // animate the current title out
-    dynamics.animate(currentTitleEl, { translateX: dir === 'right' ? -250 : 250, opacity: 0 }, {
+    dynamics.animate(options.currentTitleEl, { translateX: options.dir === 'right' ? -250 : 250, opacity: 0 }, {
       type: dynamics.bezier,
       points: [{'x': 0, 'y': 0, 'cp': [{'x': 0.2, 'y': 1}]}, {'x': 1, 'y': 1, 'cp': [{'x': 0.3, 'y': 1}]}],
       duration: 450
     });
 
     // set the right properties for the next element to come in
-    dynamics.css(itemNext.slide, { opacity: 1, visibility: 'visible' });
-    dynamics.css(nextEl, { opacity: 0, translateX: dir === 'right' ? nextEl.offsetWidth / 2 : -1 * nextEl.offsetWidth / 2, rotateZ: dir === 'right' ? 10 : -10 });
+    dynamics.css(options.itemNext.slide, { opacity: 1, visibility: 'visible' });
+    dynamics.css(options.nextEl, { opacity: 0, translateX: options.dir === 'right' ? options.nextEl.offsetWidth / 2 : -1 * options.nextEl.offsetWidth / 2, rotateZ: options.dir === 'right' ? 10 : -10 });
 
     // animate the next element in
-    dynamics.animate(nextEl, { opacity: 1, translateX: 0 }, {
+    dynamics.animate(options.nextEl, { opacity: 1, translateX: 0 }, {
       type: dynamics.spring,
       duration: 3000,
       friction: 600,
@@ -231,15 +247,13 @@ export default class Slider extends Component {
     });
 
     // set the right properties for the next title to come in
-    dynamics.css(nextTitleEl, { translateX: dir === 'right' ? 250 : -250, opacity: 0 });
+    dynamics.css(options.nextTitleEl, { translateX: options.dir === 'right' ? 250 : -250, opacity: 0 });
     // animate the next title in
-    dynamics.animate(nextTitleEl, { translateX: 0, opacity: 1 }, {
+    dynamics.animate(options.nextTitleEl, { translateX: 0, opacity: 1 }, {
       type: dynamics.bezier,
       points: [{'x': 0, 'y': 0, 'cp': [{'x': 0.2, 'y': 1}]}, {'x': 1, 'y': 1, 'cp': [{'x': 0.3, 'y': 1}]}],
       duration: 650
     });
-
-    this.props.onAnimateHireMeButton(current % 2 === 0);
   }
 
   render() {
