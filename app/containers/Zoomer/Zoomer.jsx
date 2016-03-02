@@ -21,6 +21,15 @@ export default class Zoomer extends Component {
     }
   }
 
+  onSlideClick = () => {
+    this.animate();
+  }
+  // Slider component accepts two callback options, one for when the slide is clicked.
+  // The other is for the magnifying glass icon....or 'view details'
+  onViewDetails = () => {
+    this.animate();
+  }
+
   render() {
     const zoomerClass = cx({
       'zoomer': true,

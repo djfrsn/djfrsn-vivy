@@ -19,7 +19,7 @@ class Portfolio extends Component {
   }
   /*
    * Containers propogate state changes down to components.
-   * Components should be dumb and avoid manipulating state.
+   * Components should be dumb and avoid manipulating state. If it has state, it's not a component.
    * Props vs State: https://github.com/uberVU/react-guide/blob/master/props-vs-state.md
    * Containers are Stateful /\ Components are Stateless
    * Thinking in React: http://facebook.github.io/react/docs/thinking-in-react.html#step-4-identify-where-your-state-should-live
@@ -29,26 +29,7 @@ class Portfolio extends Component {
   }
 
   render() {
-    const apps = [{
-      active: true,
-      device: 'macbook',
-      name: 'Appolo',
-      permalink: 'appolo',
-      tagline: 'App Portfolio for App developers'
-    }, {
-      active: false,
-      device: 'imac',
-      name: 'Meeru',
-      permalink: 'meeru',
-      tagline: 'Watch multiple videos simultaneously'
-    }, {
-      active: false,
-      device: 'iphone',
-      name: 'Deep',
-      permalink: 'deep',
-      tagline: 'Embed quotes on captivating images'
-    }];
-    const children = apps.map((app) => {
+    const children = this.props.portfolio.map((app) => {
       return (<Zoomer name={app.name}
                 device={app.device}
                 permalink={app.permalink} />);
@@ -59,7 +40,7 @@ class Portfolio extends Component {
         <div className={cx('inner__container')}>
           <Slider
             children={children}
-            slides={apps}
+            slides={this.props.portfolio}
             routeParams={this.props.routeParams}
             onAnimateHireMeButton={this.onAnimateHireMeButton} />
         </div>
@@ -69,6 +50,13 @@ class Portfolio extends Component {
 }
 
 Portfolio.propTypes = {
+  portfolio: PropTypes.arrayOf(PropTypes.shape({
+    active: PropTypes.bool,
+    device: PropTypes.string.isRequried,
+    name: PropTypes.string.isRequried,
+    permalink: PropTypes.string.isRequried,
+    tagline: PropTypes.string.isRequried
+  })),
   routeParams: PropTypes.shape({
     permalink: PropTypes.string.isRequried
   })

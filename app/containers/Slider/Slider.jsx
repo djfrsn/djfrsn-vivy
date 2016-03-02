@@ -58,7 +58,7 @@ export default class Slider extends Component {
    * 1. Set ref as component display name & applyTransform will execute on your ref
    * 2. If child has slideCallback method, it will execute onViewDetails
    */
-  onViewDetails = () => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
+  onViewDetails = (callee) => { // using fat arrow to avoid having to bind 'this' in the constructor. *only required for your custom methods!
     // this.portfolio.addEventListener('scroll', NoScroll);
     let slug;
     let index;
@@ -82,7 +82,7 @@ export default class Slider extends Component {
     childRef ? this.applyTransforms(childRef) : null;
     this.onEndTransition({ slug: slug });
 
-    child.slideCallBack ? child.slideCallBack() : null;
+    child[callee] ? child[callee]() : null;
   }
 
   applyTransforms = (component) => {

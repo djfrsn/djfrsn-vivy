@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 export default class SliderNav extends Component {
 
   onViewDetails = () => {
-    this.props.onViewDetails();
+    this.props.onViewDetails('onViewDetails');
   }
 
   onSliderPrev = () => {
