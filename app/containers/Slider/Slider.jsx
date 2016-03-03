@@ -60,9 +60,10 @@ export default class Slider extends Component {
     // how to get dir
     // could take current browser url,get index & index of current state
 
-    let nextIndex;
-    const nextIndexPermalink = window.location.pathname.split('-');
-    let prevIndex;
+    // let nextIndex;
+    const params = window.location.pathname.split('-');
+    const firstParam = params[0].split('/')[1];
+    // let prevIndex;
 
     // this.state.slides.forEach((slide, key) => {
     //   if (slide.active) {
@@ -74,38 +75,39 @@ export default class Slider extends Component {
     //     nextIndex = key;
     //   }
     // });
-    let slides = [];
+    if ( firstParam === 'preview' ) {
+      const slides = [];
 
-    this.state.slides.map((slide) => {
-    console.log(slide.permalink === nextIndexPermalink[1], slide.permalink);
-      slides.push({ ...slide,
-        active: slide.permalink === nextIndexPermalink[1] ? true : false
+      this.state.slides.map((slide) => {
+        slides.push({ ...slide,
+          active: slide.permalink === params[1] ? true : false
+        });
       });
-    });
 
-    this.setState({ slides: slides, shouldSlideUpdate: false });
+      this.setState({ slides: slides, shouldSlideUpdate: false });
 
-    // TODO: screw figuring out which direction...the it needs to transition to the correct slide first!
+      // TODO: screw figuring out which direction...the it needs to transition to the correct slide first!
 
-    // nextIndex: 1 prevIndex: 2
-    // nextIndex: 0 prevIndex: 1
-    // right or left?
-    // could use onEnter .... or this.props.location being passed down
-    const dir = nextIndex > prevIndex ? 'right' : 'left';
+      // nextIndex: 1 prevIndex: 2
+      // nextIndex: 0 prevIndex: 1
+      // right or left?
+      // could use onEnter .... or this.props.location being passed down
+      //const dir = nextIndex > prevIndex ? 'right' : 'left';
 
-    const elem = this.getSlideElements();
+      const elem = this.getSlideElements();
 
-    this.animate({
-      dir: dir,
-      itemCurrent: elem.itemCurrent,
-      currentEl: elem.currentEl,
-      currentTitleEl: elem.currentTitleEl,
-      itemNext: elem.itemNext,
-      nextEl: elem.nextEl,
-      nextTitleEl: elem.nextTitleEl
-    });
+      this.animate({
+        dir: 'left',
+        itemCurrent: elem.itemCurrent,
+        currentEl: elem.currentEl,
+        currentTitleEl: elem.currentTitleEl,
+        itemNext: elem.itemNext,
+        nextEl: elem.nextEl,
+        nextTitleEl: elem.nextTitleEl
+      });
 
-    this.props.onAnimateHireMeButton(elem.current % 2 === 0);
+      this.props.onAnimateHireMeButton(elem.current % 2 === 0);
+    }
   }
 
   getSlideElements = () => {
@@ -117,7 +119,7 @@ export default class Slider extends Component {
 
     this.state.slides.every((slide, key) => {
       if ( slide.active ) {
-        console.log('active.permalink', slide.permalink)
+        console.log(this.refs)
         elements.itemCurrent = this.refs[`slide-${key}`]; // the active slide
         elements.current = key;
         return false; // break out of loop
