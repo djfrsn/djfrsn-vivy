@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Slider from 'Slider/Slider';
+import PortfolioCard from 'PortfolioCard/PortfolioCard';
 import Header from 'Header/Header';
 import Zoomer from 'Zoomer/Zoomer';
 import classNames from 'classnames/bind';
@@ -28,6 +29,10 @@ class Portfolio extends Component {
     this.setState({ ...this.state, animateHireMeButton: animate });
   }
 
+  onShowPortfolioCard = () => {
+
+  }
+
   render() {
     const children = this.props.portfolio.map((app) => {
       return (<Zoomer name={app.name}
@@ -44,6 +49,7 @@ class Portfolio extends Component {
             routeParams={this.props.routeParams}
             onAnimateHireMeButton={this.onAnimateHireMeButton} />
         </div>
+        <PortfolioCard onShowPortfolioCard={this.onShowPortfolioCard}/>
       </div>
     );
   }
