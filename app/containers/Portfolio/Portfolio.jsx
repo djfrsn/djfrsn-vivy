@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Slider from 'Slider/Slider';
-import PortfolioCard from 'PortfolioCard/PortfolioCard';
+import Profile from 'Profile/Profile';
 import Header from 'Header/Header';
 import Zoomer from 'Zoomer/Zoomer';
 import classNames from 'classnames/bind';
@@ -29,7 +29,7 @@ class Portfolio extends Component {
     this.setState({ ...this.state, animateHireMeButton: animate });
   }
 
-  onShowPortfolioCard = () => {
+  onShowProfile = () => {
 
   }
 
@@ -49,7 +49,7 @@ class Portfolio extends Component {
             routeParams={this.props.routeParams}
             onAnimateHireMeButton={this.onAnimateHireMeButton} />
         </div>
-        <PortfolioCard onShowPortfolioCard={this.onShowPortfolioCard}/>
+        <Profile {...this.props.profile} onShowProfile={this.onShowProfile} />
       </div>
     );
   }
@@ -65,6 +65,17 @@ Portfolio.propTypes = {
   })),
   routeParams: PropTypes.shape({
     permalink: PropTypes.string.isRequried
+  }),
+  profile: PropTypes.shape({
+    author: PropTypes.shape({
+      header_bg: PropTypes.string.isRequried,
+      avatar: PropTypes.string.isRequried,
+      url: PropTypes.string.isRequried,
+      name: PropTypes.string.isRequried,
+      email: PropTypes.string.isRequried
+    }),
+    baseurl: PropTypes.string,
+    description: PropTypes.string
   })
 };
 

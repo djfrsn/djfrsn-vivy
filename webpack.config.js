@@ -50,9 +50,9 @@ module.exports = {
     }]
   },
   resolve: {
-      extensions: ['', '.js', '.jsx', '.scss'],
+      extensions: ['', '.js', '.jsx', '.scss', '.json'],
       modulesDirectories: [
-        'app', 'node_modules', 'app/components', 'app/containers', 'app/vendor'
+        'config', 'app', 'node_modules', 'app/components', 'app/containers', 'app/vendor'
       ]
     }
 };

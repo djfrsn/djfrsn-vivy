@@ -1,0 +1,19 @@
+[{
+  "active": true,
+  "device": "macbook",
+  "name": "Appolo",
+  "permalink": "appolo",
+  "tagline": "App Portfolio for App developers"
+}, {
+  "active": false,
+  "device": "imac",
+  "name": "Meeru",
+  "permalink": "meeru",
+  "tagline": "Watch multiple videos simultaneously"
+}, {
+  "active": false,
+  "device": "iphone",
+  "name": "Deep",
+  "permalink": "deep",
+  "tagline": "Embed quotes on captivating images"
+}]

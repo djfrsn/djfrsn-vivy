@@ -1,0 +1,12 @@
+{
+	"author": {
+    "name": "Your Name",
+    "twitter": "yourtwitter",
+    "url": "http://www.yoururl.com",
+    "header_bg": "/images/profile-header.png",
+    "avatar": "/images/avatar.jpg",
+    "email": "you@CompanyName.com"
+	},
+	"baseurl": "",
+	"description": "Customize in descriptions.json"
+}

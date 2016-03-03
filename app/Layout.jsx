@@ -2,30 +2,12 @@
 import React, { Component, PropTypes  } from 'react';
 import Portfolio from 'Portfolio/Portfolio';
 import FullScreen from 'FullScreen/FullScreen';
-
-const portfolio = [{
-  active: true,
-  device: 'macbook',
-  name: 'Appolo',
-  permalink: 'appolo',
-  tagline: 'App Portfolio for App developers'
-}, {
-  active: false,
-  device: 'imac',
-  name: 'Meeru',
-  permalink: 'meeru',
-  tagline: 'Watch multiple videos simultaneously'
-}, {
-  active: false,
-  device: 'iphone',
-  name: 'Deep',
-  permalink: 'deep',
-  tagline: 'Embed quotes on captivating images'
-}];
+import portfolio from 'portfolio';
+import profile from 'profile';
 
 export default class Layout extends Component {
   render() {
-    let View = <Portfolio portfolio={portfolio} routeParams={this.props.params} />;
+    let View = <Portfolio portfolio={portfolio} routeParams={this.props.params} profile={profile} />;
 
   	if ( this.props.params.permalink ) {
 	    const params = this.props.params.permalink.split('-');

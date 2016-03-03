@@ -44,10 +44,10 @@ module.exports = {
       query: {
         "presets": ["es2015", "stage-0", "react"]
       }
-    }, { 
-      test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/, loader: 'url-loader?limit=10000' 
-    }, { 
-      test: /\.((ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot)$/, loader: 'file-loader' 
+    }, {
+      test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/, loader: 'url-loader?limit=10000'
+    }, {
+      test: /\.((ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9]))|(ttf|eot)$/, loader: 'file-loader'
     }, {
       test: /\.json?$/,
       loader: 'json'
@@ -58,9 +58,9 @@ module.exports = {
     }]
   },
   resolve: {
-      extensions: ['', '.js', '.jsx', '.scss'],
+      extensions: ['', '.js', '.jsx', '.scss', '.json'],
       modulesDirectories: [
-        'app', 'node_modules', 'app/components', 'app/containers', 'app/vendor'
+        'config', 'app', 'node_modules', 'app/components', 'app/containers', 'app/vendor'
       ]
     }
 };
