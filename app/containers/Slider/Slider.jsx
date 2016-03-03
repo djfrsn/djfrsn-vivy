@@ -33,6 +33,7 @@ export default class Slider extends Component {
   }
 
   componentDidMount() {
+    window.onpopstate = this.onBackButtonEvent;
     document.addEventListener( 'keydown', this.listenToKeyPress );
   }
 
@@ -50,6 +51,40 @@ export default class Slider extends Component {
     case 39:
       this.navigate('right');
       break;
+    }
+  }
+
+  clearDynamicsCss = () => {
+    const count = this.state.slides.length;
+    const slides = [];
+
+    for (let i = 0; i < count; i++) {
+      const slide = this.refs[`slide-${i}`];
+      slides.push(slide);
+      dynamics.stop(slide.slide);
+      dynamics.stop(slide.slideMover);
+      dynamics.stop(slide.slideTitle);
+      slide.slide.removeAttribute('style');
+      slide.slideMover.removeAttribute('style');
+      slide.slideTitle.removeAttribute('style');
+    }
+  }
+
+  onBackButtonEvent = (e) => {
+    const slides = [];
+    const params = e.currentTarget.location.pathname.split('-');
+    const firstParam = params[0].split('/')[1];
+
+    if ( firstParam === 'preview' ) {
+      this.clearDynamicsCss();
+
+      this.state.slides.forEach((slide) => {
+        slides.push({...slide,
+          active: slide.permalink === params[1] ? true : false
+        });
+      });
+
+      this.setState({...this.state, slides: slides, shouldSlideUpdate: true  });
     }
   }
 
@@ -118,7 +153,7 @@ export default class Slider extends Component {
   }
 
   applyTransforms = (component) => {
-    this.setState({ animate: true });
+    this.setState({ ...this.state, animate: true });
 
     // component area and scale value
     const componentArea = component;
@@ -157,6 +192,8 @@ export default class Slider extends Component {
     const elems = this.getSlideElements(dir);
     const slides = [];
 
+    browserHistory.push(`preview-${elems.itemNext.props.permalink}`);
+
     this.state.slides.map((slide, key) => {
       slides.push({ ...slide,
         active: key === elems.itemNext.props.index ? true : false,
@@ -164,9 +201,7 @@ export default class Slider extends Component {
       });
     });
 
-    this.setState({ slides: slides, shouldSlideUpdate: false });
-
-    browserHistory.push(`preview-${elems.itemNext.props.permalink}`);
+    this.setState({ ...this.state, slides: slides, shouldSlideUpdate: false });
 
     this.animate({
       dir: dir,
