@@ -33,7 +33,6 @@ export default class Slider extends Component {
   }
 
   componentDidMount() {
-    window.onpopstate = this.onBackButtonEvent;
     document.addEventListener( 'keydown', this.listenToKeyPress );
   }
 
@@ -41,7 +40,6 @@ export default class Slider extends Component {
     this.willUnmount = true; // set to prevent dynamics.js callback execution when component will unmount, calling dynamics.stop doesn't work
     document.removeEventListener( 'keydown', this.listenToKeyPress );
   }
-
 
   listenToKeyPress = ( ev ) => {
     const keyCode = ev.keyCode || ev.which;
@@ -55,62 +53,7 @@ export default class Slider extends Component {
     }
   }
 
-  onBackButtonEvent = (e) => {
-    e.preventDefault();
-    // how to get dir
-    // could take current browser url,get index & index of current state
-
-    // let nextIndex;
-    const params = window.location.pathname.split('-');
-    const firstParam = params[0].split('/')[1];
-    // let prevIndex;
-
-    // this.state.slides.forEach((slide, key) => {
-    //   if (slide.active) {
-    //     console.log('prevIndex.slide.active', slide.permalink );
-    //     prevIndex = key;
-    //   }
-    //   if ( slide.permalink === nextIndexPermalink[1] ) {
-    //     console.log('nextIndex.slide.active', nextIndexPermalink[1], slide.permalink );
-    //     nextIndex = key;
-    //   }
-    // });
-    if ( firstParam === 'preview' ) {
-      const slides = [];
-
-      this.state.slides.map((slide) => {
-        slides.push({ ...slide,
-          active: slide.permalink === params[1] ? true : false
-        });
-      });
-
-      this.setState({ slides: slides, shouldSlideUpdate: false });
-
-      // TODO: screw figuring out which direction...the it needs to transition to the correct slide first!
-
-      // nextIndex: 1 prevIndex: 2
-      // nextIndex: 0 prevIndex: 1
-      // right or left?
-      // could use onEnter .... or this.props.location being passed down
-      //const dir = nextIndex > prevIndex ? 'right' : 'left';
-
-      const elem = this.getSlideElements();
-
-      this.animate({
-        dir: 'left',
-        itemCurrent: elem.itemCurrent,
-        currentEl: elem.currentEl,
-        currentTitleEl: elem.currentTitleEl,
-        itemNext: elem.itemNext,
-        nextEl: elem.nextEl,
-        nextTitleEl: elem.nextTitleEl
-      });
-
-      this.props.onAnimateHireMeButton(elem.current % 2 === 0);
-    }
-  }
-
-  getSlideElements = () => {
+  getSlideElements = (dir) => {
     const elements = {};
     const items = this.state.slides.map((slide, key) => {
       return this.refs[`slide-${key}`];
@@ -119,7 +62,6 @@ export default class Slider extends Component {
 
     this.state.slides.every((slide, key) => {
       if ( slide.active ) {
-        console.log(this.refs)
         elements.itemCurrent = this.refs[`slide-${key}`]; // the active slide
         elements.current = key;
         return false; // break out of loop
@@ -130,7 +72,7 @@ export default class Slider extends Component {
     elements.currentEl = elements.itemCurrent.slideMover;
     elements.currentTitleEl = elements.itemCurrent.slideTitle;
 
-    if ( elements.dir === 'right' ) {
+    if ( dir === 'right' ) {
       elements.current = elements.current < elements.itemsTotal - 1 ? elements.current + 1 : 0;
     } else { // keeps track of urrent index & handles looping of slides
       elements.current = elements.current > 0 ? elements.current - 1 : elements.itemsTotal - 1;
@@ -211,19 +153,20 @@ export default class Slider extends Component {
     this.navigate('right');
   }
 
-  navigate = (dir, pushstate = true) => {
-    const elems = this.getSlideElements();
+  navigate = (dir) => {
+    const elems = this.getSlideElements(dir);
     const slides = [];
 
     this.state.slides.map((slide, key) => {
       slides.push({ ...slide,
-        active: key === elems.itemNext.props.index ? true : false
+        active: key === elems.itemNext.props.index ? true : false,
+        dir: dir
       });
     });
 
     this.setState({ slides: slides, shouldSlideUpdate: false });
 
-    pushstate ? browserHistory.push(`preview-${elems.itemNext.props.permalink}`) : undefined;
+    browserHistory.push(`preview-${elems.itemNext.props.permalink}`);
 
     this.animate({
       dir: dir,
