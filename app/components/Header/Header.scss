@@ -1,6 +1,7 @@
 @import '../../styles/core/helpers.scss';
 @import '../../styles/core/animate.scss';
 @import '../../styles/core/rubberBand.scss';
+@import '../../styles/core/bp-icon.scss';
 
 /* Blueprint header */
 .bp-header {
@@ -112,18 +113,6 @@
   background: #5C5EDC;
 }
 
-.bp-icon:after {
-  font-family: 'fontello';
-  font-weight: normal;
-  font-style: normal;
-  font-variant: normal;
-  text-align: center;
-  text-transform: none;
-  color: #5C5EDC;
-  speak: none;
-  -webkit-font-smoothing: antialiased;
-}
-
 .bp-header nav .bp-icon:after {
   line-height: 2.4;
   position: absolute;
@@ -142,16 +131,8 @@
   cursor: pointer;
 }
 
-.bp-icon-next:after {
-  content: '\e000';
-}
-
-.bp-icon-drop:after {
-  content: '\e001';
-}
-
-.bp-icon-archive:after {
-  content: '\e002';
+.bp-icon-child:after {
+  content: '\e811';
 }
 
 .bp-icon-about:after {
@@ -162,22 +143,6 @@
   content: '\e800';
 }
 
-.bp-icon-heart:after {
-  content: '\e80b';
-}
-
 .bp-icon-email:after {
   content: '\e801';
-}
-
-.bp-icon-prev:after {
-  content: '\e004';
-}
-
-.bp-icon-child:after {
-  content: '\e811';
-}
-
-.bp-icon-close:after {
-  content: '\e80e';
 }

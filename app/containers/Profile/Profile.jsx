@@ -5,6 +5,10 @@ import styles from './Profile.scss';
 const cx = classNames.bind(styles);
 
 class Profile extends Component {
+  closeProfile = () => {
+    this.props.onShowProfile(false);
+  }
+
   render() {
     const cardheaderBg = { background: `url(${this.props.baseurl}${this.props.author.header_bg})` };
     const avatar = `${this.props.baseurl}${this.props.author.avatar}`;
@@ -14,7 +18,7 @@ class Profile extends Component {
       <section className={cx('profile')} style={profile} >
         <div style={profileSection}>
             <div className={cx('card', 'hovercard', 'profile_card')}>
-                <a className={cx('bp-icon', 'bp-icon-close', 'close_profile')}><span></span></a>
+                <a className={cx('bp-icon', 'bp-icon-close', 'close_profile')} onClick={this.closeProfile}><span></span></a>
                 <div className={cx('cardheader')} style={cardheaderBg}>
 
                 </div>
