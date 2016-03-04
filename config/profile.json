@@ -8,5 +8,5 @@
     "email": "you@CompanyName.com"
 	},
 	"baseurl": "",
-	"description": "Customize in descriptions.json"
+	"description": "Customize in profile.json"
 }

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Slider from 'Slider/Slider';
-import Profile from 'Profile/Profile';
+import ProfileCard from 'ProfileCard/ProfileCard';
 import Header from 'Header/Header';
 import Zoomer from 'Zoomer/Zoomer';
 import classNames from 'classnames/bind';
@@ -16,7 +16,7 @@ class Portfolio extends Component {
   constructor(props) {
     super(props); // call super in your constructor to access this, you can also pass props to super to access props within the constructor
     // event handlers for Portfolio component
-    this.state = { animateHireMeButton: false, showProfile: false }; // set initial state
+    this.state = { animateHireMeButton: false, showProfileCard: false, sliderOpaque: false }; // set initial state
   }
   /*
    * Containers propogate state changes down to components.
@@ -29,8 +29,12 @@ class Portfolio extends Component {
     this.setState({ ...this.state, animateHireMeButton: animate });
   }
 
-  onShowProfile = ( show ) => {
-    this.setState({ ...this.state, showProfile: show });
+  onShowProfileCard = ( show ) => {
+    this.setState({ ...this.state, showProfileCard: show, sliderOpaque: show });
+  }
+
+  onHideProfileCard = ( show ) => {
+    this.setState({ ...this.state, sliderOpaque: show });
   }
 
   render() {
@@ -41,15 +45,16 @@ class Portfolio extends Component {
     });
     return (
       <div className={cx('portfolio')}>
-        <Header animateHireMeButton={this.state.animateHireMeButton} onShowProfile={this.onShowProfile} />
+        <Header animateHireMeButton={this.state.animateHireMeButton} onShowProfileCard={this.onShowProfileCard} />
         <div className={cx('inner__container')}>
           <Slider
             children={children}
             slides={this.props.portfolio}
             routeParams={this.props.routeParams}
+            opaque={this.state.sliderOpaque}
             onAnimateHireMeButton={this.onAnimateHireMeButton} />
         </div>
-        <Profile {...this.props.profile} onShowProfile={this.onShowProfile} show={this.state.showProfile} />
+        <ProfileCard {...this.props.profile} show={this.state.showProfileCard} onHideProfileCard={this.onHideProfileCard} />
       </div>
     );
   }

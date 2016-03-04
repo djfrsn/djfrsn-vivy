@@ -283,7 +283,7 @@ export default class Slider extends Component {
         onViewDetails={this.onViewDetails} />);
     }) : null;
     return (
-      <section className={cx('slider')}>
+      <section className={cx('slider')} style={{ opacity: this.props.opaque ? 0.1 : 1 }}>
         {slides}
         <SliderNav onSliderPrev={this.onSliderPrev}
           onSliderNext={this.onSliderNext}
@@ -295,13 +295,14 @@ export default class Slider extends Component {
 
 Slider.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node),
+  opaque: PropTypes.bool.isRequired,
   onAnimateHireMeButton: PropTypes.func.isRequired,
   routeParams: PropTypes.shape({
-    permalink: PropTypes.string.isRequried
+    permalink: PropTypes.string.isRequired
   }),
   slides: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     tagline: PropTypes.string.isRequired,
-    permalink: PropTypes.string.isRequried
+    permalink: PropTypes.string.isRequired
   }))
 };
