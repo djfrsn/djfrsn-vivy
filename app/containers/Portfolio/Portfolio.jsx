@@ -16,7 +16,7 @@ class Portfolio extends Component {
   constructor(props) {
     super(props); // call super in your constructor to access this, you can also pass props to super to access props within the constructor
     // event handlers for Portfolio component
-    this.state = { animateHireMeButton: false }; // set initial state
+    this.state = { animateHireMeButton: false, showProfile: false }; // set initial state
   }
   /*
    * Containers propogate state changes down to components.
@@ -29,8 +29,8 @@ class Portfolio extends Component {
     this.setState({ ...this.state, animateHireMeButton: animate });
   }
 
-  onShowProfile = () => {
-
+  onShowProfile = ( show ) => {
+    this.setState({ ...this.state, showProfile: show });
   }
 
   render() {
@@ -41,7 +41,7 @@ class Portfolio extends Component {
     });
     return (
       <div className={cx('portfolio')}>
-        <Header animateHireMeButton={this.state.animateHireMeButton} />
+        <Header animateHireMeButton={this.state.animateHireMeButton} onShowProfile={this.onShowProfile} />
         <div className={cx('inner__container')}>
           <Slider
             children={children}
@@ -49,7 +49,7 @@ class Portfolio extends Component {
             routeParams={this.props.routeParams}
             onAnimateHireMeButton={this.onAnimateHireMeButton} />
         </div>
-        <Profile {...this.props.profile} onShowProfile={this.onShowProfile} />
+        <Profile {...this.props.profile} onShowProfile={this.onShowProfile} show={this.state.showProfile} />
       </div>
     );
   }

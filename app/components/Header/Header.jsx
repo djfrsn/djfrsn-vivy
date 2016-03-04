@@ -5,6 +5,11 @@ import styles from './Header.scss';
 const cx = classNames.bind(styles);
 
 class Header extends Component {
+
+  onShowProfile = () => {
+    this.props.onShowProfile(true);
+  }
+
   render() {
     const HireMeButtonClass = cx({
       'bp-icon': true,
@@ -18,7 +23,7 @@ class Header extends Component {
         <div className={cx('site-info')}>Dev since 12</div>
         <h1>Software Developer</h1>
         <nav role="navigation">
-          <a className={HireMeButtonClass} data-info="Hire Me"><span>Hire Me</span></a>
+          <a className={HireMeButtonClass} onClick={this.onShowProfile} data-info="Hire Me"><span>Hire Me</span></a>
           <a href="Twitter user url" className={cx('bp-icon', 'bp-icon-twitter')} data-info="kaw kaw" target="_blank"><span>@twitter.name</span></a>
           <a href="mailto:Site Email" className={cx('bp-icon', 'bp-icon-email')} data-info="email!"><span>send me e-mail</span></a>
         </nav>
@@ -28,7 +33,8 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  animateHireMeButton: PropTypes.bool.isRequired
+  animateHireMeButton: PropTypes.bool.isRequired,
+  onShowProfile: PropTypes.func.isRequired
 };
 
 export default Header;
