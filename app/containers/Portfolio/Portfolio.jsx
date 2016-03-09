@@ -29,12 +29,8 @@ class Portfolio extends Component {
     this.setState({ ...this.state, animateHireMeButton: animate });
   }
 
-  onShowProfileCard = ( show ) => {
+  onToggleProfileCard = ( show ) => {
     this.setState({ ...this.state, showProfileCard: show, sliderOpaque: show });
-  }
-
-  onHideProfileCard = ( show ) => {
-    this.setState({ ...this.state, sliderOpaque: show });
   }
 
   render() {
@@ -45,7 +41,7 @@ class Portfolio extends Component {
     });
     return (
       <div className={cx('portfolio')}>
-        <Header animateHireMeButton={this.state.animateHireMeButton} onShowProfileCard={this.onShowProfileCard} />
+        <Header animateHireMeButton={this.state.animateHireMeButton} onToggleProfileCard={this.onToggleProfileCard} />
         <div className={cx('inner__container')}>
           <Slider
             children={children}
@@ -54,7 +50,7 @@ class Portfolio extends Component {
             opaque={this.state.sliderOpaque}
             onAnimateHireMeButton={this.onAnimateHireMeButton} />
         </div>
-        <ProfileCard {...this.props.profile} show={this.state.showProfileCard} onHideProfileCard={this.onHideProfileCard} />
+        <ProfileCard {...this.props.profile} show={this.state.showProfileCard} onToggleProfileCard={this.onToggleProfileCard} />
       </div>
     );
   }

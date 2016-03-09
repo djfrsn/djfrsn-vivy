@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 class Header extends Component {
 
   onShowProfile = () => {
-    this.props.onShowProfileCard(true);
+    this.props.onToggleProfileCard(true);
   }
 
   render() {
@@ -34,7 +34,7 @@ class Header extends Component {
 
 Header.propTypes = {
   animateHireMeButton: PropTypes.bool.isRequired,
-  onShowProfileCard: PropTypes.func.isRequired
+  onToggleProfileCard: PropTypes.func.isRequired
 };
 
 export default Header;

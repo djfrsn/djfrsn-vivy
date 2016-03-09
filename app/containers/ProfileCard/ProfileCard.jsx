@@ -12,9 +12,7 @@ class ProfileCard extends Component {
   }
 
   componentDidMount() {
-    this.ProfileCardParent.addEventListener('animationend', () => {
-      this.onEndTransition();
-    });
+    this.ProfileCardParent.addEventListener('animationend', this.onEndTransition);
   }
 
   componentWillReceiveProps(nextProps) { // Runs when parent changes 'show' prop
@@ -24,14 +22,18 @@ class ProfileCard extends Component {
     });
   }
 
+  componentWillUnmount() {
+    this.ProfileCardParent.removeEventListener('animationend', this.onEndTransition);
+  }
+
   closeProfile = () => {
     this.setState({ ...this.state, bounceOutUp: true });
-    this.props.onHideProfileCard(false);
   }
 
   onEndTransition = () => {
     if ( this.state.bounceOutUp ) {
       this.setState({ ...this.state, bounceOutUp: false, bounceIn: false, show: false });
+      this.props.onToggleProfileCard(false);
     } else if ( this.state.show ) {
       this.setState({ ...this.state, bounceOutUp: false, bounceIn: false });
     }
@@ -91,7 +93,7 @@ ProfileCard.propTypes = {
   }),
   baseurl: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  onHideProfileCard: PropTypes.func.isRequired
+  onToggleProfileCard: PropTypes.func.isRequired
 };
 
 export default ProfileCard;
