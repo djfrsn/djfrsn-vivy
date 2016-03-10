@@ -1,18 +1,24 @@
 [{
   "active": true,
   "device": "macbook",
+  "title":  "Appolo",
+  "subtitle": "Showcase your apps. With style.",
   "name": "Appolo",
   "permalink": "appolo",
   "tagline": "App Portfolio for App developers"
 }, {
   "active": false,
   "device": "imac",
+  "title":  "Meeru for Mac",
+  "subtitle": "Multiple videos. At the same time.",
   "name": "Meeru",
   "permalink": "meeru",
   "tagline": "Watch multiple videos simultaneously"
 }, {
   "active": false,
   "device": "iphone",
+  "title":  "Deep for iPhone",
+  "subtitle": "That deep quote. On a stunning image.",
   "name": "Deep",
   "permalink": "deep",
   "tagline": "Embed quotes on captivating images"

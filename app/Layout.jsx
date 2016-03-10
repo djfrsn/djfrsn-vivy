@@ -12,7 +12,7 @@ export default class Layout extends Component {
   	if ( this.props.params.permalink ) {
 	    const params = this.props.params.permalink.split('-');
 	    View = (params[0] === 'preview') && params.length > 1
-	    ?	View : <FullScreen routeParams={this.props.params} />;
+	    ?	View : <FullScreen portfolio={portfolio} routeParams={this.props.params} />;
   	}
 
     return View;
