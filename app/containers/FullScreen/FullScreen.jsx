@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import marked from 'marked';
 import classNames from 'classnames/bind';
 import styles from './FullScreen.scss';
 
@@ -21,6 +22,11 @@ class FullScreen extends Component {
       return true;
     });
   }
+
+  rawMarkup = () => {
+    return { __html: marked('I am using __markdown__.') };
+  }
+
   render() {
     return (
       <div className={cx('fullScreen')}>
@@ -31,7 +37,7 @@ class FullScreen extends Component {
           <h2>{this.app.title}</h2>
           <h3>{this.app.subtitle}</h3>
 
-            {this.props.routeParams.permalink}
+            <div dangerouslySetInnerHTML={this.rawMarkup()} />
 
             <div className={cx('footer')}>
               ∆ 2016 Vivy
