@@ -3,11 +3,6 @@ import classNames from 'classnames/bind';
 import styles from './FullScreen.scss';
 import { browserHistory } from 'react-router';
 
-/*
-Handling Route Params
-https://www.youtube.com/watch?v=ZBxMljq9GSE
-*/
-
 const cx = classNames.bind(styles);
 
 class FullScreen extends Component {
@@ -22,10 +17,16 @@ class FullScreen extends Component {
       return true;
     });
 
-    if (!this.app) { // send user home when app isn't found
+    if ( this.app ) {
+      require(['../../pages/' + this.app.permalink + '.jsx'], (mod) => {
+        this.View = mod.default;
+        this.forceUpdate();
+      });
+    } else { // send user home when app isn't found
       this.app = this.props.portfolio[0];
       browserHistory.push('/');
     }
+
     this.state = { onCloseAnimation: false };
     this.initialRender = true;
   }
@@ -54,6 +55,7 @@ class FullScreen extends Component {
       'content__item--reset': true
     });
     this.initialRender = false;
+    const InnerContent = this.View ? this.View : 'Loading';
     return (
       <div className={cx('fullScreen')}>
       <section className={cx('content', 'content--open')}>
@@ -63,6 +65,7 @@ class FullScreen extends Component {
           <h2>{this.app.title}</h2>
           <h3>{this.app.subtitle}</h3>
 
+          <InnerContent />
 
           <div className={cx('footer')}>
             <p>∆ 2016 Vivy</p>

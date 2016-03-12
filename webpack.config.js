@@ -52,7 +52,7 @@ module.exports = {
   resolve: {
       extensions: ['', '.js', '.jsx', '.scss', '.json'],
       modulesDirectories: [
-        'config', 'app', 'node_modules', 'app/components', 'app/containers', 'app/vendor'
+        'config', 'app', 'node_modules', 'app/components', 'app/containers', 'app/pages', 'app/vendor'
       ]
     }
 };
