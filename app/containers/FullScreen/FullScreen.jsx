@@ -20,7 +20,9 @@ class FullScreen extends Component {
     if ( this.app ) {
       require(['../../pages/' + this.app.permalink + '.jsx'], (mod) => {
         this.View = mod.default;
-        this.forceUpdate();
+        if (!this.initialRender) {
+          this.forceUpdate();
+        }
       });
     } else { // send user home when app isn't found
       this.app = this.props.portfolio[0];
