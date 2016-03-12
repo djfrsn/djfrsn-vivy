@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import marked from 'marked';
 import classNames from 'classnames/bind';
 import styles from './FullScreen.scss';
+import { browserHistory } from 'react-router';
 
 /*
 Handling Route Params
@@ -21,30 +21,55 @@ class FullScreen extends Component {
       }
       return true;
     });
+
+    if (!this.app) { // send user home when app isn't found
+      this.app = this.props.portfolio[0];
+      browserHistory.push('/');
+    }
+    this.state = { onCloseAnimation: false };
+    this.initialRender = true;
   }
 
-  rawMarkup = () => {
-    return { __html: marked('I am using __markdown__.') };
+  onClose = () => {
+    this.setState({ onCloseAnimation: true });
+    this.onEndTransition();
+  }
+
+  onEndTransition = () => {
+    setTimeout(() => {
+      browserHistory.push(`preview-${this.app.permalink}`);
+    }, 400);
   }
 
   render() {
+    const appIconClass = cx({
+      'content__item-img': true,
+      'animated': true,
+      'bounceInDown': this.initialRender ? true : false,
+      'bounceOutUp': this.state.onCloseAnimation ? true : false
+    });
+    const contentItemClass = cx({
+      'content__item': true,
+      'content__item--current': this.state.onCloseAnimation ? false : true,
+      'content__item--reset': true
+    });
+    this.initialRender = false;
     return (
       <div className={cx('fullScreen')}>
       <section className={cx('content', 'content--open')}>
-      <div className={cx('content__item', 'content__item--current', 'content__item--reset')}>
+      <div className={contentItemClass} ref={(ref)=>{ this.ContentItem = ref; }}>
         <div className={cx('content__item-inner')}>
-          <img className={cx('content__item-img', 'animated', 'bounceInDown')} src={`/images/${this.app.permalink}/icon.png`} alt={this.app.title} />
+          <img className={appIconClass} src={`/images/${this.app.permalink}/icon.png`} alt={this.app.title} />
           <h2>{this.app.title}</h2>
           <h3>{this.app.subtitle}</h3>
 
-            <div dangerouslySetInnerHTML={this.rawMarkup()} />
 
-            <div className={cx('footer')}>
-              ∆ 2016 Vivy
-            </div>
+          <div className={cx('footer')}>
+            <p>∆ 2016 Vivy</p>
+          </div>
         </div>
       </div>
-      <button className={cx('button', 'button--close')}><i className={cx('icon', 'icon--circle-cross')}></i><span className={cx('text-hidden')}>Close content</span></button>
+      <button className={cx('button', 'button--close')} onClick={this.onClose}><i className={cx('icon', 'icon--circle-cross')}></i><span className={cx('text-hidden')}>Close content</span></button>
       </section>
       </div>
     );
