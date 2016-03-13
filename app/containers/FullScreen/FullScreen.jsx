@@ -28,7 +28,9 @@ class FullScreen extends Component {
 
   componentDidMount() {
     this.loadPage();
-    this.initialRender = false;
+    setTimeout(() => {
+      this.initialRender = false; // deploy 400ms to allow app icon transition to complete
+    }, 401 );
   }
 
   loadPage = () => {
@@ -46,7 +48,7 @@ class FullScreen extends Component {
   onEndTransition = () => {
     setTimeout(() => {
       browserHistory.push(`preview-${this.app.permalink}`);
-    }, 400);
+    }, 401);
   }
 
   render() {
