@@ -149,7 +149,7 @@ export default class Slider extends Component {
     childRef ? this.applyTransforms(childRef) : null;
     this.onEndTransition({ slug: slug });
 
-    child[callee] ? child[callee]() : null; // call 'onViewDetails' callback on child component if it exist
+    child[callee] ? child[callee]() : null; // call 'onViewDetails/onSlideClick' callback on child component if it exist
   }
 
   applyTransforms = (component) => {
