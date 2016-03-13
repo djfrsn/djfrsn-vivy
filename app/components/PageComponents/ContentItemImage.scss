@@ -3,36 +3,24 @@
 
 .content__item-img-center {
   display: block;
-  margin-right: auto;
-  margin-left: auto;
   max-width: 80%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 50px auto;
 }
 
 .content__item-img-fill-width {
   display: block;
-  margin-right: 0;
-  margin-left: 0;
-  margin-top: 50px;
-  margin-bottom: 50px;
   width: 100%;
+  margin: 50px 0;
 }
 
 .content__item-img-right {
   display: block;
-  margin-right: 0;
-  margin-left: auto;
   max-width: 80%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 50px 0 50px auto;
 }
 
 .content__item-img-left {
   display: block;
-  margin-right: auto;
-  margin-left: 0;
   max-width: 80%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin: 50px auto 50px 0;
 }

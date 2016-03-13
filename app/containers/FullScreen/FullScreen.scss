@@ -2,6 +2,7 @@
 @import '../../styles/core/bounceInDown.scss';
 @import '../../styles/core/bounceOutUp.scss';
 @import '../../styles/core/container.scss';
+@import '../../styles/core/contentItem.scss';
 @import '../../styles/core/icon.scss';
 /*
 **
@@ -30,42 +31,6 @@
 
 .content--open {
   opacity: 1;
-}
-
-
-.content__item--header-large {
-  font-size: 3.5em;
-  font-weight: normal;
-  margin: 0;
-  text-align: center;
-}
-
-.content__item--header-medium {
-  font-size: 1.95em;
-  font-weight: normal;
-  margin: 0.25em 0 0.5em;
-  color: #685884;
-}
-
-
-.content__item-img {
-  display: block;
-  max-width: 80px;
-  max-height: 80vh;
-  -webkit-transform: translate3d(0,-120%,0);
-  transform: translate3d(0,-120%,0);
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-  margin-top: 80px;
-  margin-bottom: 80px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.content__item-img {
-  -webkit-transform: translate3d(0px,0,0);
-  transform: translate3d(0px,0,0);
 }
 
 .button {
@@ -102,7 +67,6 @@
   margin: 0;
   opacity: 0;
   color: #50505a;
-  -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 
@@ -119,27 +83,11 @@
 /**************************/
 
 .content {
-  -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
 }
 
 .content{
   /* delay for content to disappear and zoomer to start transitioning back to 0 */
-  -webkit-transition-delay: 0.3s;
   transition-delay: 0.3s;
-}
-
-.content__item-img {
-  -webkit-transition: -webkit-transform 0.4s;
-  transition: transform 0.4s;
-  -webkit-transition-timing-function: cubic-bezier(0.7,1,0.8,1);
-  transition-timing-function: cubic-bezier(0.7,1,0.8,1);
-}
-
-.content__item-img {
-  -webkit-transition-timing-function: cubic-bezier(0.2,1,0.3,1);
-  transition-timing-function: cubic-bezier(0.2,1,0.3,1);
-  -webkit-transition-duration: 1s;
-  transition-duration: 1s;
 }
 
