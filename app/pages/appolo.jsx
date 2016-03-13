@@ -32,8 +32,8 @@ export default class Appolo extends Component {
       <div className={cx('content__item', 'content__item--current', 'content__item--reset')} ref={(ref)=>{ this.ContentItem = ref; }}>
         <div className={cx('content__item-inner')}>
             <img className={appIconClass} src={`/images/${this.props.permalink}/icon.png`} alt={this.props.title} />
-            <h2>{this.props.title}</h2>
-            <h3>{this.props.subtitle}</h3>
+            <h2 className={cx('content__item--header-large')}>{this.props.title}</h2>
+            <h3 className={cx('content__item--header-medium')}>{this.props.subtitle}</h3>
 
             <ContentItemImage src={`/images/${permalink}/${permalink}-on-devices.png`} alignment="center" alt="Appolo for React" />
 

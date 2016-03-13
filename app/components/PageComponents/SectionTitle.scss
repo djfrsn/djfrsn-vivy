@@ -1,3 +1,6 @@
-h3.section_title {
+@import '../../styles/core/contentItem.scss';
+
+.section_title {
+  @extend .content__item--header-medium;
   margin-top: 60px;
 }
