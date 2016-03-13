@@ -4,6 +4,7 @@ import ContentItemParagraph from 'PageComponents/ContentItemParagraph';
 import ContentItemInner from 'PageComponents/ContentItemInner';
 import ContentItem from 'PageComponents/ContentItem';
 import SectionTitle from 'PageComponents/SectionTitle';
+import AppStoreButton from 'PageComponents/AppStoreButton';
 import Footer from 'PageComponents/Footer';
 // import classNames from 'classnames/bind';
 // import styles from 'styles/core/_pages.scss';
@@ -66,10 +67,13 @@ export default class Deep extends Component {
 
             <SectionTitle>Download</SectionTitle>
 
+            <AppStoreButton href="https://itunes.apple.com/app/apple-store/id985064577?pt=320144&amp;ct=Deep%20Website%20Bottom&amp;mt=8" />
+
           </ContentItemInner>
         </ContentItem>
 
         <Footer />
+
       </div>
     );
   }
