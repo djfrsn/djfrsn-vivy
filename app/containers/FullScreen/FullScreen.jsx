@@ -22,7 +22,7 @@ class FullScreen extends Component {
       browserHistory.push('/');
     }
 
-    this.state = { onClose: false };
+    this.state = { onClose: false, reveal: false };
     this.initialRender = true;
   }
 
@@ -36,12 +36,15 @@ class FullScreen extends Component {
   loadPage = () => {
     require([`../../pages/${this.app.name}.jsx`], (mod) => {
       this.Page = mod.default;
-      this.forceUpdate();
+      this.forceUpdate(); // render content with opacity: 0
+      setTimeout(() => { // defer rendering to prevent ui jank from loading async
+        this.setState({...this.state, reveal: true }); // render content with opacity: 1
+      }, 0 );
     });
   }
 
   onClose = () => {
-    this.setState({ onClose: true });
+    this.setState({...this.state, onClose: true });
     this.onEndTransition();
   }
 
@@ -54,7 +57,7 @@ class FullScreen extends Component {
   render() {
     const contentClass = cx({
       'content': true,
-      'content--open': this.state.onClose ? false : true
+      'content--open': this.state.reveal && !this.state.onClose ? true : false
     });
     const appIconClass = cx({
       'content__item-img': true,
