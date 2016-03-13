@@ -9,32 +9,11 @@ import styles from 'styles/core/_pages.scss';
 const cx = classNames.bind(styles);
 
 export default class Appolo extends Component {
-  constructor() {
-    super();
-
-    this.initialRender = true;
-  }
-  componentDidMount() {
-    setTimeout(() => {
-      this.initialRender = false; // deploy 400ms to allow app icon transition to complete
-    }, 401 );
-  }
-
   render() {
-    const appIconClass = cx({
-      'content__item-img': true,
-      'animated': true,
-      'bounceInDown': this.initialRender ? true : false,
-      'bounceOutUp': this.props.onClose ? true : false
-    });
     const permalink = this.props.permalink;
     return (
       <div className={cx('content__item', 'content__item--current', 'content__item--reset')} ref={(ref)=>{ this.ContentItem = ref; }}>
         <div className={cx('content__item-inner')}>
-            <img className={appIconClass} src={`/images/${this.props.permalink}/icon.png`} alt={this.props.title} />
-            <h2 className={cx('content__item--header-large')}>{this.props.title}</h2>
-            <h3 className={cx('content__item--header-medium')}>{this.props.subtitle}</h3>
-
             <ContentItemImage src={`/images/${permalink}/${permalink}-on-devices.png`} alignment="center" alt="Appolo for React" />
 
             <ContentItemParagraph alignment="center">
