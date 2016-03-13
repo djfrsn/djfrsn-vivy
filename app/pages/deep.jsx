@@ -1,15 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import ContentItemImage from 'PageComponents/ContentItemImage';
-import ContentItemParagraph from 'PageComponents/ContentItemParagraph';
-import ContentItemInner from 'PageComponents/ContentItemInner';
-import ContentItem from 'PageComponents/ContentItem';
-import SectionTitle from 'PageComponents/SectionTitle';
-import AppStoreButton from 'PageComponents/AppStoreButton';
-import Footer from 'PageComponents/Footer';
-// import classNames from 'classnames/bind';
-// import styles from 'styles/core/_pages.scss';
-
-// const cx = classNames.bind(styles);
+import {
+  ContentItem,
+  ContentItemInner,
+  ContentItemParagraph,
+  ContentItemImage,
+  SectionTitle,
+  AppStoreButton,
+  Footer
+} from 'PageComponents/PageComponents';
 
 export default class Deep extends Component {
   render() {

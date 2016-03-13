@@ -1,10 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import ContentItemImage from 'PageComponents/ContentItemImage';
-import ContentItemParagraph from 'PageComponents/ContentItemParagraph';
-import ContentItemInner from 'PageComponents/ContentItemInner';
-import ContentItem from 'PageComponents/ContentItem';
-import SectionTitle from 'PageComponents/SectionTitle';
-import Footer from 'PageComponents/Footer';
+import {
+  ContentItem,
+  ContentItemInner,
+  ContentItemParagraph,
+  ContentItemImage,
+  SectionTitle,
+  Footer
+} from 'PageComponents/PageComponents';
+
 import classNames from 'classnames/bind';
 import styles from 'styles/core/_pages.scss';
 
@@ -108,8 +111,5 @@ export default class Appolo extends Component {
 }
 
 Appolo.propTypes = {
-  permalink: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  onClose: PropTypes.bool.isRequired
+  permalink: PropTypes.string.isRequired
 };
