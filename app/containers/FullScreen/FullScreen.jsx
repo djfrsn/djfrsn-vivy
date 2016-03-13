@@ -17,20 +17,25 @@ class FullScreen extends Component {
       return true;
     });
 
-    if ( this.app ) {
-      require(['../../pages/' + this.app.permalink + '.jsx'], (mod) => {
-        this.View = mod.default;
-        if (!this.initialRender) {
-          this.forceUpdate();
-        }
-      });
-    } else { // send user home when app isn't found
+    if ( !this.app ) { // send user home when app isn't found
       this.app = this.props.portfolio[0];
       browserHistory.push('/');
     }
 
     this.state = { onCloseAnimation: false };
     this.initialRender = true;
+  }
+
+  componentDidMount() {
+    this.loadPage();
+    this.initialRender = false;
+  }
+
+  loadPage = () => {
+    require([`../../pages/${this.app.permalink}.jsx`], (mod) => {
+      this.View = mod.default;
+      this.forceUpdate();
+    });
   }
 
   onClose = () => {
@@ -56,7 +61,6 @@ class FullScreen extends Component {
       'content__item--current': this.state.onCloseAnimation ? false : true,
       'content__item--reset': true
     });
-    this.initialRender = false;
     const InnerContent = this.View ? this.View : 'Loading';
     return (
       <div className={cx('fullScreen')}>
