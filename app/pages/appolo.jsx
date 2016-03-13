@@ -1,9 +1,17 @@
 import React, { Component, PropTypes } from 'react';
+import ContentItemImage from 'PageComponents/ContentItemImage';
 
 export default class AppoloPage extends Component {
   render() {
+    const permalink = this.props.permalink;
     return (
-      <div style={{textAlign: 'center'}}>appolo</div>
+      <div>
+        <ContentItemImage src={`/images/${permalink}/${permalink}-on-devices.png`} alt={'Appolo for React'} />
+      </div>
     );
   }
 }
+
+AppoloPage.propTypes = {
+  permalink: PropTypes.string.isRequired
+};

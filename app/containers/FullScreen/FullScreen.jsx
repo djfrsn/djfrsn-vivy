@@ -34,7 +34,7 @@ class FullScreen extends Component {
   }
 
   loadPage = () => {
-    require([`../../pages/${this.app.permalink}.jsx`], (mod) => {
+    require([`../../pages/${this.app.title}.jsx`], (mod) => {
       this.View = mod.default;
       this.forceUpdate();
     });
@@ -73,7 +73,7 @@ class FullScreen extends Component {
           <h2>{this.app.title}</h2>
           <h3>{this.app.subtitle}</h3>
 
-          <InnerContent />
+          <InnerContent {...this.app} />
 
           <div className={cx('footer')}>
             <p>∆ 2016 Vivy</p>
