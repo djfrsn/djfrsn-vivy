@@ -1,21 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
-import styles from './ContentItemParagraph.scss';
+import styles from './ContentItemInner.scss';
 
 const cx = classNames.bind(styles);
 
-export default class ContentItemParagraph extends Component {
+export default class ContentItemInner extends Component {
   render() {
     return (
-      <p className={cx(`content__item-paragraph-${this.props.alignment}`)}>
+      <div className={cx('content__item-inner')}>
         {this.props.children}
-      </p>
+      </div>
     );
   }
 }
 
-ContentItemParagraph.propTypes = {
-  alignment: PropTypes.string.isRequired,
+ContentItemInner.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node

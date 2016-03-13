@@ -1,0 +1,22 @@
+.content__item--header-large {
+  font-size: 3.5em;
+  font-weight: normal;
+  margin: 0;
+  text-align: center;
+  color: #fff;
+}
+
+.content__item--header-medium {
+  font-size: 1.95em;
+  font-weight: normal;
+  margin: 0.25em 0;
+  color: #685884;
+}
+
+.content__item-img {
+  display: block;
+  max-width: 80px;
+  max-height: 80vh;
+  flex: none;
+  margin: 110px auto 60px;
+}

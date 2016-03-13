@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import ContentItemImage from 'PageComponents/ContentItemImage';
 import ContentItemParagraph from 'PageComponents/ContentItemParagraph';
+import ContentItemInner from 'PageComponents/ContentItemInner';
+import ContentItem from 'PageComponents/ContentItem';
 import SectionTitle from 'PageComponents/SectionTitle';
 import Footer from 'PageComponents/Footer';
 import classNames from 'classnames/bind';
@@ -12,8 +14,8 @@ export default class Appolo extends Component {
   render() {
     const permalink = this.props.permalink;
     return (
-      <div className={cx('content__item', 'content__item--current', 'content__item--reset')} ref={(ref)=>{ this.ContentItem = ref; }}>
-        <div className={cx('content__item-inner')}>
+      <ContentItem alignment="center">
+        <ContentItemInner>
             <ContentItemImage src={`/images/${permalink}/${permalink}-on-devices.png`} alignment="center" alt="Appolo for React" />
 
             <ContentItemParagraph alignment="center">
@@ -97,8 +99,8 @@ export default class Appolo extends Component {
               </tbody>
             </table>
           <Footer />
-        </div>
-      </div>
+        </ContentItemInner>
+      </ContentItem>
     );
   }
 }

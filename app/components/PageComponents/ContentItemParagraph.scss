@@ -1,15 +1,24 @@
-.content__item-center {
+.item-paragraph {
+  font-size: 1.25em;
+  line-height: 1.5;
+}
+
+[class^='content__item-paragraph'] {
+  @extend .item-paragraph;
+}
+
+.content__item-paragraph-center {
   text-align: center;
 }
 
-.content__item-justify {
+.content__item-paragraph-justify {
   text-align: justify;
 }
 
-.content__item-left {
+.content__item-paragraph-left {
   text-align: left;
 }
 
-.content__item-right {
+.content__item-paragraph-right {
   text-align: right;
 }

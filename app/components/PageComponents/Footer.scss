@@ -1,3 +1,5 @@
+@import './contentItemParagraph.scss';
+
 .footer {
   color: #7c7c7c;
   text-align: center;
@@ -7,7 +9,10 @@
   font-size: 13px;
 }
 
-.footer > p > a {
-  color: white;
-  font-weight: bolder;
+.footer > p {
+  @extend .item-paragraph;
+  > a {
+    color: white;
+    font-weight: bolder;
+  }
 }
