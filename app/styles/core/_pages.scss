@@ -1,0 +1,53 @@
+@import '../../styles/core/animate.scss';
+@import '../../styles/core/bounceInDown.scss';
+@import '../../styles/core/bounceOutUp.scss';
+@import './table.scss';
+@import './contentItem.scss';
+
+// Make these more generic!
+.meeru_services {
+  list-style: none;
+  font-family: 'fontello';
+  font-size: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 0px !important;
+}
+
+.meeru_features {
+  list-style: none;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 0px !important;
+  font-size: 1.25em;
+}
+
+.meeru_features > li {
+  margin-top: 10px;
+}
+
+.meeru_services > li {
+  margin: 0 10px 0 10px;
+}
+
+.ted {
+  color: red;
+  font-family: 'Helvetica';
+  font-weight: bolder;
+}
+
+.video-container {
+  position:relative;
+  padding-bottom:56.25%;
+  padding-top:30px;
+  height:0;
+  overflow:hidden;
+  margin-top: 50px;
+}

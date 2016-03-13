@@ -22,66 +22,46 @@ class FullScreen extends Component {
       browserHistory.push('/');
     }
 
-    this.state = { onCloseAnimation: false };
-    this.initialRender = true;
+    this.state = { onClose: false };
   }
 
   componentDidMount() {
     this.loadPage();
-    setTimeout(() => {
-      this.initialRender = false; // deploy 400ms to allow app icon transition to complete
-    }, 401 );
   }
 
   loadPage = () => {
     require([`../../pages/${this.app.name}.jsx`], (mod) => {
-      this.View = mod.default;
+      this.Page = mod.default;
       this.forceUpdate();
     });
   }
 
   onClose = () => {
-    this.setState({ onCloseAnimation: true });
+    this.setState({ onClose: true });
     this.onEndTransition();
   }
 
   onEndTransition = () => {
     setTimeout(() => {
       browserHistory.push(`preview-${this.app.permalink}`);
-    }, 401);
+    }, 750);
   }
 
   render() {
-    const appIconClass = cx({
-      'content__item-img': true,
-      'animated': true,
-      'bounceInDown': this.initialRender ? true : false,
-      'bounceOutUp': this.state.onCloseAnimation ? true : false
+    const contentClass = cx({
+      'content': true,
+      'content--open': this.state.onClose ? false : true
     });
-    const contentItemClass = cx({
-      'content__item': true,
-      'content__item--current': this.state.onCloseAnimation ? false : true,
-      'content__item--reset': true
-    });
-    const InnerContent = this.View ? this.View : 'Loading';
+    const Page = this.Page ? this.Page : 'Loading';
     return (
       <div className={cx('fullScreen')}>
-      <section className={cx('content', 'content--open')}>
-      <div className={contentItemClass} ref={(ref)=>{ this.ContentItem = ref; }}>
-        <div className={cx('content__item-inner')}>
-          <img className={appIconClass} src={`/images/${this.app.permalink}/icon.png`} alt={this.app.title} />
-          <h2>{this.app.title}</h2>
-          <h3>{this.app.subtitle}</h3>
+        <section className={contentClass}>
 
-          <InnerContent {...this.app} />
+          <Page {...this.app} onClose={this.state.onClose}/>
 
-          <div className={cx('footer')}>
-            <p>∆ 2016 Vivy</p>
-          </div>
-        </div>
-      </div>
-      <button className={cx('button', 'button--close')} onClick={this.onClose}><i className={cx('icon', 'icon--circle-cross')}></i><span className={cx('text-hidden')}>Close content</span></button>
-      </section>
+          <button className={cx('button', 'button--close')} onClick={this.onClose}><i className={cx('icon', 'icon--circle-cross')}></i><span className={cx('text-hidden')}>Close content</span></button>
+
+        </section>
       </div>
     );
   }
