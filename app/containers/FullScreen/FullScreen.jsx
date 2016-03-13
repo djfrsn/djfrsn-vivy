@@ -34,7 +34,7 @@ class FullScreen extends Component {
   }
 
   loadPage = () => {
-    require([`../../pages/${this.app.title}.jsx`], (mod) => {
+    require([`../../pages/${this.app.name}.jsx`], (mod) => {
       this.View = mod.default;
       this.forceUpdate();
     });
