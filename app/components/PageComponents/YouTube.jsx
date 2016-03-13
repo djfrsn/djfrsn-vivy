@@ -8,7 +8,7 @@ export default class YouTube extends Component {
   render() {
     return (
       <div className={cx('YouTube')}>
-        <iframe width="80%" max-width="640px" height="315" src={this.props.src} frameBorder="0" allowFullscreen="">
+        <iframe width="80%" src={this.props.src} frameBorder="0" allowFullScreen="">
         </iframe>
       </div>
     );

@@ -7,12 +7,14 @@ import profile from 'profile.json';
 
 export default class Layout extends Component {
   render() {
-    let View = <Portfolio portfolio={portfolio} routeParams={this.props.params} profile={profile} />;
+    const permalink = this.props.params.permalink;
+    const routeParams = permalink ? this.props.params : { permalink: '' };
+    let View = <Portfolio portfolio={portfolio} routeParams={routeParams} profile={profile} />;
     // '/' & '/preview-example' links are directed to Portfolio otherwise if /:permalink, user is directed to Fullscreen
-  	if ( this.props.params.permalink ) {
+  	if ( permalink ) {
 	    const params = this.props.params.permalink.split('-');
 	    View = (params[0] === 'preview') && params.length > 1
-	    ?	View : <FullScreen portfolio={portfolio} routeParams={this.props.params} />;
+	    ?	View : <FullScreen portfolio={portfolio} routeParams={routeParams} />;
   	}
 
     return View;
