@@ -1,13 +1,17 @@
 import React, { Component, PropTypes } from 'react';
-import { Footer } from 'PageComponents/PageComponents';
+import { ContentItem, ContentItemInner, ContentItemImage, Footer } from 'PageComponents/PageComponents';
 
 export default class Meeru extends Component {
   render() {
+    const permalink = this.props.permalink;
     return (
-      <div style={{textAlign: 'center'}}>
+      <ContentItem alignment="center">
+        <ContentItemInner>
+          <ContentItemImage src={`/images/${permalink}/${permalink}-on-devices.png`} alignment="center" alt="Meeru for Mac" />
 
-      <Footer />
-      </div>
+          <Footer />
+        </ContentItemInner>
+      </ContentItem>
     );
   }
 }

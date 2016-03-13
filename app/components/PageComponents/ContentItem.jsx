@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 export default class ContentItem extends Component {
   render() {
     return (
-      <div className={cx('content__item', `content__item-${this.props.alignment}`, 'content__item--reset')}>
+      <div className={cx('content__item', `content__item-${this.props.alignment}`)}>
         {this.props.children}
       </div>
     );

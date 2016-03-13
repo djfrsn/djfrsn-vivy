@@ -5,8 +5,7 @@
   top: 0;
   display: flex;
   overflow: hidden;
-  height: 0;
-  min-height: 100%;
+  height: auto;
   margin: 0 auto;
   padding: 0;
   pointer-events: auto;
@@ -16,10 +15,6 @@
 
 .content__item p {
   @extend .item-paragraph;
-}
-
-.content__item--reset {
-  height: auto;
 }
 
 .content__item-center {
