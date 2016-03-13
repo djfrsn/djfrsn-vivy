@@ -6,7 +6,7 @@ export default class AppoloPage extends Component {
     const permalink = this.props.permalink;
     return (
       <div>
-        <ContentItemImage src={`/images/${permalink}/${permalink}-on-devices.png`} alt={'Appolo for React'} />
+        <ContentItemImage src={`/images/${permalink}/${permalink}-on-devices.png`} alignment="center" alt="Appolo for React" />
       </div>
     );
   }
