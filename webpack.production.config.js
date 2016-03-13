@@ -54,7 +54,7 @@ module.exports = {
     }, {
       test: /\.scss$/,
       loader: 'style!css?module&localIdentName=[local]__[hash:base64:5]' +
-            '&sourceMap!autoprefixer-loader!sass'
+            '!autoprefixer-loader!sass'
     }]
   },
   resolve: {
