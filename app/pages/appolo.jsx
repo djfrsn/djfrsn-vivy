@@ -7,7 +7,7 @@ import styles from 'styles/core/_table.scss';
 
 const cx = classNames.bind(styles);
 
-export default class AppoloPage extends Component {
+export default class Appolo extends Component {
   render() {
     const permalink = this.props.permalink;
     return (
@@ -100,6 +100,6 @@ export default class AppoloPage extends Component {
   }
 }
 
-AppoloPage.propTypes = {
+Appolo.propTypes = {
   permalink: PropTypes.string.isRequired
 };
