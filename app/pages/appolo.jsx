@@ -7,9 +7,8 @@ import {
   SectionTitle,
   Footer
 } from 'PageComponents/PageComponents';
-
 import classNames from 'classnames/bind';
-import styles from 'styles/core/_pages.scss';
+import styles from 'styles/core/_table.scss';
 
 const cx = classNames.bind(styles);
 

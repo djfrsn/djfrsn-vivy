@@ -1,0 +1,15 @@
+.content__item--list {
+  list-style: none;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 0px !important;
+  font-size: 1.25em;
+}
+
+.content__item--list > li {
+  margin-top: 10px;
+}

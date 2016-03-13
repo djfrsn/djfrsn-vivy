@@ -6,14 +6,13 @@ const cx = classNames.bind(styles);
 
 export default class AppStoreButton extends Component {
   render() {
+    const src = this.props.comingSoon ? '../../images/app_store_coming_soon.png' : '../../images/app_store.png';
     return (
-      <a href={this.props.href}>
-        <img className={cx('content__item-img-center')} src="../../images/app_store.png" style={{marginBottom: 0}} />
-      </a>
+      <img className={cx('content__item-img-center')} src={src} style={{marginBottom: 0}} />
     );
   }
 }
 
 AppStoreButton.propTypes = {
-  href: PropTypes.string.isRequired
+  comingSoon: PropTypes.string
 };

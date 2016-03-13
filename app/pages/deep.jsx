@@ -65,7 +65,9 @@ export default class Deep extends Component {
 
             <SectionTitle>Download</SectionTitle>
 
-            <AppStoreButton href="https://itunes.apple.com/app/apple-store/id985064577?pt=320144&amp;ct=Deep%20Website%20Bottom&amp;mt=8" />
+            <a href="https://itunes.apple.com/app/apple-store/id985064577?pt=320144&amp;ct=Deep%20Website%20Bottom&amp;mt=8">
+              <AppStoreButton />
+            </a>
 
           </ContentItemInner>
         </ContentItem>

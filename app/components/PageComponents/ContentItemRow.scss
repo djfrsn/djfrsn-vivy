@@ -1,0 +1,14 @@
+.content__item--row {
+  list-style: none;
+  font-family: 'fontello';
+  font-size: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 0px !important;
+  > li {
+    margin: 0 10px 0 10px;
+  }
+}
