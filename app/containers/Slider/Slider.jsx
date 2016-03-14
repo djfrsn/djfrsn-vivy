@@ -4,6 +4,7 @@ import SliderNav from 'SliderNav/SliderNav';
 import styles from './Slider.scss';
 import classNames from 'classnames/bind';
 import dynamics from 'vendor/dynamics';
+import Hammer from 'vendor/hammer';
 import { browserHistory } from 'react-router';
 
 const cx = classNames.bind(styles);
@@ -35,11 +36,29 @@ export default class Slider extends Component {
   componentDidMount() {
     window.onpopstate = this.onBackButtonEvent;
     document.addEventListener( 'keydown', this.listenToKeyPress );
+    this.setupHammer();
   }
 
   componentWillUnmount() {
     this.willUnmount = true; // set to prevent dynamics.js callback execution when component will unmount, calling dynamics.stop doesn't work
     document.removeEventListener( 'keydown', this.listenToKeyPress );
+  }
+
+  setupHammer = () => {
+    const hammertime = new Hammer(this.Slider);
+    hammertime.on('swipe', (ev) => {
+      if (ev.direction === Hammer.DIRECTION_RIGHT) {
+        this.navigate('left');
+      } else {
+        this.navigate('right');
+      }
+    });
+    hammertime.get('pinch').set({ enable: false });
+    hammertime.get('rotate').set({ enable: false });
+    hammertime.get('tap').set({ enable: false });
+    hammertime.get('doubletap').set({ enable: false });
+    hammertime.get('press').set({ enable: false });
+    hammertime.get('pan').set({ enable: false });
   }
 
   listenToKeyPress = ( ev ) => {
@@ -283,7 +302,7 @@ export default class Slider extends Component {
         onViewDetails={this.onViewDetails} />);
     }) : null;
     return (
-      <section className={cx('slider')} style={{ opacity: this.props.opaque ? 0.1 : 1 }}>
+      <section className={cx('slider')} style={{ opacity: this.props.opaque ? 0.1 : 1 }} ref={(ref) => this.Slider = ref }>
         {slides}
         <SliderNav onSliderPrev={this.onSliderPrev}
           onSliderNext={this.onSliderNext}
