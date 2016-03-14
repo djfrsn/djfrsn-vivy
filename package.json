@@ -23,6 +23,7 @@
     "start": "node server",
     "prebuild": "rimraf dist && set NODE_ENV=production",
     "build": "webpack --config ./webpack.production.config.js --progress --profile --colors && cp -r ./app/images ./dist/images",
+    "deploy": "git push; npm run build; firebase deploy",
     "eslint": "eslint .",
     "jscs": "jscs ."
   },
