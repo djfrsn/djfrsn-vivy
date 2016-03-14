@@ -12,3 +12,9 @@
     margin: 0 10px 0 10px;
   }
 }
+
+@media screen and (max-width: 40em) {
+  .content__item--row {
+    font-size: 50px;
+  }
+}

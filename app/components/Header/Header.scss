@@ -146,3 +146,58 @@
 .bp-icon-email:after {
   content: '\e801';
 }
+
+@media screen and (max-width: 50em) {
+  .site-info-button:hover:before{
+    display: none;
+  }
+
+  .site-info {
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  .bp-header {
+    text-align: center;
+  }
+  .bp-header > span {
+    text-indent: 30px;
+  }
+  .site-info-button:hover:before{
+    display: none;
+  }
+  .site-info {
+    text-align: center;
+  }
+  .bp-header h1 {
+    font-size: 1.8em;
+    width: 100%;
+  }
+  .bp-header nav {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 20em) {
+  .bp-header {
+    text-align: center;
+  }
+  .bp-header > span {
+    text-indent: 22px;
+    font-size: 0.7em;
+    letter-spacing: .4em;
+  }
+  .bp-header > span span:hover:before {
+    right: 0px;
+  }
+  .bp-header h1 {
+    font-size: 1.8em;
+    width: 100%;
+  }
+  .bp-header nav {
+    margin: 0;
+    width: 100%;
+  }
+}

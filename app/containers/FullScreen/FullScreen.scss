@@ -4,6 +4,7 @@
 @import '../../styles/core/container.scss';
 @import '../../styles/core/contentIntro.scss';
 @import '../../styles/core/icon.scss';
+@import '../../styles/core/button.scss';
 /*
 **
 *** Intro Styles
@@ -33,26 +34,6 @@
   opacity: 1;
 }
 
-.button {
-  font-size: 1.31em;
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-  margin: 0 25px;
-  padding: 0;
-  cursor: pointer;
-  color: #5c5edc;
-  border: none;
-  background: none;
-}
-
-.button:focus {
-  outline: none;
-}
-
-.button:hover {
-  color: #fff;
-}
 
 .text-hidden {
   position: absolute;

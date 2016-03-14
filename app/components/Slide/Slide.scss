@@ -49,3 +49,9 @@
   text-transform: uppercase;
   color: #35303d;
 }
+
+@media screen and (max-width: 40em) {
+  .slide {
+    top: 0;
+  }
+}

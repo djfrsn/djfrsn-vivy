@@ -18,3 +18,9 @@
   -moz-transition: opacity .25s ease-in-out;
   -webkit-transition: opacity .25s ease-in-out;
 }
+
+@media screen and (max-width: 40em) {
+  .slider {
+    padding: 0 0 10%;
+  }
+}
