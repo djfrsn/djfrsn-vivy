@@ -56,3 +56,9 @@
     transform: scale(0.7);
   }
 }
+
+@media screen and (max-width: 40em) {
+  .slide {
+    top: 22px;
+  }
+}
