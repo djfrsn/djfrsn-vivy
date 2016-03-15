@@ -1,23 +1,18 @@
 {
-  "name": "webpack-express-boilerplate",
-  "version": "0.1.0",
-  "description": "A boilerplate for running a Webpack workflow in Node express",
+  "name": "djfrsn",
+  "version": "0.0.1",
+  "description": "Home on the web",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/christianalfoni/webpack-express-boilerplate.git"
+    "url": "https://github.com/djfrsn/djfrsn-vivy.git"
   },
-  "keywords": [
-    "express",
-    "webpack",
-    "node"
-  ],
-  "author": "Christian Alfoni",
+  "author": "Dennis Jefferson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/christianalfoni/webpack-express-boilerplate/issues"
+    "url": "https://github.com/djfrsn/djfrsn-vivy/issues"
   },
-  "homepage": "https://github.com/christianalfoni/webpack-express-boilerplate",
+  "homepage": "https://dennisjefferson.com",
   "scripts": {
     "test": "",
     "start": "node server",
